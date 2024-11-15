@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estiliza o corpo da página */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #f5f5f5; /* Fundo claro para constraste */
+    color: #333; /* Texto em um tom de cinza escuro */
+    padding: 20px;
+}
+
+/* Estilo de cabeçalho */
+header {
+    background-color: #2c3e50; /* Azul escuro moderno */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #34495e;
+}
+
+.title-main {
+    font-size: 2rem; /* Tamanho grande para destaque */
+    font-weight: 700; /* Negrito */
+    letter-spacing: 1px;
+}
+
+/* Estilo da seção de introdução */
+.intro {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.sub-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Estilo do conteúdo principal */
+.content {
+    max-width: 1000px;
+    margin: 0 auto; /* Centraliza o conteúdo */
+    padding: 20px;
+    background-color: #ffffff; /* Fundo branco para destacar o texto */
+    border-radius: 16px; /* Borda arredondada */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar o fundo do background */
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.25rem;
+    color: #2c3e50; /* Azul para títulos */
+    margin-bottom: 10px;
+    border-left: 4px solid #2c3e50; /* Barra decorativa ao lado do título */
+    padding-left: 10px; /* Espaço entre a barra e o título */
+}
+
+p {
+    margin-bottom: 15px;
+    color: #666; /* Cinza suave para texto */
+}
+
+/* Estilo de lista */
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #2980b9; /* Azul vibrante para links */
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 600;
+}
+
+a:hover {
+    color: #1a5d8c; /* Azul escuro ao passar o mouse */
+}
+
+/* Estilo do rdapé */
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 0.875rem;
+    color: #999; /* Cinza claro */
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 25px;
+}
+
+.social-icon img:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
