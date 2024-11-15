@@ -119,3 +119,67 @@ footer {
     transform: scale(1.1);
     opacity: 0.8;
 }
+
+/* Media Query para telas menores (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Reduz o tamanho da fonte para melhor encaixe */
+        padding: 10px; /* Diminui o padding para economizar espaço */
+    }
+
+    header {
+        padding: 15px;
+        font-size: 1.5rem; /* Reduz o tamanho da fonte do cabeçalho */
+    }
+
+    .title-main {
+        font-size: 1.5rem; /* Ajusta o tamanho do título principal */
+    }
+
+    .intro {
+        margin: 15px 0;
+    }
+
+    .sub-title {
+        font-size: 1.25rem; /* Diminui o tamanho do subtítulo */
+    }
+
+    .content {
+        max-width: 100%; /* Ajusta o tamanho máximo para ocupar toda a largura */
+        padding: 15px;
+        border-radius: 10px; /* Reduz a borda arredondada */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ajusta a sombra para um visual mais leve */
+    }
+
+    h3 {
+        font-size: 1.1rem; /* Reduz o tamanho dos títulos */
+        padding-left: 8px; /* Diminui o padding para encaixe melhor */
+    }
+
+    p {
+        font-size: 0.9rem; /* Ajusta o tamanho do texto para ser mais legível */
+        margin-bottom: 10px; /* Reduz o espaçamento entre parágrafos */
+    }
+
+    ul {
+        padding-left: 15px; /* Reduz o espaçamento da lista */
+    }
+
+    li {
+        margin-bottom: 8px; /* Diminui o espaçamento entre itens da lista */
+    }
+
+    .social-links {
+        gap: 15px; /* Diminui o espaçamento entre ícones sociais */
+    }
+
+    .social-icon img {
+        width: 20px;
+        height: 20px; /* Reduz o tamanho dos ícones */
+    }
+
+    footer {
+        font-size: 0.8rem; /* Diminui o tamanho da fonte do rodapé */
+        padding: 8px;
+    }
+}
