@@ -115,27 +115,5 @@
                 <img src="./Assets/linkedin-icon.png" alt="LinkedIn">
             </a>
         </div>
-        <!-- Contador de visitas estilizado -->
-        <div class="visit-counter" id="visit-counter">
-            Visitas: <span id="visit-count">0</span>
-        </div>
-    </footer>
-
-    <script>
-        // JavaScript para incrementar o contador de visitas
-        document.addEventListener('DOMContentLoaded', () => {
-            const visitCountElement = document.getElementById('visit-count');
-            let visitCount = localStorage.getItem('visitCount');
-
-            if (visitCount === null) {
-                visitCount = 1;
-            } else {
-                visitCount = parseInt(visitCount) + 1;
-            }
-
-            localStorage.setItem('visitCount', visitCount);
-            visitCountElement.textContent = visitCount;
-        });
-    </script>
 </body>
 </html>
