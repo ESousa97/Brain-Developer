@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain Developer</title>
+    <title>Início - Brain Developer</title>
     <link rel="stylesheet" href="./Start.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1 class="title-main">Pensando como Desenvolvedor</h1>
+            <h1 class="title-main">Iniciando carreira</h1>
         </div>
     </header>
 
@@ -31,7 +31,7 @@
 
             <article class="backend-info">
                 <h3 class="section-title">O que é Back-End?</h3>
-                <p class="text">O <b>Back-End</b> é a parte do desenvolvimento responsável por toda a lógica de funcionamento de um sistema, incluindo a gestão de dados, autenticação, servidores, e a comunicação entre banco de dados e o Front-End. É o que mantém tudo funcionando "nos bastidores" e garante que as informações sejam processadas corretamente. Para essa área, é necessário aprender linguagens como Java, Python ou Node.js, além de conceitos importantes como gerenciamento de bancos de dados e segurança.</p>
+                <p class="text">O <b>Back-End</b> é a parte do desenvolvimento responsável por toda a lógica de funcionamento de um sistema, incluindo a gestão de dados, autenticação, servidores, e a comunicação entre banco de dados e o Front-End. É o que mantém tudo funcionando "nos bastidores" e garante que as informações sejam processadas corretamente. Para essa área, é necessário aprender linguagens como Java, Python ou Node.js, entre outros, além de conceitos importantes como gerenciamento de bancos de dados e segurança.</p>
             </article>
 
             <article class="path-info">
@@ -42,8 +42,13 @@
             <article class="getting-started">
                 <h3 class="section-title">Por onde começar?</h3>
                 <ul class="list">
-                    <li class="list-item"><b>Front-End:</b> Comece aprendendo HTML e CSS. É importante praticar bastante, escrevendo o código manualmente, porque, em muitas empresas, o uso de ferramentas automáticas pode ser limitado. A compreensão sólida desses conceitos é essencial.</li>
-                    <li class="list-item"><b>Back-End:</b> Também é útil começar com HTML e CSS, mas apenas para ter uma noção básica de como as interfaces são estruturadas. Em seguida, foque em linguagens como Java, Python ou Node.js. A ideia é poder criar projetos que mostrem como o Back-End suporta e interage com o Front-End.</li>
+                    <li class="list-item"><b>Front-End:</b> Comece aprendendo HTML, CSS e JavaScript. É importante praticar bastante, escrevendo o código manualmente, porque, em muitas empresas, o uso de inteligência artificial como, <b>ChatGPT</b> ou <b>Google Gemini</b> pode ser limitado. A compreensão sólida desses conceitos é essencial.</li>
+                    <li class="list-item">
+                        <b>Back-End:</b> É útil começar com HTML, CSS e JavaScript para ter uma noção básica de como as interfaces são estruturadas. Em seguida, foque em linguagens como Java, Python, Node.js, entre outros. O objetivo é criar projetos que demonstrem como o Back-End suporta e interage com o Front-End. No Back-End, é ainda mais importante ter uma base sólida, sem depender de assistentes de inteligência artificial como <b>ChatGPT</b> ou <b>Google Gemini</b>, pois muitas empresas evitam seu uso por questões de segurança e risco de vazamento de dados.
+                    </li>
+                    <li class="list-item">
+                        <b>Git e GitHub:</b> Aprender Git é essencial para o controle de versão e para trabalhar em equipe. Use o GitHub para hospedar seus projetos, colaborar com outros desenvolvedores e criar um portfólio que mostre suas habilidades. Compreender comandos como <b>git add</b>, <b>git commit</b> e <b>git push</b> ajudará a gerenciar o histórico de versões de seu código com eficiência.
+                    </li>
                 </ul>
             </article>
 
@@ -84,6 +89,15 @@
                     <p class="resource-description">Além de comparar com Python, este <a href="https://www.freecodecamp.org/portuguese/news/node-js-x-python-como-escolher-a-melhor-tecnologia-para-desenvolver-o-back-end-de-seu-aplicativo-web/" target="_blank">artigo</a> fornece insights sobre o uso do Node.js no desenvolvimento back-end.</p>
                 </ul>
 
+                <h3 class="section-title">Git e GitHub:</h3>
+                <ul class="resource-list">
+                    <li class="resource-item"><b>Guia de Iniciação ao Git e GitHub</b></li>
+                    <p class="resource-description">A <a href="https://www.alura.com.br/artigos/o-que-e-git-github" target="_blank">Alura</a> oferece um guia prático para entender como usar Git e GitHub de forma eficaz.</p>
+                    
+                    <li class="resource-item"><b>Documentação Oficial do Git</b></li>
+                    <p class="resource-description">A documentação oficial do <a href="https://git-scm.com/doc" target="_blank">Git</a> é um recurso fundamental para aprender os comandos e funcionalidades da ferramenta. <a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-O-B%C3%A1sico-do-Git">Mais</a></p>
+                </ul>
+
                 <p class="text">Esses recursos oferecem uma base sólida para iniciar seus estudos e aprofundar-se nas linguagens e tecnologias mencionadas. Lembre-se, estude bastante o básico, tenha uma base bastante sólida, mais não se prenda somente a isso.</p>
 
                 <p class="text">Caso queira voltar a página inicial <a href="/index.html">só clicar aqui</a></p>
@@ -92,15 +106,36 @@
     </main>
 
     <footer>
-        <p class="footer-text">By José Enoque</p>
+        <p>By José Enoque</p>
         <div class="social-links">
             <a href="https://github.com/ESousa97" target="_blank" class="social-icon">
-                <img src="/Assets/github-icon.svg" alt="GitHub">
+                <img src="./Assets/github-icon.svg" alt="GitHub">
             </a>
             <a href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/" target="_blank" class="social-icon">
-                <img src="/Assets/linkedin-icon.png" alt="LinkedIn">
+                <img src="./Assets/linkedin-icon.png" alt="LinkedIn">
             </a>
         </div>
+        <!-- Contador de visitas estilizado -->
+        <div class="visit-counter" id="visit-counter">
+            Visitas: <span id="visit-count">0</span>
+        </div>
     </footer>
+
+    <script>
+        // JavaScript para incrementar o contador de visitas
+        document.addEventListener('DOMContentLoaded', () => {
+            const visitCountElement = document.getElementById('visit-count');
+            let visitCount = localStorage.getItem('visitCount');
+
+            if (visitCount === null) {
+                visitCount = 1;
+            } else {
+                visitCount = parseInt(visitCount) + 1;
+            }
+
+            localStorage.setItem('visitCount', visitCount);
+            visitCountElement.textContent = visitCount;
+        });
+    </script>
 </body>
 </html>

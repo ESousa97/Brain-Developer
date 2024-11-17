@@ -10,13 +10,13 @@
 <body>
     <header>
         <div class="container">
-            <h1 class="title-main">Pensando como Desenvolvedor</h1>
+            <h1 class="title-main">Bem-vindo ao Brain Developer</h1>
         </div>
     </header>
 
     <main>
         <section class="intro">
-            <h2 class="sub-title">Bem-vindo ao Brain Developer</h2>
+            <h2 class="sub-title">Pensando como Desenvolvedor</h2>
         </section>
 
         <section class="content">
@@ -34,9 +34,9 @@
 
             <article class="getting-started">
                 <h3>Por Onde Começar?</h3>
-                <p>Se você é iniciante e quer aprender o básico, o primeiro passo é entender HTML e CSS. Caso nunca tenha tido contato com essas tecnologias, comece por <a href="/pages/Start/Start.html" target="_blank">aqui</a>. Se você já tem uma boa base, explore os tópicos a seguir:</p>
+                <p>Se você é iniciante e quer aprender o básico, o primeiro passo é entender HTML, CSS, JavaScript, Git e GitHub. Caso nunca tenha tido contato com essas tecnologias, comece por <a href="/pages/Start/Start.html" target="_blank">aqui</a>. Se você já tem uma boa base, explore os tópicos a seguir:</p>
                 <ul>
-                    <li><a href="#">Tópico 1</a></li>
+                    <li><a href="/pages/Front-End/Front-End.html" target="_blank">Front-End</a></li>
                     <li><a href="#">Tópico 2</a></li>
                     <li><a href="#">Tópico 3</a></li>
                 </ul>
@@ -64,6 +64,27 @@
                 <img src="./Assets/linkedin-icon.png" alt="LinkedIn">
             </a>
         </div>
+        <!-- Contador de visitas estilizado -->
+        <div class="visit-counter" id="visit-counter">
+            Visitas: <span id="visit-count">0</span>
+        </div>
     </footer>
+
+    <script>
+        // JavaScript para incrementar o contador de visitas
+        document.addEventListener('DOMContentLoaded', () => {
+            const visitCountElement = document.getElementById('visit-count');
+            let visitCount = localStorage.getItem('visitCount');
+
+            if (visitCount === null) {
+                visitCount = 1;
+            } else {
+                visitCount = parseInt(visitCount) + 1;
+            }
+
+            localStorage.setItem('visitCount', visitCount);
+            visitCountElement.textContent = visitCount;
+        });
+    </script>
 </body>
 </html>

@@ -120,6 +120,34 @@ footer {
     opacity: 0.8;
 }
 
+/* Estilização compacta para o contador de visitas */
+.visit-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Tamanho de fonte menor */
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    background-color: #3f51b5; /* Cor de fundo mais suave */
+    padding: 5px 12px; /* Espaçamento menor */
+    border-radius: 20px; /* Bordas arredondadas suaves */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra leve */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito de hover sutil */
+.visit-counter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilização do texto */
+.visit-counter span {
+    font-weight: 500;
+    margin-left: 5px; /* Espaço pequeno entre "Visitas:" e o número */
+}
+
+
 /* Media Query para telas menores (max-width: 768px) */
 @media (max-width: 768px) {
     body {
