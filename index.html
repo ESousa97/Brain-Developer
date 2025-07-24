@@ -1,68 +1,634 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain Developer</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>Brain Developer - Seu Caminho na Programação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --dark-color: #1a1a2e;
+            --light-color: #ffffff;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --border-radius: 20px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header estilizado */
+        header {
+            background: var(--bg-gradient);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.05"/><circle cx="50" cy="10" r="1.5" fill="white" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .title-main {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--light-color);
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Navegação principal */
+        .main-nav {
+            margin: 3rem 0;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-card {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .nav-card:hover::before {
+            left: 100%;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .nav-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .nav-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .nav-card-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--bg-gradient);
+            color: var(--light-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-card-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Seção principal de conteúdo */
+        .main-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-section {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-header {
+            background: var(--bg-gradient);
+            color: var(--light-color);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section-content {
+            padding: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-item h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-item i {
+            font-size: 1.2rem;
+        }
+
+        /* Timeline de aprendizado */
+        .learning-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-number {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-gradient);
+            color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1.5rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            background: #f8f9ff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            flex: 1;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer melhorado */
+        footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-gradient);
+            border-radius: 50%;
+            text-decoration: none;
+            color: var(--light-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .social-icon i {
+            font-size: 1.5rem;
+        }
+
+        /* Animações e efeitos */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .nav-card {
+                padding: 2rem;
+            }
+
+            .main-content {
+                padding: 0 1rem;
+            }
+
+            .section-content {
+                padding: 2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline-number {
+                margin: 0 auto 1rem;
+            }
+        }
+
+        /* Botão CTA especial */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: var(--light-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.6);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1 class="title-main">Bem-vindo ao Brain Developer</h1>
+        <div class="header-content">
+            <h1 class="title-main">🧠 Brain Developer</h1>
+            <p class="header-subtitle">Transforme sua paixão por tecnologia em uma carreira de sucesso</p>
         </div>
     </header>
 
-    <main>
-        <section class="intro">
-            <h2 class="sub-title">Pensando como Desenvolvedor</h2>
+    <nav class="main-nav">
+        <div class="nav-cards">
+            <div class="nav-card">
+                <div class="nav-card-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Iniciante Completo</h3>
+                <p>Nunca programou antes? Comece aqui! Aprenda os fundamentos de HTML, CSS, JavaScript e Git do zero.</p>
+                <a href="./pages/Start/Start.html" class="nav-card-btn">Começar Jornada</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="nav-card-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Front-End Developer</h3>
+                <p>Domine a arte de criar interfaces incríveis e experiências de usuário memoráveis.</p>
+                <a href="./pages/Front-End/Front-End.html" class="nav-card-btn">Explorar Front-End</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="nav-card-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Back-End Developer</h3>
+                <p>Construa a base sólida que sustenta toda aplicação. Aprenda sobre servidores, APIs e bancos de dados.</p>
+                <a href="./pages/Back-End/Back-End.html" class="nav-card-btn">Descobrir Back-End</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <h2><i class="fas fa-lightbulb"></i> Por Que Escolher a Programação?</h2>
+                <p>Descubra as infinitas possibilidades que a tecnologia oferece</p>
+            </div>
+            <div class="section-content">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-chart-line"></i> Alta Demanda no Mercado</h4>
+                        <p>O mercado de tecnologia cresce exponencialmente. Programadores são cada vez mais valorizados e bem remunerados.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-globe"></i> Trabalho Remoto</h4>
+                        <p>Trabalhe de qualquer lugar do mundo. A programação oferece flexibilidade geográfica incomparável.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-brain"></i> Desenvolvimento Contínuo</h4>
+                        <p>Nunca pare de aprender! A tecnologia evolui constantemente, mantendo você sempre atualizado.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-magic"></i> Criar Soluções</h4>
+                        <p>Transforme ideias em realidade. Resolva problemas reais e impacte a vida de milhões de pessoas.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="content">
-            <article class="introduction">
-                <h3>O Início</h3>
-                <p>O projeto surgiu com a ideia de orientar desenvolvedores a escolherem o melhor caminho de aprendizado, permitindo que você tome suas próprias decisões com base em informações claras e objetivas. Aqui, não há imposições ou induções – apenas dicas úteis que você pode usar para definir seu próprio trajeto.</p>
-                <p>A transparência é o nosso foco: as sugestões que oferecemos são baseadas em experiências reais e aprendizados compartilhados de maneira prática. Muitas vezes, como você talvez tenha vivenciado, recebemos conselhos que acabam mais nos confundindo do que ajudando. Foi pensando nisso que criamos esta página, para simplificar o processo de escolha no vasto e às vezes confuso mercado de tecnologia.</p>
-                <p>Nosso objetivo é desmistificar o caminho para se tornar um desenvolvedor bem-sucedido, ajudando você a se preparar para uma carreira recompensadora e um ambiente de trabalho que valorize seu talento. Para isso, é crucial estar sempre atualizado e em constante evolução.</p>
-            </article>
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <h2><i class="fas fa-road"></i> Seu Caminho para o Sucesso</h2>
+                <p>Um roadmap claro e objetivo para sua jornada na programação</p>
+            </div>
+            <div class="section-content">
+                <div class="learning-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h4>Fundamentos Sólidos</h4>
+                            <p>Comece com HTML, CSS e JavaScript. Entenda como a web funciona e crie suas primeiras páginas interativas. Este é o alicerce de tudo!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h4>Controle de Versão</h4>
+                            <p>Aprenda Git e GitHub. Essencial para qualquer desenvolvedor, você aprenderá a versionar seu código e colaborar em equipe.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h4>Escolha sua Especialização</h4>
+                            <p>Front-End (interfaces), Back-End (lógica de negócio) ou Full-Stack (ambos). Cada caminho tem suas particularidades e oportunidades.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h4>Frameworks e Bibliotecas</h4>
+                            <p>React, Vue, Angular para Front-End. Node.js, Python, Java para Back-End. Ferramentas que aceleram o desenvolvimento.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-content">
+                            <h4>Projetos Reais</h4>
+                            <p>Construa um portfólio sólido. Projetos práticos demonstram suas habilidades melhor que qualquer certificado.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">6</div>
+                        <div class="timeline-content">
+                            <h4>Networking e Mercado</h4>
+                            <p>Participe de comunidades, eventos e hackathons. O networking é crucial para oportunidades de carreira.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="cta-button">
+                        <i class="fas fa-play"></i> Iniciar Minha Jornada Agora
+                    </a>
+                </div>
+            </div>
+        </section>
 
-            <article class="education-career">
-                <h3>Formação e Carreira: O Que é Essencial?</h3>
-                <p>Se o seu objetivo é conseguir um bom emprego, uma graduação pode ser importante, mas, se pretende empreender ou desenvolver suas próprias ideias, talvez seja mais eficaz focar em cursos práticos que agreguem diretamente à sua carreira.</p>
-            </article>
-
-            <article class="getting-started">
-                <h3>Por Onde Começar?</h3>
-                <p>Se você é iniciante e quer aprender o básico, o primeiro passo é entender HTML, CSS, JavaScript, Git e GitHub. Caso nunca tenha tido contato com essas tecnologias, comece por <a href="/pages/Start/Start.html" target="_blank">aqui</a>. Se você já tem uma boa base, explore os tópicos a seguir:</p>
-                <ul>
-                    <li><a href="/pages/Front-End/Front-End.html" target="_blank">Front-End</a></li>
-                    <li><a href="#">Tópico 2</a></li>
-                    <li><a href="#">Tópico 3</a></li>
-                </ul>
-            </article>
-
-            <article class="career-advancement">
-                <h3>Avançando na Carreira ou Migrando de Área</h3>
-                <p>Se você já está no mercado de trabalho e deseja se especializar ou mudar de área, aqui estão algumas opções que podem ajudar:</p>
-                <ul>
-                    <li><a href="#">Tópico 1</a></li>
-                    <li><a href="#">Tópico 2</a></li>
-                    <li><a href="#">Tópico 3</a></li>
-                </ul>
-            </article>
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <h2><i class="fas fa-star"></i> Diferenciais do Brain Developer</h2>
+                <p>O que nos torna únicos na sua jornada de aprendizado</p>
+            </div>
+            <div class="section-content">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-compass"></i> Orientação Clara</h4>
+                        <p>Sem enrolação! Caminhos objetivos baseados em experiências reais do mercado de trabalho.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-hands-helping"></i> Experiência Prática</h4>
+                        <p>Foco em projetos hands-on que preparam você para situações reais de desenvolvimento.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-users"></i> Comunidade Ativa</h4>
+                        <p>Conecte-se com outros desenvolvedores em formação e profissionais experientes.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-chart-bar"></i> Acompanhamento de Progresso</h4>
+                        <p>Monitore seu desenvolvimento e celebre cada conquista no seu caminho.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>By José Enoque</p>
-        <div class="social-links">
-            <a href="https://github.com/ESousa97" target="_blank" class="social-icon">
-                <img src="./Assets/github-icon.svg" alt="GitHub">
-            </a>
-            <a href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/" target="_blank" class="social-icon">
-                <img src="./Assets/linkedin-icon.png" alt="LinkedIn">
-            </a>
+        <div class="footer-content">
+            <h3>Criado com 💜 por José Enoque</h3>
+            <p>Transformando vidas através da programação</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/ESousa97" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 Brain Developer. Todos os direitos reservados.
+            </p>
         </div>
+    </footer>
+
+    <script>
+        // Animação de scroll suave
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = '0.1s';
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+            
+            fadeElements.forEach(el => observer.observe(el));
+        });
+
+        // Efeito parallax sutil no header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            header.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
 </body>
 </html>

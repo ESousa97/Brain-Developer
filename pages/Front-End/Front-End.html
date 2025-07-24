@@ -1,74 +1,1756 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front-End - Brain Developer</title>
-    <link rel="stylesheet" href="/pages/Front-End/Front-End.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Front-End Developer - Brain Developer</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* CSS Variables */
+  :root {
+    --primary-color: #3b82f6;
+    --secondary-color: #8b5cf6;
+    --accent-color: #06b6d4;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --dark-color: #1f2937;
+    --light-color: #ffffff;
+    --text-color: #374151;
+    --text-light: #6b7280;
+    --bg-light: #f8fafc;
+    --border-color: #e5e7eb;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --border-radius: 20px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    color: var(--text-color);
+    background: var(--gradient-primary);
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 4rem 1rem 6rem;
+    text-align: center;
+    color: var(--light-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+    animation: float 20s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideInDown 1s ease-out;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    animation: fadeIn 1s ease-out 0.5s both;
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: slideInUp 1s ease-out 1s both;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  /* Main container */
+  .main-container {
+    background: var(--light-color);
+    margin: -2rem 1rem 3rem;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  /* Content Sections */
+  .content-section {
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  .section-description {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Info Cards */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .info-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.6s;
+  }
+
+  .info-card:hover::before {
+    left: 100%;
+  }
+
+  .info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+  }
+
+  .card-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--light-color);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  }
+
+  .info-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+
+  .info-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Skills Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .skill-category {
+    background: var(--light-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary-color);
+    transition: transform 0.3s ease;
+  }
+  .skill-category:hover {
+    transform: translateY(-5px);
+  }
+  .skill-category h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skills-list {
+    list-style: none;
+  }
+  .skills-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skills-list li:last-child {
+    border-bottom: none;
+  }
+  .skill-name {
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  .skill-level {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 15px;
+    font-weight: 600;
+  }
+  .skill-essential {
+    background: #dcfce7;
+    color: #166534;
+  }
+  .skill-important {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  .skill-advanced {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  /* Roadmap Timeline */
+  .roadmap-timeline {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    margin: 3rem 0;
+  }
+  .timeline-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .timeline-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 60px;
+    width: 2px;
+    height: calc(100% + 1rem);
+    background: var(--gradient-primary);
+  }
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    color: var(--light-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 2rem;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    flex-shrink: 0;
+  }
+  .step-content {
+    flex: 1;
+    background: var(--light-color);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+  }
+  .step-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+  }
+  .step-description {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .step-time {
+    display: inline-block;
+    background: var(--gradient-secondary);
+    color: var(--light-color);
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .step-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .tech-tag {
+    background: #f1f5f9;
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+  }
+  .step-resources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--light-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 25px;
+    border: 1px solid var(--primary-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  .resource-link:hover {
+    background: var(--primary-color);
+    color: var(--light-color);
+    transform: translateY(-2px);
+  }
+
+  /* Frameworks Section */
+  .frameworks-section {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    margin: 3rem 0;
+  }
+  .frameworks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .framework-card {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  .framework-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+  }
+  .framework-logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--light-color);
+  }
+  .react-logo {
+    background: #61dafb;
+  }
+  .vue-logo {
+    background: #4fc08d;
+  }
+  .angular-logo {
+    background: #dd0031;
+  }
+  .framework-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+  }
+  .framework-card p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+  .framework-pros {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+  .framework-pros li {
+    padding: 0.3rem 0;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .framework-pros li::before {
+    content: '✓';
+    color: var(--success-color);
+    font-weight: bold;
+  }
+
+  /* Market Section */
+  .market-section {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    margin: 3rem 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .stat-card {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  /* Salary Section */
+  .salary-section {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    margin: 3rem 0;
+    border-left: 6px solid var(--success-color);
+  }
+  .salary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .salary-card {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+  }
+  .salary-card:hover {
+    transform: translateY(-3px);
+  }
+  .salary-level {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+  }
+  .salary-range {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+  }
+  .salary-description {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  /* Portfolio Section */
+  .portfolio-section {
+    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    margin: 3rem 0;
+  }
+  .project-ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .project-card {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  .project-difficulty {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .difficulty-beginner {
+    background: #dcfce7;
+    color: #166534;
+  }
+  .difficulty-intermediate {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  .difficulty-advanced {
+    background: #fecaca;
+    color: #991b1b;
+  }
+  .project-card h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+  .project-card p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tech-badge {
+    background: #f1f5f9;
+    color: var(--primary-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* Tips Section */
+  .tips-section {
+    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    margin: 3rem 0;
+  }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .tip-card {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+  }
+  .tip-card:hover {
+    transform: translateY(-3px);
+  }
+  .tip-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+  }
+  .tip-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 0.8rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+    margin: 4rem 0;
+  }
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--gradient-primary);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+  }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+  }
+  .cta-secondary {
+    background: var(--light-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+  }
+  .cta-secondary:hover {
+    background: var(--primary-color);
+    color: var(--light-color);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--dark-color);
+    color: var(--light-color);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    margin-top: 4rem;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    text-decoration: none;
+    color: var(--light-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+  .social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  }
+
+  /* Animations */
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-badges {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-container {
+      margin: -1rem 0.5rem 3rem;
+      border-radius: 1rem;
+    }
+
+    .container {
+      padding: 2rem 1rem;
+    }
+
+    .info-grid,
+    .skills-grid,
+    .frameworks-grid,
+    .stats-grid,
+    .salary-grid,
+    .project-ideas-grid,
+    .tips-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .timeline-step {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .timeline-step::after {
+      display: none;
+    }
+
+    .step-number {
+      margin: 0 auto 1rem;
+    }
+
+    .step-resources {
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="title-main">Como se colocar ou realocar no mercado front-end?</h1>
+  <section class="hero-section" aria-label="Seção de Apresentação">
+    <div class="hero-content">
+      <h1 class="hero-title">🎨 Front-End Developer</h1>
+      <p class="hero-subtitle">
+        Crie experiências digitais incríveis que encantam usuários
+      </p>
+
+      <div class="hero-badges" role="list">
+        <span class="badge" role="listitem">💰 R$ 1k - R$ 25k+</span>
+        <span class="badge" role="listitem">🏠 20% Remoto</span>
+        <span class="badge" role="listitem">🚀 Alta Demanda</span>
+        <span class="badge" role="listitem">🎯 Criatividade + Lógica</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-container" role="main">
+    <div class="container">
+      <!-- O que é Front-End -->
+      <section class="content-section" id="o-que-e-front-end" tabindex="-1" aria-labelledby="front-end-title">
+        <div class="section-header">
+          <h2 class="section-title" id="front-end-title">🎯 O que é ser Front-End?</h2>
+          <p class="section-description">
+            Front-End é muito mais que código - é transformar ideias em experiências visuais que conectam,
+            inspiram e facilitam a vida das pessoas.
+          </p>
         </div>
-    </header>
 
-    <main>
-        <section class="intro">
-            <h2 class="sub-title">Front-End Developer</h2>
-        </section>
+        <div class="info-grid">
+          <article class="info-card" tabindex="0" aria-label="Designer de Experiências">
+            <div class="card-icon" aria-hidden="true"><i class="fas fa-palette"></i></div>
+            <h3>Designer de Experiências</h3>
+            <p>
+              Você não apenas programa - você desenha experiências. Cada botão, animação e layout é pensado
+              para criar a melhor jornada do usuário.
+            </p>
+          </article>
 
-        <section class="content">
-            <article class="introduction">
-                <h3 class="section-title">O que é ser um desenvolvedor front-end?</h3>
-                <p>A maioria dos desenvolvedores, quando perguntados sobre o que é ser um Front-End, costuma responder algo como: <i><b>“Ser um desenvolvedor Front-End é trabalhar na criação e implementação da parte visual e interativa de um site ou aplicação web, ou seja, tudo o que os usuários podem ver e com o que podem interagir diretamente no navegador.”</b></i> Mas a verdade vai muito além disso. Ser Front-End é muito mais profundo: <i><b>“É dar vida a ideias, transformando linhas de código em experiências visuais que inspiram, conectam e facilitam o mundo para quem o vê.”</b></i></p>
-            </article>
+          <article class="info-card" tabindex="0" aria-label="Criador de Interfaces">
+            <div class="card-icon" aria-hidden="true"><i class="fas fa-magic"></i></div>
+            <h3>Criador de Interfaces</h3>
+            <p>
+              Transforme designs estáticos em interfaces dinâmicas e interativas. Dê vida às ideias através de código
+              inteligente e criativo.
+            </p>
+          </article>
 
-            <article class="frameworks">
-                <h3 class="section-title">Como se destacar?</h3>
-                <p>Para se destacar como <b>Front-End</b> sem experiência comprovada, vá além das linguagens básicas (HTML, CSS, JavaScript) e estude frameworks como <a href="https://www.alura.com.br/artigos/react-js?srsltid=AfmBOorEzz3dDGe5OzxIp7se8HN-pmURX1m9ZxYi5tPbz8s2RoBizTO8" target="_blank">React.js</a>, <a href="https://www.alura.com.br/artigos/vue-js?srsltid=AfmBOooJ-ILjIDZsrFhM7AsUQAEQN9aXLzPMMTsGJs21fTcfjTUZYX15" target="_blank">Vue.js</a>, <a href="https://www.alura.com.br/artigos/como-comecar-com-angular?srsltid=AfmBOoqGTwzaCgkO8LKHxH9BCWQsah1jmZZ19dKHg5kT-6ZViwPWqz36" target="_blank">Angular</a>, <a href="https://dev.to/sucodelarangela/o-que-e-e-porque-usar-sass-5dch" target="_blank">Sass</a>, e <a href="https://www.freecodecamp.org/portuguese/news/o-que-e-tailwind-css-um-guia-para-iniciantes/" target="_blank">Tailwind CSS</a>. Crie projetos pessoais para um portfólio robusto, participe de <a href="https://hackathonbrasil.com.br/" target="_blank">hackathons</a>, contribua para projetos open source no <a href="https://github.com/" target="_blank">GitHub</a>, e obtenha certificados por meio de plataformas como <a href="https://www.alura.com.br/" target="_blank">Alura</a>, <a href="https://www.udemy.com/pt/" target="_blank">Udemy</a>, <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a>, entre outras. Matenha-se atualizado com as últimas tendências, participe de comunidades de desenvolvedores, e crie um perfil no GitHub com repositórios bem documentados. Isso mostrará sua habilidade prática e dedicação, mesmo sem uma experiência formal.</p>
-                <ul></ul>
-            </article>
+          <article class="info-card" tabindex="0" aria-label="Especialista em Responsividade">
+            <div class="card-icon" aria-hidden="true"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Especialista em Responsividade</h3>
+            <p>
+              Garanta que aplicações funcionem perfeitamente em qualquer dispositivo - do smartphone ao desktop,
+              criando experiências consistentes.
+            </p>
+          </article>
 
-            <article class="platforms">
-                <h3 class="section-title">O Divisor de Águas Começa Agora!</h3>
-                <p>Para se destacar no desenvolvimento Front-End e realmente fazer a diferença, o divisor de águas começa com a busca por certificações em tecnologias de ponta. Além de dominar as linguagens e frameworks essenciais, obtenha <strong>certificações em plataformas de nuvem</strong> como:</p>
-            <ul>
-                <li>
-                    <a href="https://learn.microsoft.com/pt-br/certifications/" target="_blank">Microsoft Azure Certifications</a> 
-                </li>
-                <li>
-                    <a href="https://cloud.google.com/certification" target="_blank">Google Cloud Platform Certifications</a> 
-             </li>
-                <li>
-                    <a href="https://aws.amazon.com/certification/" target="_blank">AWS Certifications</a> 
-                </li>
-                <li>
-                    <a href="https://www.ibm.com/cloud/certification" target="_blank">IBM Cloud Certifications</a> 
-             </li>
-                <li>
-                    <a href="https://education.oracle.com/certification" target="_blank">Oracle Cloud Certifications</a> 
-                </li>
+          <article class="info-card" tabindex="0" aria-label="Otimizador de Performance">
+            <div class="card-icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+            <h3>Otimizador de Performance</h3>
+            <p>
+              Crie aplicações rápidas e eficientes. Performance não é apenas técnica - é experiência do usuário e
+              sucesso do negócio.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Skills Essenciais -->
+      <section
+        class="content-section"
+        id="skills-essenciais"
+        tabindex="-1"
+        aria-labelledby="skills-title"
+      >
+        <div class="section-header">
+          <h2 class="section-title" id="skills-title">🛠️ Skills Essenciais</h2>
+          <p class="section-description">
+            Conheça as habilidades fundamentais que todo Front-End Developer precisa dominar para se destacar no mercado.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <section class="skill-category" aria-labelledby="linguagens-base-title" tabindex="0">
+            <h4 id="linguagens-base-title"><i class="fas fa-code"></i> Linguagens Base</h4>
+            <ul class="skills-list">
+              <li>
+                <span class="skill-name">HTML5</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">CSS3</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">JavaScript (ES6+)</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">TypeScript</span>
+                <span class="skill-level skill-important">Importante</span>
+              </li>
             </ul>
-            <p>Essas certificações não apenas validam seu conhecimento técnico, mas também mostram que você está preparado para trabalhar em ambientes modernos, utilizando ferramentas cruciais para o desenvolvimento e implantação de aplicações escaláveis e eficientes. Investir nelas coloca você um passo à frente, demonstrando um profundo comprometimento com sua carreira e com o futuro da tecnologia.</p>
+          </section>
+
+          <section class="skill-category" aria-labelledby="frameworks-libs-title" tabindex="0">
+            <h4 id="frameworks-libs-title"><i class="fas fa-layer-group"></i> Frameworks/Libraries</h4>
+            <ul class="skills-list">
+              <li>
+                <span class="skill-name">React.js</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">Vue.js</span>
+                <span class="skill-level skill-important">Importante</span>
+              </li>
+              <li>
+                <span class="skill-name">Angular</span>
+                <span class="skill-level skill-important">Importante</span>
+              </li>
+              <li>
+                <span class="skill-name">Next.js</span>
+                <span class="skill-level skill-advanced">Avançado</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="skill-category" aria-labelledby="css-styling-title" tabindex="0">
+            <h4 id="css-styling-title"><i class="fas fa-paint-brush"></i> CSS &amp; Styling</h4>
+            <ul class="skills-list">
+              <li>
+                <span class="skill-name">Flexbox &amp; Grid</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">Sass/SCSS</span>
+                <span class="skill-level skill-important">Importante</span>
+              </li>
+              <li>
+                <span class="skill-name">Tailwind CSS</span>
+                <span class="skill-level skill-important">Importante</span>
+              </li>
+              <li>
+                <span class="skill-name">Styled Components</span>
+                <span class="skill-level skill-advanced">Avançado</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="skill-category" aria-labelledby="ferramentas-title" tabindex="0">
+            <h4 id="ferramentas-title"><i class="fas fa-tools"></i> Ferramentas</h4>
+            <ul class="skills-list">
+              <li>
+                <span class="skill-name">Git &amp; GitHub</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">Webpack/Vite</span>
+                <span class="skill-level skill-important">Importante</span>
+              </li>
+              <li>
+                <span class="skill-name">NPM/Yarn</span>
+                <span class="skill-level skill-essential">Essencial</span>
+              </li>
+              <li>
+                <span class="skill-name">Jest/Testing Library</span>
+                <span class="skill-level skill-advanced">Avançado</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- Roadmap de Aprendizado -->
+      <section class="content-section" id="roadmap" tabindex="-1" aria-labelledby="roadmap-title">
+        <div class="section-header">
+          <h2 class="section-title" id="roadmap-title">🗺️ Roadmap Front-End 2025</h2>
+          <p class="section-description">
+            Siga este caminho estruturado para se tornar um Front-End Developer completo e pronto para o mercado.
+          </p>
+        </div>
+
+        <div class="roadmap-timeline">
+          <!-- Repeat timeline-step block for each roadmap step -->
+          <article class="timeline-step" tabindex="0" aria-label="Passo 1 - Fundamentos Sólidos">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <span class="step-time">⏱️ 4-6 semanas</span>
+              <h3 class="step-title">Fundamentos Sólidos</h3>
+              <p class="step-description">
+                Domine HTML semântico, CSS moderno (Flexbox, Grid) e JavaScript vanilla. Esta é sua base -
+                invista tempo aqui para ter sucesso depois.
+              </p>
+              <div class="step-technologies" aria-label="Tecnologias do passo 1">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">DOM</span>
+                <span class="tech-tag">Responsive Design</span>
+              </div>
+              <div class="step-resources">
+                <a href="https://developer.mozilla.org/pt-BR/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-book"></i> MDN Docs</a
+                >
+                <a href="https://www.freecodecamp.org/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-graduation-cap"></i> FreeCodeCamp</a
+                >
+                <a href="https://flexboxfroggy.com/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-gamepad"></i> Flexbox Froggy</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-step" tabindex="0" aria-label="Passo 2 - JavaScript Moderno">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <span class="step-time">⏱️ 3-4 semanas</span>
+              <h3 class="step-title">JavaScript Moderno</h3>
+              <p class="step-description">
+                Aprofunde-se em ES6+, async/await, promises, módulos e manipulação de APIs. JavaScript é o
+                coração do Front-End moderno.
+              </p>
+              <div class="step-technologies" aria-label="Tecnologias do passo 2">
+                <span class="tech-tag">ES6+</span>
+                <span class="tech-tag">Async/Await</span>
+                <span class="tech-tag">Fetch API</span>
+                <span class="tech-tag">Modules</span>
+                <span class="tech-tag">JSON</span>
+              </div>
+              <div class="step-resources">
+                <a href="https://javascript.info/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-code"></i> JavaScript.info</a
+                >
+                <a href="https://jsonplaceholder.typicode.com/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-database"></i> API de Teste</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-step" tabindex="0" aria-label="Passo 3 - React.js Fundamentals">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <span class="step-time">⏱️ 6-8 semanas</span>
+              <h3 class="step-title">React.js Fundamentals</h3>
+              <p class="step-description">
+                React é o framework mais demandado. Aprenda componentes, hooks, estado, props e comece a pensar
+                de forma reativa.
+              </p>
+              <div class="step-technologies" aria-label="Tecnologias do passo 3">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">JSX</span>
+                <span class="tech-tag">Hooks</span>
+                <span class="tech-tag">State</span>
+                <span class="tech-tag">Props</span>
+                <span class="tech-tag">Create React App</span>
+              </div>
+              <div class="step-resources">
+                <a href="https://react.dev/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fab fa-react"></i> Docs Oficiais</a
+                >
+                <a href="https://www.alura.com.br/curso-online-react-js" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-video"></i> Curso Alura</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-step" tabindex="0" aria-label="Passo 4 - Styling Avançado">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <span class="step-time">⏱️ 4-5 semanas</span>
+              <h3 class="step-title">Styling Avançado</h3>
+              <p class="step-description">
+                Domine CSS-in-JS, pré-processadores e frameworks CSS. Aprenda a criar interfaces profissionais e
+                consistentes.
+              </p>
+              <div class="step-technologies" aria-label="Tecnologias do passo 4">
+                <span class="tech-tag">Sass/SCSS</span>
+                <span class="tech-tag">Tailwind CSS</span>
+                <span class="tech-tag">Styled Components</span>
+                <span class="tech-tag">CSS Modules</span>
+                <span class="tech-tag">Animations</span>
+              </div>
+              <div class="step-resources">
+                <a href="https://tailwindcss.com/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-palette"></i> Tailwind CSS</a
+                >
+                <a href="https://sass-lang.com/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-code"></i> Sass</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-step" tabindex="0" aria-label="Passo 5 - Ferramentas de Desenvolvimento">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <span class="step-time">⏱️ 3-4 semanas</span>
+              <h3 class="step-title">Ferramentas de Desenvolvimento</h3>
+              <p class="step-description">
+                Aprenda Git, bundlers, linters e ferramentas que aumentam sua produtividade e preparam você para
+                trabalhar em equipe.
+              </p>
+              <div class="step-technologies" aria-label="Tecnologias do passo 5">
+                <span class="tech-tag">Git/GitHub</span>
+                <span class="tech-tag">Webpack/Vite</span>
+                <span class="tech-tag">ESLint</span>
+                <span class="tech-tag">Prettier</span>
+                <span class="tech-tag">NPM</span>
+              </div>
+              <div class="step-resources">
+                <a href="https://git-scm.com/book" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fab fa-git-alt"></i> Git Book</a
+                >
+                <a href="https://vitejs.dev/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-rocket"></i> Vite</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-step" tabindex="0" aria-label="Passo 6 - Projetos & Portfólio">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <span class="step-time">⏱️ 6-8 semanas</span>
+              <h3 class="step-title">Projetos & Portfólio</h3>
+              <p class="step-description">
+                Construa pelo menos 3 projetos completos que demonstrem suas habilidades. Seu portfólio é seu cartão
+                de visitas no mercado.
+              </p>
+              <div class="step-technologies" aria-label="Tecnologias do passo 6">
+                <span class="tech-tag">Deploy</span>
+                <span class="tech-tag">Netlify/Vercel</span>
+                <span class="tech-tag">GitHub Pages</span>
+                <span class="tech-tag">Responsive</span>
+                <span class="tech-tag">SEO Básico</span>
+              </div>
+              <div class="step-resources">
+                <a href="https://netlify.com/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-cloud"></i> Netlify</a
+                >
+                <a href="https://vercel.com/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                  ><i class="fas fa-rocket"></i> Vercel</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Frameworks Comparison -->
+      <section class="content-section" id="frameworks" tabindex="-1" aria-labelledby="frameworks-title">
+        <div class="frameworks-section">
+          <div class="section-header">
+            <h2 class="section-title" id="frameworks-title">⚛️ Principais Frameworks</h2>
+            <p class="section-description">
+              Conheça os frameworks mais demandados no mercado e escolha o melhor para começar sua carreira.
+            </p>
+          </div>
+
+          <div class="frameworks-grid">
+            <article class="framework-card" tabindex="0" aria-label="Framework React.js">
+              <div class="framework-logo react-logo" aria-hidden="true"><i class="fab fa-react"></i></div>
+              <h4>React.js</h4>
+              <p>Criado pelo Facebook, é o framework mais popular e demandado no mercado global.</p>
+              <ul class="framework-pros">
+                <li>Maior demanda de vagas</li>
+                <li>Comunidade gigantesca</li>
+                <li>Flexibilidade máxima</li>
+                <li>Curva de aprendizado moderada</li>
+                <li>Usado por grandes empresas</li>
+              </ul>
+              <a href="https://react.dev/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                ><i class="fas fa-external-link-alt"></i> Aprender React</a
+              >
             </article>
 
-            <article class="platforms">
-                <h3 class="section-title">Lembre-se!</h3>
-                <p>Não existe uma fórmula mágica, e o caminho para se tornar um desenvolvedor não acontece da noite para o dia. Ser um desenvolvedor exige tempo, prática e paciência. Se alguém disser que há um curso que, da noite para o dia, pode ensinar você a ganhar dinheiro rápido, estaria enganando não só você, mas também a si mesmo. Outro ponto importante é que <i><b>a inteligência artificial não substitui o trabalho do desenvolvedor; ela serve para acelerar e potencializar aquilo que ele já conhece e domina</b></i>. Por isso, escreva muito código manualmente, aprenda profundamente as linguagens e frameworks. Essa dedicação o levará a lugares que você nunca imaginou alcançar.</p>
+            <article class="framework-card" tabindex="0" aria-label="Framework Vue.js">
+              <div class="framework-logo vue-logo" aria-hidden="true"></div>
+              <h4>Vue.js</h4>
+              <p>Framework progressivo que combina o melhor do React e Angular, com sintaxe mais simples.</p>
+              <ul class="framework-pros">
+                <li>Mais fácil de aprender</li>
+                <li>Documentação excelente</li>
+                <li>Performance otimizada</li>
+                <li>Menos verboso que React</li>
+                <li>Crescimento no mercado</li>
+              </ul>
+              <a href="https://vuejs.org/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                ><i class="fas fa-external-link-alt"></i> Aprender Vue</a
+              >
             </article>
-            <p class="text">Caso queira voltar a página inicial <a href="/index.html">só clicar aqui</a></p>
-        </section>
-    </main>
-    <footer>
-        <p>By José Enoque</p>
-        <div class="social-links">
-            <a href="https://github.com/ESousa97" target="_blank" class="social-icon">
-                <img src="/Assets/github-icon.svg" alt="GitHub">
-            </a>
-            <a href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/" target="_blank" class="social-icon">
-                <img src="/Assets/linkedin-icon.png" alt="LinkedIn">
-            </a>
+
+            <article class="framework-card" tabindex="0" aria-label="Framework Angular">
+              <div class="framework-logo angular-logo" aria-hidden="true"><i class="fab fa-angular"></i></div>
+              <h4>Angular</h4>
+              <p>Framework completo do Google, ideal para aplicações enterprise de grande escala.</p>
+              <ul class="framework-pros">
+                <li>Framework completo (all-in-one)</li>
+                <li>TypeScript nativo</li>
+                <li>Forte em apps enterprise</li>
+                <li>Estrutura bem definida</li>
+                <li>Salários mais altos</li>
+              </ul>
+              <a href="https://angular.io/" class="resource-link" target="_blank" rel="noopener noreferrer"
+                ><i class="fas fa-external-link-alt"></i> Aprender Angular</a
+              >
+            </article>
+          </div>
         </div>
+      </section>
+
+      <!-- Market Stats -->
+      <section class="content-section" id="mercado" tabindex="-1" aria-labelledby="mercado-title">
+        <div class="market-section">
+          <div class="section-header">
+            <h2 class="section-title" id="mercado-title">📊 Mercado Front-End 2025</h2>
+            <p class="section-description">
+              Dados atualizados sobre oportunidades, demanda e tendências do mercado Front-End no Brasil.
+            </p>
+          </div>
+
+          <div class="stats-grid" role="list">
+            <div class="stat-card" role="listitem">
+              <span class="stat-number" data-target="250000">250k+</span>
+              <span class="stat-label">Vagas Abertas</span>
+            </div>
+            <div class="stat-card" role="listitem">
+              <span class="stat-number" data-target="20">20%</span>
+              <span class="stat-label">Trabalho Remoto</span>
+            </div>
+            <div class="stat-card" role="listitem">
+              <span class="stat-number" data-target="30">30%</span>
+              <span class="stat-label">Crescimento Anual</span>
+            </div>
+            <div class="stat-card" role="listitem">
+              <span class="stat-number" data-target="2000">R$ 2k</span>
+              <span class="stat-label">Salário Médio</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Salary Information -->
+      <section class="content-section" id="salarios" tabindex="-1" aria-labelledby="salarios-title">
+        <div class="salary-section">
+          <div class="section-header">
+            <h2 class="section-title" id="salarios-title">💰 Faixas Salariais</h2>
+            <p class="section-description">
+              Conheça as faixas salariais reais do mercado Front-End brasileiro em 2025.
+            </p>
+          </div>
+
+          <div class="salary-grid">
+            <article class="salary-card" tabindex="0" aria-label="Junior 0 a 2 anos">
+              <div class="salary-level">Junior (0-2 anos)</div>
+              <div class="salary-range">R$ 1.000 - R$ 4.000</div>
+              <p class="salary-description">
+                Ideal para quem está começando. Foco em aprender e aplicar conhecimentos básicos.
+              </p>
+            </article>
+
+            <article class="salary-card" tabindex="0" aria-label="Pleno 2 a 5 anos">
+              <div class="salary-level">Pleno (2-5 anos)</div>
+              <div class="salary-range">R$ 3.000 - R$ 7.000</div>
+              <p class="salary-description">
+                Desenvolvedor experiente, capaz de trabalhar com autonomia e liderar pequenos projetos.
+              </p>
+            </article>
+
+            <article class="salary-card" tabindex="0" aria-label="Senior 5+ anos">
+              <div class="salary-level">Senior (5+ anos)</div>
+              <div class="salary-range">R$ 5.000 - R$ 25.000+</div>
+              <p class="salary-description">
+                Especialista técnico, mentor de equipes e responsável por decisões arquiteturais.
+              </p>
+            </article>
+
+            <article class="salary-card" tabindex="0" aria-label="Tech Lead">
+              <div class="salary-level">Tech Lead</div>
+              <div class="salary-range">R$ 7.000 - R$ 45.000+</div>
+              <p class="salary-description">
+                Liderança técnica, gestão de equipes e definição de estratégias tecnológicas.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Projects -->
+      <section class="content-section" id="portfolio" tabindex="-1" aria-labelledby="portfolio-title">
+        <div class="portfolio-section">
+          <div class="section-header">
+            <h2 class="section-title" id="portfolio-title">🚀 Projetos para Portfólio</h2>
+            <p class="section-description">
+              Ideias de projetos práticos que vão impressionar recrutadores e demonstrar suas habilidades.
+            </p>
+          </div>
+
+          <div class="project-ideas-grid">
+            <article class="project-card" tabindex="0" aria-label="Projeto Landing Page Responsiva">
+              <span class="project-difficulty difficulty-beginner">Iniciante</span>
+              <h4>Landing Page Responsiva</h4>
+              <p>
+                Crie uma landing page moderna e responsiva para uma empresa fictícia, com animações e formulário de contato.
+              </p>
+              <div class="project-tech" aria-label="Tecnologias">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Responsive</span>
+              </div>
+            </article>
+
+            <article class="project-card" tabindex="0" aria-label="Projeto Calculadora Interativa">
+              <span class="project-difficulty difficulty-beginner">Iniciante</span>
+              <h4>Calculadora Interativa</h4>
+              <p>
+                Desenvolva uma calculadora funcional com interface moderna e operações matemáticas completas.
+              </p>
+              <div class="project-tech" aria-label="Tecnologias">
+                <span class="tech-badge">HTML</span>
+                <span class="tech-badge">CSS</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Local Storage</span>
+              </div>
+            </article>
+
+            <article class="project-card" tabindex="0" aria-label="Projeto App de Clima">
+              <span class="project-difficulty difficulty-intermediate">Intermediário</span>
+              <h4>App de Clima</h4>
+              <p>
+                Aplicação que consome API de clima, mostra previsão detalhada e permite busca por cidades.
+              </p>
+              <div class="project-tech" aria-label="Tecnologias">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">API</span>
+                <span class="tech-badge">Hooks</span>
+                <span class="tech-badge">Styled Components</span>
+              </div>
+            </article>
+
+            <article class="project-card" tabindex="0" aria-label="Projeto Todo App Avançado">
+              <span class="project-difficulty difficulty-intermediate">Intermediário</span>
+              <h4>Todo App Avançado</h4>
+              <p>
+                Lista de tarefas com categorias, filtros, drag & drop, autenticação e sincronização na nuvem.
+              </p>
+              <div class="project-tech" aria-label="Tecnologias">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Context API</span>
+                <span class="tech-badge">Firebase</span>
+                <span class="tech-badge">Material-UI</span>
+              </div>
+            </article>
+
+            <article class="project-card" tabindex="0" aria-label="Projeto E-commerce Completo">
+              <span class="project-difficulty difficulty-advanced">Avançado</span>
+              <h4>E-commerce Completo</h4>
+              <p>
+                Loja virtual com carrinho, checkout, pagamento, área do usuário e painel administrativo.
+              </p>
+              <div class="project-tech" aria-label="Tecnologias">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Redux</span>
+                <span class="tech-badge">Node.js</span>
+                <span class="tech-badge">MongoDB</span>
+              </div>
+            </article>
+
+            <article class="project-card" tabindex="0" aria-label="Projeto Dashboard Analytics">
+              <span class="project-difficulty difficulty-advanced">Avançado</span>
+              <h4>Dashboard Analytics</h4>
+              <p>
+                Painel de controle com gráficos interativos, relatórios em tempo real e visualização de dados.
+              </p>
+              <div class="project-tech" aria-label="Tecnologias">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Chart.js</span>
+                <span class="tech-badge">WebSocket</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tips Section -->
+      <section class="content-section" id="dicas" tabindex="-1" aria-labelledby="dicas-title">
+        <div class="tips-section">
+          <div class="section-header">
+            <h2 class="section-title" id="dicas-title">💡 Dicas de Ouro</h2>
+            <p class="section-description">
+              Conselhos práticos de desenvolvedores experientes para acelerar sua carreira Front-End.
+            </p>
+          </div>
+
+          <div class="tips-grid">
+            <article class="tip-card" tabindex="0" aria-label="Dica Mobile First Sempre">
+              <div class="tip-icon" aria-hidden="true"><i class="fas fa-mobile-alt"></i></div>
+              <h3 class="tip-title">Mobile First Sempre</h3>
+              <p>
+                Comece sempre pelo mobile. 70% dos acessos são mobile - desenvolver pensando nisso desde o início é
+                fundamental para o sucesso.
+              </p>
+            </article>
+
+            <article class="tip-card" tabindex="0" aria-label="Dica Performance é UX">
+              <div class="tip-icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+              <h3 class="tip-title">Performance é UX</h3>
+              <p>
+                Usuários abandonam sites lentos. Otimize imagens, use lazy loading, minimize bundles. Performance não
+                é opcional.
+              </p>
+            </article>
+
+            <article class="tip-card" tabindex="0" aria-label="Dica Acessibilidade Importa">
+              <div class="tip-icon" aria-hidden="true"><i class="fas fa-universal-access"></i></div>
+              <h3 class="tip-title">Acessibilidade Importa</h3>
+              <p>
+                Use HTML semântico, alt em imagens, contraste adequado. Acessibilidade é responsabilidade social e
+                diferencial profissional.
+              </p>
+            </article>
+
+            <article class="tip-card" tabindex="0" aria-label="Dica Versionamento Inteligente">
+              <div class="tip-icon" aria-hidden="true"><i class="fas fa-code-branch"></i></div>
+              <h3 class="tip-title">Versionamento Inteligente</h3>
+              <p>
+                Use Git como um profissional. Commits claros, branches organizadas, pull requests bem descritos fazem
+                toda diferença.
+              </p>
+            </article>
+
+            <article class="tip-card" tabindex="0" aria-label="Dica Comunidade Ativa">
+              <div class="tip-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
+              <h3 class="tip-title">Comunidade Ativa</h3>
+              <p>
+                Participe do GitHub, Stack Overflow, Discord de devs. Networking é crucial - ajude outros e seja
+                ajudado!
+              </p>
+            </article>
+
+            <article class="tip-card" tabindex="0" aria-label="Dica Nunca Pare de Aprender">
+              <div class="tip-icon" aria-hidden="true"><i class="fas fa-brain"></i></div>
+              <h3 class="tip-title">Nunca Pare de Aprender</h3>
+              <p>
+                Front-End evolui rapidamente. Dedique tempo semanal para estudar novas tecnologias e tendências do
+                mercado.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Final -->
+      <section class="content-section" id="comece" tabindex="-1" aria-labelledby="comece-title">
+        <div class="section-header">
+          <h2 class="section-title" id="comece-title">🎯 Comece sua Jornada Front-End!</h2>
+          <p class="section-description">
+            Você tem todas as informações necessárias. Agora é hora de colocar a mão na massa e construir o futuro
+            que você merece!
+          </p>
+        </div>
+        </div>
+
+        <div
+          style="
+            background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+            border-radius: 2rem;
+            padding: 3rem;
+            margin-top: 3rem;
+            text-align: center;
+            border-left: 6px solid var(--accent-color);
+          "
+          aria-label="Lembrete motivacional"
+        >
+          <h3
+            style="color: var(--dark-color); margin-bottom: 1rem; font-size: 1.5rem;"
+            aria-hidden="true"
+          >
+            <i class="fas fa-heart"></i> Lembre-se!
+          </h3>
+          <p
+            style="
+              color: var(--text-color);
+              font-size: 1.1rem;
+              line-height: 1.7;
+              max-width: 800px;
+              margin: 0 auto;
+            "
+          >
+            <strong>Front-End não é só código</strong> - é arte, é experiência, é conexão
+            humana através da tecnologia. Cada interface que você criar pode impactar
+            milhares de pessoas. Seja o desenvolvedor que faz a diferença! ✨
+          </p>
+        </div>
+      </section>
+
+      <!-- Next Steps -->
+      <section class="content-section" id="proximos-passos" tabindex="-1" aria-labelledby="proximos-passos-title">
+        <div class="section-header">
+          <h2 class="section-title" id="proximos-passos-title">🔄 Próximos Passos</h2>
+          <p class="section-description">
+            Agora que você conhece o caminho, aqui estão os próximos passos práticos para sua jornada.
+          </p>
+        </div>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+          "
+        >
+          <article
+            style="
+              background: var(--light-color);
+              border-radius: 15px;
+              padding: 2rem;
+              box-shadow: var(--shadow);
+              border-left: 4px solid var(--primary-color);
+            "
+            tabindex="0"
+            aria-label="Configurar Ambiente"
+          >
+            <h4
+              style="
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+              "
+            >
+              <i class="fas fa-code"></i> 1. Configure seu Ambiente
+            </h4>
+            <ul style="color: var(--text-color); line-height: 1.6;">
+              <li>Instale VS Code com extensões essenciais</li>
+              <li>Configure Git e crie conta no GitHub</li>
+              <li>Instale Node.js e NPM</li>
+              <li>Escolha um tema e fonte que você goste</li>
+            </ul>
+          </article>
+
+          <article
+            style="
+              background: var(--light-color);
+              border-radius: 15px;
+              padding: 2rem;
+              box-shadow: var(--shadow);
+              border-left: 4px solid var(--success-color);
+            "
+            tabindex="0"
+            aria-label="Criar Rotina"
+          >
+            <h4
+              style="
+                color: var(--success-color);
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+              "
+            >
+              <i class="fas fa-calendar-alt"></i> 2. Crie uma Rotina
+            </h4>
+            <ul style="color: var(--text-color); line-height: 1.6;">
+              <li>Dedique pelo menos 1-2h por dia</li>
+              <li>Defina metas semanais alcançáveis</li>
+              <li>Alterne teoria e prática (70% prática)</li>
+              <li>Reserve tempo para revisar conceitos</li>
+            </ul>
+          </article>
+
+          <article
+            style="
+              background: var(--light-color);
+              border-radius: 15px;
+              padding: 2rem;
+              box-shadow: var(--shadow);
+              border-left: 4px solid var(--warning-color);
+            "
+            tabindex="0"
+            aria-label="Primeiro Projeto"
+          >
+            <h4
+              style="
+                color: var(--warning-color);
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+              "
+            >
+              <i class="fas fa-project-diagram"></i> 3. Primeiro Projeto
+            </h4>
+            <ul style="color: var(--text-color); line-height: 1.6;">
+              <li>Comece com uma landing page simples</li>
+              <li>Use apenas HTML, CSS e JavaScript</li>
+              <li>Foque na responsividade</li>
+              <li>Publique no GitHub Pages</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h3>Criado com 💜 por José Enoque</h3>
+      <p>Especialmente dedicado aos futuros Front-End Developers do Brasil 🇧🇷</p>
+
+      <div class="social-links" role="list">
+        <a
+          href="https://github.com/ESousa97"
+          target="_blank"
+          class="social-icon"
+          aria-label="GitHub"
+          role="listitem"
+          rel="noopener noreferrer"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/"
+          target="_blank"
+          class="social-icon"
+          aria-label="LinkedIn"
+          role="listitem"
+          rel="noopener noreferrer"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+      </div>
+
+      <p style="margin-top: 2rem; opacity: 0.7;">
+        © 2025 Brain Developer. Transformando sonhos em código desde 2025 ✨
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <a
+          href="/index.html"
+          style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-right: 2rem;"
+          ><i class="fas fa-arrow-left"></i> Página Inicial</a
+        >
+        <a
+          href="/pages/Start/Start.html"
+          style="color: var(--accent-color); text-decoration: none; font-weight: 600;"
+          ><i class="fas fa-rocket"></i> Guia para Iniciantes</a
+        >
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll suave para seções com links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    // Animação de fade-in para seções conforme scroll (IntersectionObserver)
+    const fadeSections = document.querySelectorAll('.content-section');
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    fadeSections.forEach(section => observer.observe(section));
+
+    // Animação dos números das estatísticas
+    function animateNumber(element, target) {
+      let current = 0;
+      const increment = target > 1000 ? 5000 : 1;
+      const stepTime = 30;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target >= 1000 ? `${target / 1000}k+` : target + (element.textContent.includes('%') ? '%' : '');
+          clearInterval(timer);
+        } else {
+          element.textContent =
+            target >= 1000
+              ? `${Math.floor(current / 1000)}k+`
+              : current + (element.textContent.includes('%') ? '%' : '');
+        }
+      }, stepTime);
+    }
+
+    function startStatsAnimation() {
+      document.querySelectorAll('.stat-number').forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        if (!isNaN(target)) {
+          animateNumber(stat, target);
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(startStatsAnimation, 1500);
+    });
+
+    // Efeito parallax sutil no hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero-section');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+    });
+
+    // Hover suave nos cards
+    const interactiveCards = document.querySelectorAll(
+      '.info-card, .framework-card, .project-card, .salary-card, .tip-card, .skill-category'
+    );
+    interactiveCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+        card.style.transition = 'transform 0.3s ease';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
 </body>
 </html>
