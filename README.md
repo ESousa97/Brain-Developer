@@ -30,9 +30,8 @@ A solução proposta materializa-se como uma aplicação web estática, implemen
 
 *   [Introdução e Motivação](#introdução-e-motivação)
 *   [🔗 Link Principal / Acesso ao Projeto](#-link-principal--acesso-ao-projeto)
-*   [🎬 Demonstração Visual](#-demonstração-visual)
 *   [Arquitetura do Sistema](#arquitetura-do-sistema)
-    *   [Diagrama de Arquitetura](#diagrama-de-arquitetura)
+*   [Diagrama de Arquitetura](#diagrama-de-arquitetura)
 *   [Decisões de Design Chave](#decisões-de-design-chave)
 *   [✨ Funcionalidades Detalhadas (com Casos de Uso)](#-funcionalidades-detalhadas-com-casos-de-uso)
 *   [🛠️ Tech Stack Detalhado](#%EF%B8%8F-tech-stack-detalhado)
@@ -63,12 +62,6 @@ Acesse a demonstração interativa do projeto Brain Developer e explore os camin
 [🚀 Acesse o Brain Developer Online](https://braindeveloper.vercel.app)
 
 Este link oferece acesso à versão mais recente do projeto, permitindo que você navegue pelas diferentes seções e compreenda a proposta e as funcionalidades do guia.
-
-## 🎬 Demonstração Visual
-
-<p align="center">
-  <img src="./assets/braindeveloper.gif" alt="Demonstração da Plataforma Brain Developer em Funcionamento" width="800">
-</p>
 
 ## Arquitetura do Sistema
 
