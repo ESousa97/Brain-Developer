@@ -1,0 +1,14 @@
+{
+    "name": "brain-developer",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Brain Developer - plataforma educacional estática para carreiras em programação.",
+    "scripts": {
+        "lint": "prettier --check .",
+        "format": "prettier --write .",
+        "test": "node tests/validate-structure.js"
+    },
+    "devDependencies": {
+        "prettier": "^3.3.3"
+    }
+}

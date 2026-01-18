@@ -1,1040 +1,357 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início na Programação - Brain Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #06b6d4;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --error-color: #ef4444;
-            --dark-color: #1f2937;
-            --light-color: #ffffff;
-            --text-color: #374151;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --border-color: #e5e7eb;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--text-color);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        /* Header Hero */
-        .hero-section {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
-            padding: 4rem 0;
-            text-align: center;
-            color: var(--light-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="white" opacity="0.05"/><circle cx="40" cy="60" r="1.5" fill="white" opacity="0.08"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            animation: slideInDown 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeIn 1s ease-out 0.5s both;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            animation: slideInUp 1s ease-out 1s both;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Container principal */
-        .main-container {
-            background: var(--light-color);
-            margin: -2rem 1rem 0;
-            border-radius: 2rem;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            z-index: 3;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        /* Seções de conteúdo */
-        .content-section {
-            margin-bottom: 4rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-
-        .section-description {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Cards de tecnologias */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .tech-card {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s;
-        }
-
-        .tech-card:hover::before {
-            left: 100%;
-        }
-
-        .tech-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-color);
-        }
-
-        .tech-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--light-color);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .tech-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .tech-card p {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .tech-features {
-            list-style: none;
-            text-align: left;
-        }
-
-        .tech-features li {
-            padding: 0.5rem 0;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tech-features li::before {
-            content: '✓';
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        /* Roadmap de aprendizado */
-        .roadmap {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .roadmap-step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .roadmap-step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 25px;
-            top: 60px;
-            width: 2px;
-            height: calc(100% + 1rem);
-            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-right: 2rem;
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-            flex-shrink: 0;
-        }
-
-        .step-content {
-            flex: 1;
-        }
-
-        .step-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .step-description {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .step-resources {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--light-color);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 25px;
-            border: 1px solid var(--primary-color);
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .resource-link:hover {
-            background: var(--primary-color);
-            color: var(--light-color);
-            transform: translateY(-2px);
-        }
-
-        /* Seção de dicas importantes */
-        .tips-section {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-            border-left: 6px solid var(--warning-color);
-        }
-
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .tip-card {
-            background: var(--light-color);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .tip-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .tip-icon {
-            font-size: 2rem;
-            color: var(--warning-color);
-            margin-bottom: 1rem;
-        }
-
-        .tip-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Seção de recursos */
-        .resources-section {
-            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .resource-category {
-            margin-bottom: 3rem;
-        }
-
-        .category-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .resource-item {
-            background: var(--light-color);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .resource-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .resource-title {
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .resource-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Botões de ação */
-        .cta-section {
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--light-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s ease;
-            margin: 0.5rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
-        }
-
-        .cta-secondary {
-            background: var(--light-color);
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .cta-secondary:hover {
-            background: var(--primary-color);
-            color: var(--light-color);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-color);
-            color: var(--light-color);
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            text-decoration: none;
-            color: var(--light-color);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Animações */
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .main-container {
-                margin: -1rem 0.5rem 0;
-                border-radius: 1rem;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .tech-grid,
-            .tips-grid,
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .roadmap-step {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .roadmap-step::after {
-                display: none;
-            }
-
-            .step-number {
-                margin: 0 auto 1rem;
-            }
-
-            .step-resources {
-                justify-content: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">🚀 Iniciando na Programação</h1>
-            <p class="hero-subtitle">Seu primeiro passo para uma carreira de sucesso em tecnologia</p>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">1M+</span>
-                    <span class="stat-label">Vagas em Tech</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">R$ 8k+</span>
-                    <span class="stat-label">Salário Médio</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Trabalho Remoto</span>
-                </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Início na Programação - Brain Developer</title>
+
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- CSS Modular -->
+        <link rel="stylesheet" href="../../styles/tokens.css" />
+        <link rel="stylesheet" href="../../styles/base.css" />
+        <link rel="stylesheet" href="../../styles/layout.css" />
+        <link rel="stylesheet" href="../../styles/components.css" />
+        <link rel="stylesheet" href="../../styles/utilities.css" />
+        <link rel="stylesheet" href="../../styles/pages/start.css" />
+    </head>
+    <body class="bg-gradient-start">
+        <section class="start-hero">
+            <nav class="start-hero__breadcrumb">
+                <a href="../../index.html"><i class="fas fa-home"></i> Início</a>
+                <span>›</span>
+                <span>Por Onde Começar</span>
+            </nav>
+
+            <div class="container">
+                <h1 class="start-hero__title">🚀 Iniciando na <span>Programação</span></h1>
+                <p class="start-hero__subtitle">
+                    Seu primeiro passo para uma carreira de sucesso em tecnologia
+                </p>
+            </div>
+        </section>
+
+        <div class="start-stats">
+            <div class="start-stats__item">
+                <span class="start-stats__number">1M+</span>
+                <span class="start-stats__label">Vagas em Tech</span>
+            </div>
+            <div class="start-stats__item">
+                <span class="start-stats__number">R$ 8k+</span>
+                <span class="start-stats__label">Salário Médio</span>
+            </div>
+            <div class="start-stats__item">
+                <span class="start-stats__number">100%</span>
+                <span class="start-stats__label">Trabalho Remoto</span>
             </div>
         </div>
-    </section>
 
-    <div class="main-container">
-        <div class="container">
+        <main class="main-container">
             <!-- Seção: Entendendo a Área -->
-            <section class="content-section fade-in">
+            <section class="start-intro">
                 <div class="section-header">
                     <h2 class="section-title">🎯 Entendendo a Área</h2>
                     <p class="section-description">
-                        A programação é um universo vasto com infinitas possibilidades. Vamos começar entendendo os dois principais caminhos: Front-End e Back-End.
+                        A programação é um universo vasto com infinitas possibilidades. Vamos
+                        começar entendendo os dois principais caminhos: Front-End e Back-End.
                     </p>
                 </div>
 
-                <div class="tech-grid">
-                    <div class="tech-card">
-                        <div class="tech-icon">
+                <div class="start-intro__grid">
+                    <div class="start-intro__card">
+                        <div class="start-intro__icon">
                             <i class="fas fa-paint-brush"></i>
                         </div>
-                        <h3>Front-End Developer</h3>
-                        <p>Responsável por tudo que o usuário vê e interage. É a "cara" da aplicação!</p>
-                        <ul class="tech-features">
-                            <li>Interface de usuário (UI)</li>
-                            <li>Experiência do usuário (UX)</li>
-                            <li>Interatividade e animações</li>
-                            <li>Responsividade mobile</li>
-                            <li>Performance visual</li>
-                        </ul>
+                        <h3 class="start-intro__title">Front-End Developer</h3>
+                        <p class="start-intro__text">
+                            Responsável por tudo que o usuário vê e interage. É a "cara" da
+                            aplicação!
+                        </p>
                     </div>
 
-                    <div class="tech-card">
-                        <div class="tech-icon">
+                    <div class="start-intro__card">
+                        <div class="start-intro__icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <h3>Back-End Developer</h3>
-                        <p>Cuida da lógica, servidores e bancos de dados. É o "cérebro" da aplicação!</p>
-                        <ul class="tech-features">
-                            <li>Lógica de negócios</li>
-                            <li>Bancos de dados</li>
-                            <li>APIs e serviços</li>
-                            <li>Segurança e autenticação</li>
-                            <li>Escalabilidade</li>
-                        </ul>
+                        <h3 class="start-intro__title">Back-End Developer</h3>
+                        <p class="start-intro__text">
+                            Cuida da lógica, servidores e bancos de dados. É o "cérebro" da
+                            aplicação!
+                        </p>
                     </div>
 
-                    <div class="tech-card">
-                        <div class="tech-icon">
+                    <div class="start-intro__card">
+                        <div class="start-intro__icon">
                             <i class="fas fa-layer-group"></i>
                         </div>
-                        <h3>Full-Stack Developer</h3>
-                        <p>Domina tanto Front-End quanto Back-End. É o "faz-tudo" da programação!</p>
-                        <ul class="tech-features">
-                            <li>Visão completa do projeto</li>
-                            <li>Maior versatilidade</li>
-                            <li>Comunicação entre sistemas</li>
-                            <li>Resolução de problemas</li>
-                            <li>Maior demanda no mercado</li>
-                        </ul>
+                        <h3 class="start-intro__title">Full-Stack Developer</h3>
+                        <p class="start-intro__text">
+                            Domina tanto Front-End quanto Back-End. É o "faz-tudo" da programação!
+                        </p>
                     </div>
                 </div>
             </section>
 
             <!-- Roadmap de Aprendizado -->
-            <section class="content-section fade-in">
+            <section id="roadmap" class="start-roadmap">
                 <div class="section-header">
                     <h2 class="section-title">🗺️ Seu Roadmap de Aprendizado</h2>
                     <p class="section-description">
-                        Um caminho estruturado e testado para você sair do zero e chegar ao primeiro emprego em tech.
+                        Um caminho estruturado e testado para você sair do zero e chegar ao primeiro
+                        emprego em tech.
                     </p>
                 </div>
 
-                <div class="roadmap">
-                    <div class="roadmap-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Fundamentos da Web (HTML & CSS)</h3>
-                            <p class="step-description">
-                                Comece entendendo como as páginas web são estruturadas e estilizadas. HTML é o esqueleto, CSS é a beleza visual.
-                                <strong>Tempo estimado: 2-3 semanas</strong>
+                <div class="start-roadmap__timeline">
+                    <div class="start-roadmap__item">
+                        <div class="start-roadmap__marker">1</div>
+                        <div class="start-roadmap__content">
+                            <h3 class="start-roadmap__title">Fundamentos da Web (HTML & CSS)</h3>
+                            <p class="start-roadmap__text">
+                                Comece entendendo como as páginas web são estruturadas e
+                                estilizadas. HTML é o esqueleto, CSS é a beleza visual.
                             </p>
-                            <div class="step-resources">
-                                <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" class="resource-link">
-                                    <i class="fas fa-book"></i> MDN HTML
-                                </a>
-                                <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" class="resource-link">
-                                    <i class="fas fa-palette"></i> MDN CSS
-                                </a>
-                                <a href="https://www.freecodecamp.org/" class="resource-link">
-                                    <i class="fas fa-graduation-cap"></i> FreeCodeCamp
-                                </a>
-                            </div>
+                            <span class="start-roadmap__duration">2-3 semanas</span>
                         </div>
                     </div>
 
-                    <div class="roadmap-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Lógica de Programação (JavaScript)</h3>
-                            <p class="step-description">
-                                JavaScript traz vida às suas páginas! Aprenda variáveis, funções, condicionais, loops e manipulação do DOM.
-                                <strong>Tempo estimado: 4-6 semanas</strong>
+                    <div class="start-roadmap__item">
+                        <div class="start-roadmap__marker">2</div>
+                        <div class="start-roadmap__content">
+                            <h3 class="start-roadmap__title">Lógica de Programação (JavaScript)</h3>
+                            <p class="start-roadmap__text">
+                                JavaScript traz vida às suas páginas! Aprenda variáveis, funções,
+                                condicionais, loops e manipulação do DOM.
                             </p>
-                            <div class="step-resources">
-                                <a href="https://javascript.info/" class="resource-link">
-                                    <i class="fas fa-code"></i> JavaScript.info
-                                </a>
-                                <a href="https://www.codecademy.com/learn/introduction-to-javascript" class="resource-link">
-                                    <i class="fas fa-laptop-code"></i> Codecademy
-                                </a>
-                                <a href="https://eloquentjavascript.net/" class="resource-link">
-                                    <i class="fas fa-book-open"></i> Eloquent JavaScript
-                                </a>
-                            </div>
+                            <span class="start-roadmap__duration">4-6 semanas</span>
                         </div>
                     </div>
 
-                    <div class="roadmap-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Controle de Versão (Git & GitHub)</h3>
-                            <p class="step-description">
-                                Git é essencial para qualquer desenvolvedor! Aprenda a versionar seu código e colaborar em equipe.
-                                <strong>Tempo estimado: 1-2 semanas</strong>
+                    <div class="start-roadmap__item">
+                        <div class="start-roadmap__marker">3</div>
+                        <div class="start-roadmap__content">
+                            <h3 class="start-roadmap__title">Controle de Versão (Git & GitHub)</h3>
+                            <p class="start-roadmap__text">
+                                Git é essencial para qualquer desenvolvedor! Aprenda a versionar seu
+                                código e colaborar em equipe.
                             </p>
-                            <div class="step-resources">
-                                <a href="https://git-scm.com/book/pt-br/v2" class="resource-link">
-                                    <i class="fab fa-git-alt"></i> Git Book
-                                </a>
-                                <a href="https://github.com/" class="resource-link">
-                                    <i class="fab fa-github"></i> GitHub
-                                </a>
-                                <a href="https://learngitbranching.js.org/" class="resource-link">
-                                    <i class="fas fa-code-branch"></i> Learn Git Branching
-                                </a>
-                            </div>
+                            <span class="start-roadmap__duration">1-2 semanas</span>
                         </div>
                     </div>
 
-                    <div class="roadmap-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Escolha sua Especialização</h3>
-                            <p class="step-description">
-                                Agora é hora de escolher seu caminho! Front-End (React, Vue), Back-End (Node.js, Python, Java) ou Full-Stack.
-                                <strong>Tempo estimado: 8-12 semanas</strong>
+                    <div class="start-roadmap__item">
+                        <div class="start-roadmap__marker">4</div>
+                        <div class="start-roadmap__content">
+                            <h3 class="start-roadmap__title">Escolha sua Especialização</h3>
+                            <p class="start-roadmap__text">
+                                Agora é hora de escolher seu caminho! Front-End (React, Vue),
+                                Back-End (Node.js, Python, Java) ou Full-Stack.
                             </p>
-                            <div class="step-resources">
-                                <a href="#" class="resource-link">
-                                    <i class="fas fa-desktop"></i> Guia Front-End
-                                </a>
-                                <a href="#" class="resource-link">
-                                    <i class="fas fa-server"></i> Guia Back-End
-                                </a>
-                                <a href="#" class="resource-link">
-                                    <i class="fas fa-layer-group"></i> Guia Full-Stack
-                                </a>
-                            </div>
+                            <span class="start-roadmap__duration">8-12 semanas</span>
                         </div>
                     </div>
 
-                    <div class="roadmap-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Construa seu Portfólio</h3>
-                            <p class="step-description">
-                                Desenvolva projetos reais que demonstrem suas habilidades. Seu portfólio é seu cartão de visitas!
-                                <strong>Tempo estimado: 4-6 semanas</strong>
+                    <div class="start-roadmap__item">
+                        <div class="start-roadmap__marker">5</div>
+                        <div class="start-roadmap__content">
+                            <h3 class="start-roadmap__title">Construa seu Portfólio</h3>
+                            <p class="start-roadmap__text">
+                                Desenvolva projetos reais que demonstrem suas habilidades. Seu
+                                portfólio é seu cartão de visitas!
                             </p>
-                            <div class="step-resources">
-                                <a href="#" class="resource-link">
-                                    <i class="fas fa-briefcase"></i> Ideias de Projetos
-                                </a>
-                                <a href="https://netlify.com/" class="resource-link">
-                                    <i class="fas fa-cloud"></i> Deploy Netlify
-                                </a>
-                                <a href="https://vercel.com/" class="resource-link">
-                                    <i class="fas fa-rocket"></i> Deploy Vercel
-                                </a>
-                            </div>
+                            <span class="start-roadmap__duration">4-6 semanas</span>
                         </div>
                     </div>
 
-                    <div class="roadmap-step">
-                        <div class="step-number">6</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Entre no Mercado de Trabalho</h3>
-                            <p class="step-description">
-                                Prepare seu currículo, pratique entrevistas técnicas e comece a aplicar para vagas junior.
-                                <strong>Tempo estimado: 2-4 semanas</strong>
+                    <div class="start-roadmap__item">
+                        <div class="start-roadmap__marker">6</div>
+                        <div class="start-roadmap__content">
+                            <h3 class="start-roadmap__title">Entre no Mercado de Trabalho</h3>
+                            <p class="start-roadmap__text">
+                                Prepare seu currículo, pratique entrevistas técnicas e comece a
+                                aplicar para vagas junior.
                             </p>
-                            <div class="step-resources">
-                                <a href="https://www.linkedin.com/" class="resource-link">
-                                    <i class="fab fa-linkedin"></i> LinkedIn
-                                </a>
-                                <a href="https://www.glassdoor.com.br/" class="resource-link">
-                                    <i class="fas fa-search"></i> Glassdoor
-                                </a>
-                                <a href="https://leetcode.com/" class="resource-link">
-                                    <i class="fas fa-brain"></i> LeetCode
-                                </a>
-                            </div>
+                            <span class="start-roadmap__duration">2-4 semanas</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Dicas Importantes -->
-            <section class="content-section fade-in">
-                <div class="tips-section">
-                    <div class="section-header">
-                        <h2 class="section-title">💡 Dicas de Ouro para Iniciantes</h2>
-                        <p class="section-description">
-                            Conselhos valiosos que podem acelerar seu aprendizado e evitar armadilhas comuns.
-                        </p>
-                    </div>
-
-                    <div class="tips-grid">
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="tip-title">Pratique Todos os Dias</h3>
-                            <p>Mesmo que seja apenas 30 minutos. Consistência é mais importante que quantidade. O código deve se tornar um hábito!</p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <h3 class="tip-title">Foque em Projetos</h3>
-                            <p>Tutorials são importantes, mas projetos reais te ensinam a resolver problemas de verdade. Construa, quebre, conserte!</p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3 class="tip-title">Participe de Comunidades</h3>
-                            <p>Discord, Reddit, Stack Overflow. A comunidade dev é incrível! Faça perguntas, ajude outros, faça networking.</p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-bug"></i>
-                            </div>
-                            <h3 class="tip-title">Aprenda a Debuggar</h3>
-                            <p>Saiba usar as ferramentas de desenvolvimento do navegador. Bugs são seus amigos, eles te ensinam muito!</p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-book-reader"></i>
-                            </div>
-                            <h3 class="tip-title">Leia Código de Outros</h3>
-                            <p>GitHub é uma mina de ouro! Estude projetos open source, veja como desenvolvedores experientes resolvem problemas.</p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <h3 class="tip-title">Tenha Paciência</h3>
-                            <p>Programação é difícil no início. Todo mundo já foi iniciante um dia. Persista, seja paciente consigo mesmo!</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Recursos por Tecnologia -->
-            <section class="content-section fade-in">
-                <div class="resources-section">
-                    <div class="section-header">
-                        <h2 class="section-title">📚 Recursos de Aprendizado</h2>
-                        <p class="section-description">
-                            Uma curadoria dos melhores recursos gratuitos e pagos para cada tecnologia.
-                        </p>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3 class="category-title">
-                            <i class="fab fa-html5"></i>
-                            HTML & CSS
-                        </h3>
-                        <div class="resource-grid">
-                            <div class="resource-item">
-                                <h4 class="resource-title">MDN Web Docs</h4>
-                                <p class="resource-description">A documentação oficial mais completa da web. Referência obrigatória para qualquer desenvolvedor.</p>
-                                <a href="https://developer.mozilla.org/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Acessar
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">CSS Tricks</h4>
-                                <p class="resource-description">Dicas, truques e tutoriais avançados de CSS. Perfeito para dominar layouts e animações.</p>
-                                <a href="https://css-tricks.com/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Acessar
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">Flexbox Froggy</h4>
-                                <p class="resource-description">Aprenda Flexbox de forma divertida! Um jogo interativo que ensina CSS Flexbox.</p>
-                                <a href="https://flexboxfroggy.com/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Jogar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3 class="category-title">
-                            <i class="fab fa-js"></i>
-                            JavaScript
-                        </h3>
-                        <div class="resource-grid">
-                            <div class="resource-item">
-                                <h4 class="resource-title">JavaScript.info</h4>
-                                <p class="resource-description">Tutorial moderno e completo de JavaScript. Do básico ao avançado com exemplos práticos.</p>
-                                <a href="https://javascript.info/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Acessar
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">Eloquent JavaScript</h4>
-                                <p class="resource-description">Livro gratuito que ensina JavaScript de forma profunda e prática. Ideal para quem quer entender a fundo.</p>
-                                <a href="https://eloquentjavascript.net/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Ler Online
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">30 Days of JavaScript</h4>
-                                <p class="resource-description">Desafio de 30 dias com exercícios práticos. Ótimo para fixar conceitos e criar disciplina.</p>
-                                <a href="https://github.com/Asabeneh/30-Days-Of-JavaScript" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Começar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3 class="category-title">
-                            <i class="fab fa-git-alt"></i>
-                            Git & GitHub
-                        </h3>
-                        <div class="resource-grid">
-                            <div class="resource-item">
-                                <h4 class="resource-title">Pro Git Book</h4>
-                                <p class="resource-description">O livro oficial do Git, gratuito e completo. Tudo que você precisa saber sobre controle de versão.</p>
-                                <a href="https://git-scm.com/book/pt-br/v2" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Ler
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">GitHub Learning Lab</h4>
-                                <p class="resource-description">Cursos interativos do próprio GitHub. Aprenda fazendo com projetos reais.</p>
-                                <a href="https://lab.github.com/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Começar
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">Learn Git Branching</h4>
-                                <p class="resource-description">Ferramenta visual interativa para aprender Git. Veja os comandos em ação!</p>
-                                <a href="https://learngitbranching.js.org/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Praticar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3 class="category-title">
-                            <i class="fas fa-laptop-code"></i>
-                            Plataformas de Prática
-                        </h3>
-                        <div class="resource-grid">
-                            <div class="resource-item">
-                                <h4 class="resource-title">FreeCodeCamp</h4>
-                                <p class="resource-description">Plataforma completa e gratuita com certificações. Mais de 3000 horas de conteúdo.</p>
-                                <a href="https://www.freecodecamp.org/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Começar
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">Codecademy</h4>
-                                <p class="resource-description">Cursos interativos com ambiente de código integrado. Aprenda praticando imediatamente.</p>
-                                <a href="https://www.codecademy.com/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Explorar
-                                </a>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="resource-title">Frontend Mentor</h4>
-                                <p class="resource-description">Desafios reais de front-end com designs profissionais. Perfeito para construir portfólio.</p>
-                                <a href="https://www.frontendmentor.io/" class="resource-link">
-                                    <i class="fas fa-external-link-alt"></i> Desafios
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Seção de Motivação e Próximos Passos -->
-            <section class="content-section fade-in">
+            <section class="start-tips">
                 <div class="section-header">
-                    <h2 class="section-title">🎯 Comece sua Jornada Hoje!</h2>
+                    <h2 class="section-title">💡 Dicas de Ouro para Iniciantes</h2>
                     <p class="section-description">
-                        Você tem tudo que precisa para começar. O único requisito é vontade de aprender e persistência. 
-                        Milhares de pessoas começaram exatamente onde você está agora!
+                        Conselhos valiosos que podem acelerar seu aprendizado e evitar armadilhas
+                        comuns.
                     </p>
                 </div>
 
-                <div class="cta-section">
-                    <a href="#" class="cta-button">
-                        <i class="fas fa-rocket"></i> Começar com HTML & CSS
-                    </a>
-                    <a href="#" class="cta-button cta-secondary">
-                        <i class="fas fa-map"></i> Ver Roadmap Completo
-                    </a>
-                </div>
+                <div class="start-tips__grid">
+                    <div class="start-tip-card">
+                        <span class="start-tip-card__icon">💻</span>
+                        <h3 class="start-tip-card__title">Pratique Todos os Dias</h3>
+                        <p class="start-tip-card__text">
+                            Mesmo que seja apenas 30 minutos. Consistência é mais importante que
+                            quantidade.
+                        </p>
+                    </div>
 
-                <div style="background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%); border-radius: 2rem; padding: 3rem; margin-top: 3rem; text-align: center; border-left: 6px solid var(--accent-color);">
-                    <h3 style="color: var(--dark-color); margin-bottom: 1rem; font-size: 1.5rem;">
-                        <i class="fas fa-lightbulb"></i> Lembre-se!
-                    </h3>
-                    <p style="color: var(--text-color); font-size: 1.1rem; line-height: 1.7; max-width: 800px; margin: 0 auto;">
-                        <strong>Programação não é sobre ser um gênio</strong> - é sobre persistência, prática e never give up! 
-                        Todo desenvolvedor senior já foi junior um dia. Todo expert já foi iniciante. 
-                        Sua jornada começou agora, mas seu destino você quem decide! 🚀
-                    </p>
+                    <div class="start-tip-card">
+                        <span class="start-tip-card__icon">🚀</span>
+                        <h3 class="start-tip-card__title">Foque em Projetos</h3>
+                        <p class="start-tip-card__text">
+                            Tutorials são importantes, mas projetos reais te ensinam a resolver
+                            problemas de verdade.
+                        </p>
+                    </div>
+
+                    <div class="start-tip-card">
+                        <span class="start-tip-card__icon">👥</span>
+                        <h3 class="start-tip-card__title">Participe de Comunidades</h3>
+                        <p class="start-tip-card__text">
+                            Discord, Reddit, Stack Overflow. A comunidade dev é incrível! Faça
+                            networking.
+                        </p>
+                    </div>
+
+                    <div class="start-tip-card">
+                        <span class="start-tip-card__icon">🐛</span>
+                        <h3 class="start-tip-card__title">Aprenda a Debuggar</h3>
+                        <p class="start-tip-card__text">
+                            Saiba usar as ferramentas de desenvolvimento do navegador. Bugs são seus
+                            amigos!
+                        </p>
+                    </div>
+
+                    <div class="start-tip-card">
+                        <span class="start-tip-card__icon">📖</span>
+                        <h3 class="start-tip-card__title">Leia Código de Outros</h3>
+                        <p class="start-tip-card__text">
+                            GitHub é uma mina de ouro! Estude projetos open source.
+                        </p>
+                    </div>
+
+                    <div class="start-tip-card">
+                        <span class="start-tip-card__icon">⏰</span>
+                        <h3 class="start-tip-card__title">Tenha Paciência</h3>
+                        <p class="start-tip-card__text">
+                            Programação é difícil no início. Todo mundo já foi iniciante um dia.
+                            Persista!
+                        </p>
+                    </div>
                 </div>
             </section>
 
-            <!-- Seção de FAQ -->
-            <section class="content-section fade-in">
+            <!-- Recursos de Aprendizado -->
+            <section class="start-resources">
+                <div class="section-header">
+                    <h2 class="section-title">📚 Recursos de Aprendizado</h2>
+                    <p class="section-description">
+                        Uma curadoria dos melhores recursos gratuitos para cada tecnologia.
+                    </p>
+                </div>
+
+                <div class="start-resources__grid">
+                    <div class="start-resource-card">
+                        <div class="start-resource-card__header">
+                            <span class="start-resource-card__icon"
+                                ><i class="fab fa-html5"></i
+                            ></span>
+                            <h3 class="start-resource-card__title">HTML & CSS</h3>
+                        </div>
+                        <ul class="start-resource-card__list">
+                            <li>
+                                <a href="https://developer.mozilla.org/" target="_blank"
+                                    >MDN Web Docs</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://css-tricks.com/" target="_blank">CSS Tricks</a>
+                            </li>
+                            <li>
+                                <a href="https://flexboxfroggy.com/" target="_blank"
+                                    >Flexbox Froggy</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="start-resource-card">
+                        <div class="start-resource-card__header">
+                            <span class="start-resource-card__icon"><i class="fab fa-js"></i></span>
+                            <h3 class="start-resource-card__title">JavaScript</h3>
+                        </div>
+                        <ul class="start-resource-card__list">
+                            <li>
+                                <a href="https://javascript.info/" target="_blank"
+                                    >JavaScript.info</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://eloquentjavascript.net/" target="_blank"
+                                    >Eloquent JavaScript</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://github.com/Asabeneh/30-Days-Of-JavaScript"
+                                    target="_blank"
+                                    >30 Days of JS</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="start-resource-card">
+                        <div class="start-resource-card__header">
+                            <span class="start-resource-card__icon"
+                                ><i class="fab fa-git-alt"></i
+                            ></span>
+                            <h3 class="start-resource-card__title">Git & GitHub</h3>
+                        </div>
+                        <ul class="start-resource-card__list">
+                            <li>
+                                <a href="https://git-scm.com/book/pt-br/v2" target="_blank"
+                                    >Pro Git Book</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://lab.github.com/" target="_blank"
+                                    >GitHub Learning Lab</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://learngitbranching.js.org/" target="_blank"
+                                    >Learn Git Branching</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="start-alert">
+                <span class="start-alert__icon">💡</span>
+                <h3 class="start-alert__title">Lembre-se!</h3>
+                <p class="start-alert__text">
+                    <strong>Programação não é sobre ser um gênio</strong> - é sobre persistência,
+                    prática e never give up! Sua jornada começou agora, mas seu destino você quem
+                    decide! 🚀
+                </p>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="start-faq">
                 <div class="section-header">
                     <h2 class="section-title">❓ Perguntas Frequentes</h2>
                     <p class="section-description">
@@ -1042,158 +359,142 @@
                     </p>
                 </div>
 
-                <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
-                    <div style="background: var(--light-color); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--primary-color);">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem;">
-                            <i class="fas fa-question-circle"></i> Preciso de faculdade para ser programador?
-                        </h4>
-                        <p style="color: var(--text-color); line-height: 1.6;">
-                            <strong>Não é obrigatório!</strong> Muitas empresas valorizam mais habilidades práticas e portfólio do que diploma. 
-                            Porém, algumas grandes corporações ainda exigem ensino superior. Avalie seu objetivo: se quer empreender 
-                            ou trabalhar em startups, foque em projetos práticos. Se mira em grandes empresas tradicionais, 
-                            considere fazer uma graduação.
-                        </p>
+                <div class="start-faq__list">
+                    <div class="start-faq__item active">
+                        <button class="start-faq__question">
+                            <span class="start-faq__question-text"
+                                >Preciso de faculdade para ser programador?</span
+                            >
+                            <span class="start-faq__icon">+</span>
+                        </button>
+                        <div class="start-faq__answer">
+                            <strong>Não é obrigatório!</strong> Muitas empresas valorizam mais
+                            habilidades práticas e portfólio do que diploma. Porém, algumas grandes
+                            corporações ainda exigem ensino superior. Avalie seu objetivo!
+                        </div>
                     </div>
 
-                    <div style="background: var(--light-color); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--success-color);">
-                        <h4 style="color: var(--success-color); margin-bottom: 1rem; font-size: 1.2rem;">
-                            <i class="fas fa-clock"></i> Quanto tempo leva para conseguir o primeiro emprego?
-                        </h4>
-                        <p style="color: var(--text-color); line-height: 1.6;">
-                            <strong>Entre 6 meses a 2 anos</strong>, dependendo da sua dedicação e tempo disponível. 
-                            Estudando 2-3 horas por dia consistentemente, muitas pessoas conseguem vagas junior em 8-12 meses. 
-                            O importante é focar na qualidade do estudo e construir um portfólio sólido.
-                        </p>
+                    <div class="start-faq__item">
+                        <button class="start-faq__question">
+                            <span class="start-faq__question-text"
+                                >Quanto tempo leva para conseguir o primeiro emprego?</span
+                            >
+                            <span class="start-faq__icon">+</span>
+                        </button>
+                        <div class="start-faq__answer">
+                            <strong>Entre 6 meses a 2 anos</strong>, dependendo da sua dedicação e
+                            tempo disponível. Estudando 2-3 horas por dia consistentemente, muitas
+                            pessoas conseguem vagas junior em 8-12 meses.
+                        </div>
                     </div>
 
-                    <div style="background: var(--light-color); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--warning-color);">
-                        <h4 style="color: var(--warning-color); margin-bottom: 1rem; font-size: 1.2rem;">
-                            <i class="fas fa-brain"></i> Preciso ser bom em matemática?
-                        </h4>
-                        <p style="color: var(--text-color); line-height: 1.6;">
-                            <strong>Depende da área!</strong> Para desenvolvimento web (front-end e back-end básico), 
-                            matemática básica é suficiente. Para áreas como ciência de dados, machine learning ou 
-                            desenvolvimento de games, matemática mais avançada é importante. Mas lógica e 
-                            resolução de problemas são mais importantes que cálculos complexos.
-                        </p>
+                    <div class="start-faq__item">
+                        <button class="start-faq__question">
+                            <span class="start-faq__question-text"
+                                >Preciso ser bom em matemática?</span
+                            >
+                            <span class="start-faq__icon">+</span>
+                        </button>
+                        <div class="start-faq__answer">
+                            <strong>Depende da área!</strong> Para desenvolvimento web, matemática
+                            básica é suficiente. Para ciência de dados ou machine learning,
+                            matemática mais avançada é importante.
+                        </div>
                     </div>
 
-                    <div style="background: var(--light-color); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent-color);">
-                        <h4 style="color: var(--accent-color); margin-bottom: 1rem; font-size: 1.2rem;">
-                            <i class="fas fa-laptop"></i> Que computador preciso para programar?
-                        </h4>
-                        <p style="color: var(--text-color); line-height: 1.6;">
-                            <strong>Qualquer computador moderno serve para começar!</strong> Um notebook com 8GB de RAM 
-                            e processador i5 (ou equivalente) é mais que suficiente para desenvolvimento web. 
-                            Você pode começar até com 4GB de RAM. O importante é ter vontade de aprender, 
-                            não o hardware mais potente.
-                        </p>
+                    <div class="start-faq__item">
+                        <button class="start-faq__question">
+                            <span class="start-faq__question-text"
+                                >Que computador preciso para programar?</span
+                            >
+                            <span class="start-faq__icon">+</span>
+                        </button>
+                        <div class="start-faq__answer">
+                            <strong>Qualquer computador moderno serve para começar!</strong> Um
+                            notebook com 8GB de RAM e processador i5 (ou equivalente) é mais que
+                            suficiente para desenvolvimento web.
+                        </div>
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
 
-    <footer>
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h3>Criado com 💜 por José Enoque</h3>
-            <p>Ajudando pessoas a transformarem suas vidas através da programação</p>
-            
-            <div class="social-links">
-                <a href="https://github.com/ESousa97" target="_blank" class="social-icon">
-                    <i class="fab fa-github"></i>
+            <!-- CTA Final -->
+            <div class="text-center py-12">
+                <a href="https://www.w3schools.com/html/" target="_blank" class="cta-button">
+                    <i class="fas fa-rocket"></i> Começar com HTML & CSS
                 </a>
-                <a href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/" target="_blank" class="social-icon">
-                    <i class="fab fa-linkedin-in"></i>
+                <a href="#roadmap" class="btn btn--outline">
+                    <i class="fas fa-map"></i> Ver Roadmap Completo
                 </a>
             </div>
-            
-            <p style="margin-top: 2rem; opacity: 0.7;">
-                © 2025 Brain Developer. Feito com amor para a comunidade dev brasileira 🇧🇷
-            </p>
-            
-            <div style="margin-top: 2rem;">
-                <a href="/index.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">
-                    <i class="fas fa-arrow-left"></i> Voltar para o início
-                </a>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <h3>Criado com 💜 por José Enoque</h3>
+                <p>Ajudando pessoas a transformarem suas vidas através da programação</p>
+
+                <div class="social-links">
+                    <a
+                        href="https://github.com/ESousa97"
+                        target="_blank"
+                        class="social-icon"
+                        aria-label="GitHub"
+                    >
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/"
+                        target="_blank"
+                        class="social-icon"
+                        aria-label="LinkedIn"
+                    >
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <p class="footer__copyright">
+                    © 2026 Brain Developer. Feito com amor para a comunidade dev brasileira 🇧🇷
+                </p>
+
+                <nav class="footer-nav">
+                    <a href="../../index.html"
+                        ><i class="fas fa-arrow-left"></i> Voltar para o início</a
+                    >
+                </nav>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script>
-        // Animação de scroll suave
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                            entry.target.style.transition = 'all 0.8s ease-out';
-                        }, index * 200);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            fadeElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                observer.observe(el);
-            });
-        });
-
-        // Animação nos números das estatísticas
-        function animateNumbers() {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = stat.textContent;
-                let current = 0;
-                const increment = target.includes('k') ? 100 : target.includes('M') ? 10000 : 1;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (target.includes('k')) {
-                        stat.textContent = `R$ ${current/1000}k+`;
-                        if (current >= 3000) clearInterval(timer);
-                    } else if (target.includes('M')) {
-                        stat.textContent = `${Math.floor(current/10000)/100}M+`;
-                        if (current >= 100000) clearInterval(timer);
-                    } else {
-                        stat.textContent = `${current}%`;
-                        if (current >= 30) clearInterval(timer);
-                    }
-                }, 50);
-            });
-        }
-
-        // Executar animação dos números após 1 segundo
-        setTimeout(animateNumbers, 1000);
-
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+        <script>
+            // Animação de scroll suave
+            document.addEventListener('DOMContentLoaded', function () {
+                // FAQ Toggle
+                const faqItems = document.querySelectorAll('.start-faq__item');
+                faqItems.forEach((item) => {
+                    const question = item.querySelector('.start-faq__question');
+                    question.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        faqItems.forEach((i) => i.classList.remove('active'));
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
                     });
-                }
-            });
-        });
+                });
 
-        // Efeito parallax sutil no hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero-section');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        });
-    </script>
-</body>
+                // Smooth scroll para links internos
+                document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start',
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
 </html>

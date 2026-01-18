@@ -1,0 +1,737 @@
+/**
+ * Brain Developer - Full-Stack Page Styles
+ * =========================================
+ * Estilos específicos para a página Full-Stack (Full-Stack.html).
+ * 
+ * Depende de: tokens.css, base.css, layout.css, components.css
+ */
+
+/* ==========================================
+   FULLSTACK - HERO SECTION
+   ========================================== */
+
+.fullstack-hero {
+    background: var(--gradient-fullstack);
+    padding: var(--spacing-16) var(--spacing-4);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.fullstack-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(147, 51, 234, 0.12), transparent 35%),
+        radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1), transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08), transparent 45%);
+    pointer-events: none;
+}
+
+.fullstack-hero__title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--spacing-4);
+    position: relative;
+    z-index: 1;
+    line-height: var(--line-height-tight);
+}
+
+.fullstack-hero__title span {
+    background: linear-gradient(135deg, #a5b4fc 0%, #6ee7b7 50%, #67e8f9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.fullstack-hero__subtitle {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    line-height: var(--line-height-relaxed);
+}
+
+/* ==========================================
+   FULLSTACK - OVERVIEW SECTION
+   ========================================== */
+
+.fullstack-overview {
+    padding: var(--spacing-16) var(--spacing-6);
+    background: var(--color-surface-secondary);
+}
+
+.fullstack-overview__diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-8);
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.fullstack-overview__block {
+    background: var(--color-surface-primary);
+    border: 2px solid var(--block-color, var(--color-border-subtle));
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+    min-width: 200px;
+    text-align: center;
+    transition: all var(--transition-normal);
+}
+
+.fullstack-overview__block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(var(--block-rgb, 147, 51, 234), 0.2);
+}
+
+.fullstack-overview__block--frontend {
+    --block-color: var(--color-accent-500);
+    --block-rgb: 14, 165, 233;
+}
+
+.fullstack-overview__block--backend {
+    --block-color: var(--color-success-500);
+    --block-rgb: 16, 185, 129;
+}
+
+.fullstack-overview__block--database {
+    --block-color: var(--color-primary-500);
+    --block-rgb: 147, 51, 234;
+}
+
+.fullstack-overview__block-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-3);
+}
+
+.fullstack-overview__block-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-overview__block-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+}
+
+.fullstack-overview__connector {
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary-400);
+}
+
+/* ==========================================
+   FULLSTACK - TECH STACKS SECTION
+   ========================================== */
+
+.fullstack-stacks {
+    padding: var(--spacing-16) var(--spacing-6);
+}
+
+.fullstack-stacks__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-8);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fullstack-stack-card {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.fullstack-stack-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--stack-gradient, var(--gradient-primary));
+}
+
+.fullstack-stack-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-light);
+}
+
+/* Stack variants */
+.fullstack-stack-card--mern {
+    --stack-gradient: linear-gradient(90deg, #3fa037, #61dafb, #68a063, #f7df1e);
+}
+
+.fullstack-stack-card--mean {
+    --stack-gradient: linear-gradient(90deg, #3fa037, #dd0031, #68a063, #f7df1e);
+}
+
+.fullstack-stack-card--lamp {
+    --stack-gradient: linear-gradient(90deg, #f29111, #777bb4, #00758f, #e95420);
+}
+
+.fullstack-stack-card--jam {
+    --stack-gradient: linear-gradient(90deg, #663399, #61dafb, #f0db4f, #0fa0ce);
+}
+
+.fullstack-stack-card--django {
+    --stack-gradient: linear-gradient(90deg, #092e20, #3776ab, #336791, #61dafb);
+}
+
+.fullstack-stack-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-stack-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+.fullstack-stack-card__popularity {
+    background: var(--color-primary-50);
+    color: var(--color-primary-600);
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+.fullstack-stack-card__tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-stack-card__tech {
+    background: var(--color-surface-primary);
+    color: var(--color-text-secondary);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.fullstack-stack-card__tech span {
+    font-size: var(--font-size-base);
+}
+
+.fullstack-stack-card__description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-tertiary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-stack-card__use-cases {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fullstack-stack-card__use-cases li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.fullstack-stack-card__use-cases li::before {
+    content: '✓';
+    color: var(--color-success-400);
+    font-weight: var(--font-weight-bold);
+}
+
+/* ==========================================
+   FULLSTACK - SKILLS COMPARISON
+   ========================================== */
+
+.fullstack-skills {
+    padding: var(--spacing-16) var(--spacing-6);
+    background: var(--gradient-section-purple);
+}
+
+.fullstack-skills__comparison {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-8);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.fullstack-skills__column {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+}
+
+.fullstack-skills__column-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-5);
+    padding-bottom: var(--spacing-4);
+    border-bottom: 2px solid var(--column-color, var(--color-border-light));
+}
+
+.fullstack-skills__column--frontend .fullstack-skills__column-header {
+    --column-color: var(--color-accent-400);
+}
+
+.fullstack-skills__column--backend .fullstack-skills__column-header {
+    --column-color: var(--color-success-400);
+}
+
+.fullstack-skills__column-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--color-primary-50);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    color: var(--color-primary-600);
+}
+
+.fullstack-skills__column-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.fullstack-skills__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fullstack-skills__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-3) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.fullstack-skills__item:last-child {
+    border-bottom: none;
+}
+
+.fullstack-skills__item-name {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+}
+
+.fullstack-skills__item-level {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    background: rgba(147, 51, 234, 0.2);
+    color: var(--color-primary-400);
+}
+
+/* ==========================================
+   FULLSTACK - LEARNING PATH
+   ========================================== */
+
+.fullstack-path {
+    padding: var(--spacing-16) var(--spacing-6);
+}
+
+.fullstack-path__phases {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.fullstack-path__phase {
+    display: flex;
+    gap: var(--spacing-6);
+    align-items: flex-start;
+}
+
+.fullstack-path__phase-marker {
+    width: 70px;
+    height: 70px;
+    background: var(--phase-color, var(--gradient-primary));
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fullstack-path__phase:nth-child(1) .fullstack-path__phase-marker {
+    background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-600));
+}
+
+.fullstack-path__phase:nth-child(2) .fullstack-path__phase-marker {
+    background: linear-gradient(135deg, var(--color-success-500), var(--color-success-600));
+}
+
+.fullstack-path__phase:nth-child(3) .fullstack-path__phase-marker {
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+}
+
+.fullstack-path__phase:nth-child(4) .fullstack-path__phase-marker {
+    background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600));
+}
+
+.fullstack-path__phase-number {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-primary);
+}
+
+.fullstack-path__phase-content {
+    flex: 1;
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+}
+
+.fullstack-path__phase-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-path__phase-duration {
+    display: inline-block;
+    background: rgba(147, 51, 234, 0.2);
+    color: var(--color-primary-400);
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-3);
+}
+
+.fullstack-path__phase-description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-tertiary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-path__phase-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+}
+
+.fullstack-path__phase-topic {
+    background: var(--color-surface-primary);
+    color: var(--color-text-secondary);
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+}
+
+/* ==========================================
+   FULLSTACK - PROJECTS SECTION
+   ========================================== */
+
+.fullstack-projects {
+    padding: var(--spacing-16) var(--spacing-6);
+    background: var(--color-surface-secondary);
+}
+
+.fullstack-projects__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-6);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fullstack-project-card {
+    background: var(--color-surface-primary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+    transition: all var(--transition-normal);
+}
+
+.fullstack-project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.fullstack-project-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-project-card__icon {
+    font-size: var(--font-size-3xl);
+}
+
+.fullstack-project-card__complexity {
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+.fullstack-project-card__complexity--beginner {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--color-success-400);
+}
+
+.fullstack-project-card__complexity--intermediate {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--color-warning-400);
+}
+
+.fullstack-project-card__complexity--advanced {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--color-error-400);
+}
+
+.fullstack-project-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-project-card__description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-tertiary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-project-card__features {
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-project-card__features-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-project-card__features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+}
+
+.fullstack-project-card__feature {
+    background: var(--color-surface-secondary);
+    color: var(--color-text-tertiary);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+}
+
+.fullstack-project-card__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+.fullstack-project-card__stack-item {
+    background: rgba(147, 51, 234, 0.1);
+    color: var(--color-primary-400);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+/* ==========================================
+   FULLSTACK - SALARY SECTION
+   ========================================== */
+
+.fullstack-salary {
+    padding: var(--spacing-16) var(--spacing-6);
+}
+
+.fullstack-salary__highlight {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-10);
+    padding: var(--spacing-8);
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(16, 185, 129, 0.1));
+    border: 1px solid var(--color-primary-500);
+    border-radius: var(--radius-2xl);
+}
+
+.fullstack-salary__highlight-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-salary__highlight-value {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-extrabold);
+    background: linear-gradient(135deg, var(--color-primary-400), var(--color-success-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.fullstack-salary__highlight-note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    margin-top: var(--spacing-2);
+}
+
+.fullstack-salary__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-6);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.fullstack-salary-card {
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+    text-align: center;
+    transition: all var(--transition-normal);
+}
+
+.fullstack-salary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.fullstack-salary-card__level {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-salary-card__value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-success-400);
+}
+
+/* ==========================================
+   FULLSTACK - ADVANTAGES SECTION
+   ========================================== */
+
+.fullstack-advantages {
+    padding: var(--spacing-16) var(--spacing-6);
+    background: var(--gradient-section-purple);
+}
+
+.fullstack-advantages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-6);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fullstack-advantage-card {
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+    text-align: center;
+    transition: all var(--transition-normal);
+}
+
+.fullstack-advantage-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.fullstack-advantage-card__icon {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-4);
+}
+
+.fullstack-advantage-card__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.fullstack-advantage-card__text {
+    font-size: var(--font-size-base);
+    color: var(--color-text-tertiary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 768px) {
+    .fullstack-hero {
+        padding: var(--spacing-12) var(--spacing-4);
+    }
+
+    .fullstack-overview__diagram {
+        flex-direction: column;
+    }
+
+    .fullstack-overview__connector {
+        transform: rotate(90deg);
+    }
+
+    .fullstack-skills__comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .fullstack-path__phase {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .fullstack-path__phase-marker {
+        width: 60px;
+        height: 60px;
+    }
+}

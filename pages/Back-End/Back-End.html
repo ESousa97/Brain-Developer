@@ -1,2548 +1,619 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Back-End Developer - Brain Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #059669;
-            --secondary-color: #0891b2;
-            --accent-color: #7c3aed;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --error-color: #ef4444;
-            --dark-color: #1f2937;
-            --light-color: #ffffff;
-            --text-color: #374151;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --border-color: #e5e7eb;
-            --gradient-primary: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
-            --gradient-secondary: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0891b2 100%);
-            --gradient-backend: linear-gradient(135deg, #065f46 0%, #047857 25%, #059669 50%, #0c4a6e 75%, #0891b2 100%);
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --border-radius: 20px;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--text-color);
-            background: var(--gradient-backend);
-            min-height: 100vh;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: var(--gradient-backend);
-            padding: 4rem 0;
-            text-align: center;
-            color: var(--light-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect fill="rgba(255,255,255,0.03)" width="100" height="100"/><rect fill="rgba(255,255,255,0.05)" x="100" y="100" width="100" height="100"/><rect fill="rgba(255,255,255,0.02)" x="200" y="0" width="100" height="100"/></svg>') repeat;
-            animation: matrix 30s linear infinite;
-        }
-
-        @keyframes matrix {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100px); }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            animation: slideInDown 1s ease-out;
-            background: linear-gradient(45deg, #fff, #a7f3d0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeIn 1s ease-out 0.5s both;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            animation: slideInUp 1s ease-out 1s both;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 1.5rem;
-            border-radius: 15px;
-            min-width: 150px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Container principal */
-        .main-container {
-            background: var(--light-color);
-            margin: -2rem 1rem 0;
-            border-radius: 2rem;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            z-index: 3;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        /* Seções de conteúdo */
-        .content-section {
-            margin-bottom: 4rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-backend);
-            border-radius: 2px;
-        }
-
-        .section-description {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Backend Fundamentals */
-        .backend-fundamentals {
-            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .fundamentals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .fundamental-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border-left: 4px solid;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .fundamental-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            opacity: 0.1;
-            font-family: 'Font Awesome 6 Free';
-            font-size: 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fundamental-card:nth-child(1) { 
-            border-left-color: var(--primary-color); 
-        }
-        .fundamental-card:nth-child(1)::before { content: '\f233'; color: var(--primary-color); }
-
-        .fundamental-card:nth-child(2) { 
-            border-left-color: var(--secondary-color); 
-        }
-        .fundamental-card:nth-child(2)::before { content: '\f1c0'; color: var(--secondary-color); }
-
-        .fundamental-card:nth-child(3) { 
-            border-left-color: var(--accent-color); 
-        }
-        .fundamental-card:nth-child(3)::before { content: '\f0e4'; color: var(--accent-color); }
-
-        .fundamental-card:nth-child(4) { 
-            border-left-color: var(--warning-color); 
-        }
-        .fundamental-card:nth-child(4)::before { content: '\f132'; color: var(--warning-color); }
-
-        .fundamental-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .fundamental-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .fundamental-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .fundamental-list {
-            list-style: none;
-        }
-
-        .fundamental-list li {
-            padding: 0.3rem 0;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .fundamental-list li::before {
-            content: '▶';
-            color: var(--primary-color);
-            font-size: 0.8rem;
-        }
-
-        /* Language Comparison */
-        .languages-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .languages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .language-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .language-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
-        }
-
-        .language-card:hover::before {
-            top: -100%;
-            right: -100%;
-        }
-
-        .language-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .language-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--light-color);
-        }
-
-        .nodejs-icon { background: linear-gradient(135deg, #68D391, #38A169); }
-        .python-icon { background: linear-gradient(135deg, #3182CE, #2B6CB0); }
-        .java-icon { background: linear-gradient(135deg, #F56565, #E53E3E); }
-        .csharp-icon { background: linear-gradient(135deg, #805AD5, #6B46C1); }
-        .php-icon { background: linear-gradient(135deg, #4299E1, #3182CE); }
-        .go-icon { background: linear-gradient(135deg, #48BB78, #38A169); }
-
-        .language-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .language-subtitle {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .language-pros {
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-
-        .pros-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--success-color);
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pros-list {
-            list-style: none;
-            font-size: 0.9rem;
-        }
-
-        .pros-list li {
-            padding: 0.2rem 0;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pros-list li::before {
-            content: '✓';
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        .language-salary {
-            background: var(--gradient-backend);
-            color: var(--light-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Database Section */
-        .database-section {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .database-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .database-type {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .database-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .database-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--light-color);
-        }
-
-        .sql-icon {
-            background: linear-gradient(135deg, #3182CE, #2B6CB0);
-        }
-
-        .nosql-icon {
-            background: linear-gradient(135deg, #38A169, #2F855A);
-        }
-
-        .database-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .database-subtitle {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .database-examples {
-            margin-bottom: 2rem;
-        }
-
-        .examples-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tech-tag {
-            background: #f1f5f9;
-            color: var(--text-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .use-cases {
-            margin-top: 2rem;
-        }
-
-        .use-cases-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        .use-cases-list {
-            list-style: none;
-        }
-
-        .use-cases-list li {
-            padding: 0.3rem 0;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .use-cases-list li::before {
-            content: '🎯';
-            font-size: 1rem;
-        }
-
-        /* API Section */
-        .api-section {
-            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .api-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .api-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .api-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .api-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .api-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--light-color);
-        }
-
-        .rest-icon { background: linear-gradient(135deg, #059669, #047857); }
-        .graphql-icon { background: linear-gradient(135deg, #e11d48, #be185d); }
-        .grpc-icon { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
-
-        .api-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--dark-color);
-        }
-
-        .api-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .api-features {
-            list-style: none;
-        }
-
-        .api-features li {
-            padding: 0.3rem 0;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .api-features li::before {
-            content: '✨';
-            font-size: 1rem;
-        }
-
-        /* Security Section */
-        .security-section {
-            background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .security-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .security-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .security-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .security-icon {
-            font-size: 2.5rem;
-            color: var(--error-color);
-            margin-bottom: 1rem;
-        }
-
-        .security-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .security-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        /* DevOps Integration */
-        .devops-section {
-            background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .devops-pipeline {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .pipeline-step {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            min-width: 150px;
-            position: relative;
-        }
-
-        .pipeline-step::after {
-            content: '→';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-
-        .pipeline-step:last-child::after {
-            display: none;
-        }
-
-        .pipeline-icon {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .pipeline-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-
-        /* Roadmap Timeline */
-        .roadmap-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .timeline {
-            position: relative;
-            margin-top: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--gradient-backend);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            width: 45%;
-            position: relative;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border: 15px solid transparent;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -30px;
-            border-left-color: var(--light-color);
-            transform: translateY(-50%);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -30px;
-            border-right-color: var(--light-color);
-            transform: translateY(-50%);
-        }
-
-        .timeline-number {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-backend);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--light-color);
-            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
-            z-index: 2;
-        }
-
-        .phase-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .phase-duration {
-            display: inline-block;
-            background: var(--gradient-secondary);
-            color: var(--light-color);
-            padding: 0.3rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .phase-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .phase-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-pill {
-            background: #f1f5f9;
-            color: var(--primary-color);
-            padding: 0.2rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .phase-resources {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--light-color);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 20px;
-            border: 1px solid var(--primary-color);
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .resource-link:hover {
-            background: var(--primary-color);
-            color: var(--light-color);
-            transform: translateY(-2px);
-        }
-
-        /* Project Examples */
-        .projects-section {
-            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .project-header {
-            padding: 2rem 2rem 1rem;
-        }
-
-        .project-difficulty {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .difficulty-beginner {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .difficulty-intermediate {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .difficulty-advanced {
-            background: #fecaca;
-            color: #991b1b;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stack-badge {
-            background: #f1f5f9;
-            color: var(--primary-color);
-            padding: 0.2rem 0.6rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-features {
-            background: #f8fafc;
-            padding: 1.5rem 2rem 2rem;
-        }
-
-        .features-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .features-list {
-            list-style: none;
-        }
-
-        .features-list li {
-            padding: 0.3rem 0;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .features-list li::before {
-            content: '⚙️';
-            font-size: 1rem;
-        }
-
-        /* Market & Salary */
-        .market-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .market-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .market-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .market-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .market-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .market-label {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        /* Tips Section */
-        .tips-section {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .tip-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .tip-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .tip-icon {
-            font-size: 2rem;
-            color: var(--warning-color);
-            margin-bottom: 1rem;
-        }
-
-        .tip-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.8rem;
-        }
-
-        .tip-description {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Next Steps */
-        .next-steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .step-card {
-            background: var(--light-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border-left: 4px solid;
-        }
-
-        .step-card:nth-child(1) { border-left-color: var(--primary-color); }
-        .step-card:nth-child(2) { border-left-color: var(--success-color); }
-        .step-card:nth-child(3) { border-left-color: var(--warning-color); }
-
-        .step-title {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .step-list {
-            color: var(--text-color);
-            line-height: 1.6;
-            list-style: none;
-        }
-
-        .step-list li {
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--gradient-backend);
-            color: var(--light-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);
-            transition: all 0.3s ease;
-            margin: 0.5rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(5, 150, 105, 0.6);
-        }
-
-        .cta-secondary {
-            background: var(--light-color);
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .cta-secondary:hover {
-            background: var(--primary-color);
-            color: var(--light-color);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-color);
-            color: var(--light-color);
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-backend);
-            border-radius: 50%;
-            text-decoration: none;
-            color: var(--light-color);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
-        }
-
-        /* Animações */
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsividade */
-        @media (max-width: 968px) {
-            .database-comparison {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .devops-pipeline {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .pipeline-step::after {
-                content: '↓';
-                right: 50%;
-                top: 100%;
-                transform: translateX(50%);
-            }
-
-            .pipeline-step:last-child::after {
-                display: none;
-            }
-
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                flex-direction: column !important;
-                align-items: flex-start;
-                padding-left: 80px;
-            }
-
-            .timeline-content {
-                width: 100% !important;
-            }
-
-            .timeline-content::before {
-                display: none;
-            }
-
-            .timeline-number {
-                left: 30px !important;
-                transform: none !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-                align-items: center;
-            }
-
-            .main-container {
-                margin: -1rem 0.5rem 0;
-                border-radius: 1rem;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .fundamentals-grid,
-            .languages-grid,
-            .api-grid,
-            .security-grid,
-            .market-grid,
-            .projects-grid,
-            .tips-grid,
-            .next-steps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">⚙️ Back-End Developer</h1>
-            <p class="hero-subtitle">
-                O responsável pela lógica e infraestrutura que mantém aplicações rodando no dia a dia.
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Back-End Developer - Brain Developer</title>
+        <meta
+            name="description"
+            content="Guia completo para se tornar um desenvolvedor Back-End. Aprenda sobre linguagens, frameworks, bancos de dados, APIs e arquitetura de sistemas."
+        />
+
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="../../styles/tokens.css" />
+        <link rel="stylesheet" href="../../styles/base.css" />
+        <link rel="stylesheet" href="../../styles/layout.css" />
+        <link rel="stylesheet" href="../../styles/components.css" />
+        <link rel="stylesheet" href="../../styles/utilities.css" />
+        <link rel="stylesheet" href="../../styles/pages/backend.css" />
+    </head>
+    <body>
+        <!-- Skip Link -->
+        <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+        <!-- Hero Section -->
+        <header class="backend-hero">
+            <nav class="hero__breadcrumb">
+                <a href="../../index.html">Início</a>
+                <span>/</span>
+                <span>Back-End</span>
+            </nav>
+            <h1 class="backend-hero__title">Desenvolvimento <span>Back-End</span></h1>
+            <p class="backend-hero__subtitle">
+                A espinha dorsal de toda aplicação. Domine a arte de criar sistemas robustos,
+                escaláveis e seguros que alimentam o mundo digital.
             </p>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">R$ 6k - 12k</span>
-                    <span class="stat-label">Faixa Salarial Inicial</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">20k+</span>
-                    <span class="stat-label">Vagas Ativas (Brasil)</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">50%</span>
-                    <span class="stat-label">Oportunidades Remotas</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">#3</span>
-                    <span class="stat-label">Posição entre áreas de TI mais demandadas</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <div class="main-container">
-        <div class="container">
-            <!-- O que é Back-End -->
-            <section class="content-section fade-in">
-                <div class="section-header">
-                    <h2 class="section-title">🔧 O que é ser Back-End?</h2>
-                    <p class="section-description">
-                        Back-End é a base que ninguém vê, mas que mantém tudo funcionando. Você cria regras, gerencia dados, cuida da segurança e da estabilidade — mesmo quando as coisas ficam complexas.
-                    </p>
-                </div>
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Conceitos Section -->
+            <section class="section">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">O que é Back-End?</h2>
+                        <p class="section__subtitle">
+                            Back-End é a parte da aplicação que roda no servidor, responsável pela
+                            lógica de negócios, processamento de dados, autenticação e comunicação
+                            com bancos de dados.
+                        </p>
+                    </header>
 
-                <div class="backend-fundamentals">
-                    <div class="fundamentals-grid">
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
+                    <div class="grid grid--3">
+                        <article class="backend-concept-card">
+                            <div class="backend-concept-card__icon">
                                 <i class="fas fa-server"></i>
-                                Lógica de Negócios
-                            </h3>
-                            <p class="fundamental-description">
-                                Programar as regras que garantem que a aplicação cumpra seu propósito, incluindo validações e fluxos que resolvem problemas reais.
+                            </div>
+                            <h3 class="backend-concept-card__title">Servidor</h3>
+                            <p class="backend-concept-card__description">
+                                Processa requisições, executa lógica de negócios e retorna respostas
+                                para os clientes.
                             </p>
-                            <ul class="fundamental-list">
-                                <li>Validação de dados</li>
-                                <li>Processamento de pagamentos</li>
-                                <li>Regras de negócio</li>
-                                <li>Algoritmos práticos</li>
-                                <li>Integração com sistemas externos</li>
-                            </ul>
-                        </div>
+                        </article>
 
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
+                        <article class="backend-concept-card">
+                            <div class="backend-concept-card__icon">
                                 <i class="fas fa-database"></i>
-                                Gestão de Dados
-                            </h3>
-                            <p class="fundamental-description">
-                                Armazenar e recuperar dados com eficiência, lidando com volumes que crescem e garantindo integridade e segurança.
+                            </div>
+                            <h3 class="backend-concept-card__title">Banco de Dados</h3>
+                            <p class="backend-concept-card__description">
+                                Armazena e gerencia os dados da aplicação de forma persistente e
+                                organizada.
                             </p>
-                            <ul class="fundamental-list">
-                                <li>Design de banco de dados</li>
-                                <li>Otimização de consultas</li>
-                                <li>Backup e recuperação</li>
-                                <li>Migrações e versões</li>
-                                <li>Modelagem relacional e NoSQL</li>
-                            </ul>
-                        </div>
+                        </article>
 
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
+                        <article class="backend-concept-card">
+                            <div class="backend-concept-card__icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <h3 class="backend-concept-card__title">API</h3>
+                            <p class="backend-concept-card__description">
+                                Interface que permite a comunicação entre o front-end, serviços
+                                externos e o servidor.
+                            </p>
+                        </article>
+
+                        <article class="backend-concept-card">
+                            <div class="backend-concept-card__icon">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <h3 class="backend-concept-card__title">Segurança</h3>
+                            <p class="backend-concept-card__description">
+                                Protege dados sensíveis, autentica usuários e previne ataques
+                                maliciosos.
+                            </p>
+                        </article>
+
+                        <article class="backend-concept-card">
+                            <div class="backend-concept-card__icon">
+                                <i class="fas fa-arrows-spin"></i>
+                            </div>
+                            <h3 class="backend-concept-card__title">Escalabilidade</h3>
+                            <p class="backend-concept-card__description">
+                                Capacidade de lidar com aumento de carga e crescimento da aplicação.
+                            </p>
+                        </article>
+
+                        <article class="backend-concept-card">
+                            <div class="backend-concept-card__icon">
+                                <i class="fas fa-gears"></i>
+                            </div>
+                            <h3 class="backend-concept-card__title">Automação</h3>
+                            <p class="backend-concept-card__description">
+                                Processos automatizados para deploy, testes e monitoramento
+                                contínuo.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Linguagens Section -->
+            <section class="section section--alt">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">Linguagens de Programação</h2>
+                        <p class="section__subtitle">
+                            Escolha a linguagem que melhor se adapta ao seu projeto e objetivos de
+                            carreira.
+                        </p>
+                    </header>
+
+                    <div class="grid grid--2">
+                        <article class="backend-language-card backend-language-card--python">
+                            <div class="backend-language-card__header">
+                                <div class="backend-language-card__logo">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="backend-language-card__info">
+                                    <h3>Python</h3>
+                                    <p>Versátil e fácil de aprender</p>
+                                </div>
+                            </div>
+                            <p class="backend-language-card__description">
+                                Excelente para iniciantes, com sintaxe limpa e vasta biblioteca.
+                                Popular em web, data science e automação.
+                            </p>
+                            <div class="backend-language-card__uses">
+                                <span class="backend-language-card__use">Django</span>
+                                <span class="backend-language-card__use">Flask</span>
+                                <span class="backend-language-card__use">FastAPI</span>
+                            </div>
+                        </article>
+
+                        <article class="backend-language-card backend-language-card--javascript">
+                            <div class="backend-language-card__header">
+                                <div class="backend-language-card__logo">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                                <div class="backend-language-card__info">
+                                    <h3>JavaScript (Node.js)</h3>
+                                    <p>Full-stack com uma linguagem</p>
+                                </div>
+                            </div>
+                            <p class="backend-language-card__description">
+                                Use JavaScript no servidor. Perfeito para aplicações em tempo real e
+                                microserviços.
+                            </p>
+                            <div class="backend-language-card__uses">
+                                <span class="backend-language-card__use">Express</span>
+                                <span class="backend-language-card__use">NestJS</span>
+                                <span class="backend-language-card__use">Fastify</span>
+                            </div>
+                        </article>
+
+                        <article class="backend-language-card backend-language-card--java">
+                            <div class="backend-language-card__header">
+                                <div class="backend-language-card__logo">
+                                    <i class="fab fa-java"></i>
+                                </div>
+                                <div class="backend-language-card__info">
+                                    <h3>Java</h3>
+                                    <p>Enterprise e robustez</p>
+                                </div>
+                            </div>
+                            <p class="backend-language-card__description">
+                                Linguagem madura para sistemas corporativos de grande escala. Forte
+                                tipagem e ecossistema maduro.
+                            </p>
+                            <div class="backend-language-card__uses">
+                                <span class="backend-language-card__use">Spring Boot</span>
+                                <span class="backend-language-card__use">Quarkus</span>
+                                <span class="backend-language-card__use">Micronaut</span>
+                            </div>
+                        </article>
+
+                        <article class="backend-language-card backend-language-card--go">
+                            <div class="backend-language-card__header">
+                                <div class="backend-language-card__logo">
+                                    <i class="fab fa-golang"></i>
+                                </div>
+                                <div class="backend-language-card__info">
+                                    <h3>Go</h3>
+                                    <p>Performance e simplicidade</p>
+                                </div>
+                            </div>
+                            <p class="backend-language-card__description">
+                                Criada pelo Google, ideal para sistemas distribuídos e alta
+                                concorrência.
+                            </p>
+                            <div class="backend-language-card__uses">
+                                <span class="backend-language-card__use">Gin</span>
+                                <span class="backend-language-card__use">Echo</span>
+                                <span class="backend-language-card__use">Fiber</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bancos de Dados Section -->
+            <section class="backend-databases">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">Bancos de Dados</h2>
+                        <p class="section__subtitle">
+                            Escolha o tipo certo de banco de dados para cada caso de uso.
+                        </p>
+                    </header>
+
+                    <div class="backend-databases__categories">
+                        <article class="backend-db-category">
+                            <div class="backend-db-category__header">
+                                <span class="backend-db-category__icon"
+                                    ><i class="fas fa-table"></i
+                                ></span>
+                                <h3 class="backend-db-category__title">SQL (Relacionais)</h3>
+                            </div>
+                            <div class="backend-db-category__list">
+                                <div class="backend-db-item">
+                                    <div class="backend-db-item__logo">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="backend-db-item__info">
+                                        <h4>PostgreSQL</h4>
+                                        <p>O mais avançado banco open-source</p>
+                                    </div>
+                                </div>
+                                <div class="backend-db-item">
+                                    <div class="backend-db-item__logo">
+                                        <i class="fas fa-dolphin"></i>
+                                    </div>
+                                    <div class="backend-db-item__info">
+                                        <h4>MySQL</h4>
+                                        <p>Popular e amplamente utilizado</p>
+                                    </div>
+                                </div>
+                                <div class="backend-db-item">
+                                    <div class="backend-db-item__logo">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="backend-db-item__info">
+                                        <h4>SQL Server</h4>
+                                        <p>Solução enterprise da Microsoft</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="backend-db-category">
+                            <div class="backend-db-category__header">
+                                <span class="backend-db-category__icon"
+                                    ><i class="fas fa-cubes"></i
+                                ></span>
+                                <h3 class="backend-db-category__title">NoSQL</h3>
+                            </div>
+                            <div class="backend-db-category__list">
+                                <div class="backend-db-item">
+                                    <div class="backend-db-item__logo">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <div class="backend-db-item__info">
+                                        <h4>MongoDB</h4>
+                                        <p>Documentos JSON flexíveis</p>
+                                    </div>
+                                </div>
+                                <div class="backend-db-item">
+                                    <div class="backend-db-item__logo">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <div class="backend-db-item__info">
+                                        <h4>Redis</h4>
+                                        <p>Cache e estruturas em memória</p>
+                                    </div>
+                                </div>
+                                <div class="backend-db-item">
+                                    <div class="backend-db-item__logo">
+                                        <i class="fas fa-fire"></i>
+                                    </div>
+                                    <div class="backend-db-item__info">
+                                        <h4>Firebase</h4>
+                                        <p>Real-time database do Google</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APIs Section -->
+            <section class="section">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">Tipos de APIs</h2>
+                        <p class="section__subtitle">
+                            Entenda as diferentes arquiteturas de APIs e quando usar cada uma.
+                        </p>
+                    </header>
+
+                    <div class="backend-apis__grid">
+                        <article class="backend-api-card">
+                            <div class="backend-api-card__icon">
                                 <i class="fas fa-exchange-alt"></i>
-                                APIs & Integrações
-                            </h3>
-                            <p class="fundamental-description">
-                                Criar e manter canais para comunicação entre sistemas, possibilitando troca de dados e funcionalidades.
+                            </div>
+                            <h3 class="backend-api-card__title">REST</h3>
+                            <p class="backend-api-card__description">
+                                Arquitetura baseada em recursos e verbos HTTP. O padrão mais usado
+                                na indústria.
                             </p>
-                            <ul class="fundamental-list">
-                                <li>APIs REST</li>
-                                <li>GraphQL básico</li>
-                                <li>WebSockets para casos específicos</li>
-                                <li>Microserviços simples</li>
-                                <li>Integração com serviços externos</li>
-                            </ul>
-                        </div>
+                        </article>
 
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
-                                <i class="fas fa-shield-alt"></i>
-                                Segurança & Performance
-                            </h3>
-                            <p class="fundamental-description">
-                                Garantir que tudo rode rápido e seguro, mesmo com usuários simultâneos e dados sensíveis.
+                        <article class="backend-api-card">
+                            <div class="backend-api-card__icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3 class="backend-api-card__title">GraphQL</h3>
+                            <p class="backend-api-card__description">
+                                Query language para APIs. Cliente solicita exatamente os dados que
+                                precisa.
                             </p>
-                            <ul class="fundamental-list">
-                                <li>Autenticação e autorização básica</li>
-                                <li>Criptografia dos dados importantes</li>
-                                <li>Cache simples e otimizações</li>
-                                <li>Monitoramento básico</li>
-                                <li>Escalar conforme a necessidade</li>
-                            </ul>
-                        </div>
+                        </article>
+
+                        <article class="backend-api-card">
+                            <div class="backend-api-card__icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="backend-api-card__title">WebSockets</h3>
+                            <p class="backend-api-card__description">
+                                Comunicação bidirecional em tempo real. Ideal para chats e
+                                atualizações ao vivo.
+                            </p>
+                        </article>
                     </div>
                 </div>
             </section>
 
-            <!-- Linguagens de Programação -->
-            <section class="content-section fade-in">
-                <div class="languages-section">
-                    <div class="section-header">
-                        <h2 class="section-title">💻 Linguagens Back-End 2025</h2>
-                        <p class="section-description">
-                            As linguagens mais usadas no mercado brasileiro e global, com seus prós e contras reais para você escolher com base na demanda atual.
+            <!-- Arquitetura Section -->
+            <section class="backend-architecture">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">Arquitetura de Software</h2>
+                        <p class="section__subtitle">
+                            Organize seu código em camadas para manutenibilidade e escalabilidade.
                         </p>
-                    </div>
+                    </header>
 
-                    <div class="languages-grid">
-                        <div class="language-card">
-                            <div class="language-icon nodejs-icon">
-                                <i class="fab fa-node-js"></i>
+                    <div class="backend-architecture__diagram">
+                        <div
+                            class="backend-architecture__layer backend-architecture__layer--presentation"
+                        >
+                            <div class="backend-architecture__layer-icon">
+                                <i class="fas fa-globe"></i>
                             </div>
-                            <h3 class="language-title">Node.js</h3>
-                            <p class="language-subtitle">JavaScript no servidor</p>
-                            <div class="language-pros">
-                                <h4 class="pros-title">
-                                    <i class="fas fa-thumbs-up"></i> Pontos Fortes
-                                </h4>
-                                <ul class="pros-list">
-                                    <li>Mesma linguagem front e back</li>
-                                    <li>Grande comunidade e ecossistema</li>
-                                    <li>Bom para APIs simples e real-time</li>
-                                    <li>Rápido para começar</li>
-                                </ul>
-                            </div>
-                            <div class="language-salary">R$ 5.000 - 10.000</div>
-                        </div>
-
-                        <div class="language-card">
-                            <div class="language-icon python-icon">
-                                <i class="fab fa-python"></i>
-                            </div>
-                            <h3 class="language-title">Python</h3>
-                            <p class="language-subtitle">Versátil e claro</p>
-                            <div class="language-pros">
-                                <h4 class="pros-title">
-                                    <i class="fas fa-thumbs-up"></i> Pontos Fortes
-                                </h4>
-                                <ul class="pros-list">
-                                    <li>Sintaxe fácil para iniciantes</li>
-                                    <li>Frameworks sólidos (Django, Flask)</li>
-                                    <li>Popular em ciência de dados</li>
-                                    <li>Comunidade ativa</li>
-                                </ul>
-                            </div>
-                            <div class="language-salary">R$ 6.000 - 12.000</div>
-                        </div>
-
-                        <div class="language-card">
-                            <div class="language-icon java-icon">
-                                <i class="fab fa-java"></i>
-                            </div>
-                            <h3 class="language-title">Java</h3>
-                            <p class="language-subtitle">Estável e corporativo</p>
-                            <div class="language-pros">
-                                <h4 class="pros-title">
-                                    <i class="fas fa-thumbs-up"></i> Pontos Fortes
-                                </h4>
-                                <ul class="pros-list">
-                                    <li>Forte no mercado empresarial</li>
-                                    <li>Ecossistema maduro</li>
-                                    <li>Tipagem estática ajuda a evitar erros</li>
-                                    <li>Salários competitivos</li>
-                                </ul>
-                            </div>
-                            <div class="language-salary">R$ 7.000 - 15.000</div>
-                        </div>
-
-                        <div class="language-card">
-                            <div class="language-icon csharp-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="language-title">C#</h3>
-                            <p class="language-subtitle">Microsoft e corporações</p>
-                            <div class="language-pros">
-                                <h4 class="pros-title">
-                                    <i class="fas fa-thumbs-up"></i> Pontos Fortes
-                                </h4>
-                                <ul class="pros-list">
-                                    <li>.NET Core moderno e versátil</li>
-                                    <li>Boa integração com Azure</li>
-                                    <li>Uso forte em empresas consolidadas</li>
-                                    <li>Ferramentas poderosas</li>
-                                </ul>
-                            </div>
-                            <div class="language-salary">R$ 6.000 - 13.000</div>
-                        </div>
-
-                        <div class="language-card">
-                            <div class="language-icon php-icon">
-                                <i class="fab fa-php"></i>
-                            </div>
-                            <h3 class="language-title">PHP</h3>
-                            <p class="language-subtitle">Tradicional, ainda vivo</p>
-                            <div class="language-pros">
-                                <h4 class="pros-title">
-                                    <i class="fas fa-thumbs-up"></i> Pontos Fortes
-                                </h4>
-                                <ul class="pros-list">
-                                    <li>Fácil para começar</li>
-                                    <li>Hosting barato e comum</li>
-                                    <li>Frameworks modernos (Laravel)</li>
-                                    <li>Boa demanda em mercado local e freelancers</li>
-                                </ul>
-                            </div>
-                            <div class="language-salary">R$ 3.000 - 8.000</div>
-                        </div>
-
-                        <div class="language-card">
-                            <div class="language-icon go-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3 class="language-title">Go</h3>
-                            <p class="language-subtitle">Para projetos que crescem rápido</p>
-                            <div class="language-pros">
-                                <h4 class="pros-title">
-                                    <i class="fas fa-thumbs-up"></i> Pontos Fortes
-                                </h4>
-                                <ul class="pros-list">
-                                    <li>Performance alta</li>
-                                    <li>Concorrência nativa</li>
-                                    <li>Fácil manutenção</li>
-                                    <li>Crescendo no mercado</li>
-                                </ul>
-                            </div>
-                            <div class="language-salary">R$ 8.000 - 16.000</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Banco de Dados -->
-            <section class="content-section fade-in">
-                <div class="database-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🗄️ Bancos de Dados Essenciais</h2>
-                        <p class="section-description">
-                            SQL e NoSQL são ferramentas distintas. Saiba quando usar cada uma e seus limites reais no dia a dia.
-                        </p>
-                    </div>
-
-                    <div class="database-comparison">
-                        <div class="database-type">
-                            <div class="database-header">
-                                <div class="database-icon sql-icon">
-                                    <i class="fas fa-table"></i>
-                                </div>
-                                <h3 class="database-title">SQL (Relacionais)</h3>
-                                <p class="database-subtitle">Estrutura, consistência e integridade</p>
-                            </div>
-
-                            <div class="database-examples">
-                                <h4 class="examples-title">📊 Exemplos comuns:</h4>
-                                <div class="tech-tags">
-                                    <span class="tech-tag">PostgreSQL</span>
-                                    <span class="tech-tag">MySQL</span>
-                                    <span class="tech-tag">SQL Server</span>
-                                </div>
-                            </div>
-
-                            <div class="use-cases">
-                                <h4 class="use-cases-title">🎯 Ideal para:</h4>
-                                <ul class="use-cases-list">
-                                    <li>Dados estruturados e relacionais</li>
-                                    <li>Aplicações financeiras</li>
-                                    <li>Sistemas empresariais</li>
-                                    <li>Relatórios complexos</li>
-                                </ul>
+                            <div class="backend-architecture__layer-content">
+                                <h4>Camada de Apresentação</h4>
+                                <p>Controllers, Rotas, Validação de entrada</p>
                             </div>
                         </div>
 
-                        <div class="database-type">
-                            <div class="database-header">
-                                <div class="database-icon nosql-icon">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <h3 class="database-title">NoSQL (Não Relacionais)</h3>
-                                <p class="database-subtitle">Flexibilidade e escala, com trade-offs</p>
-                            </div>
+                        <div class="backend-architecture__connector">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
 
-                            <div class="database-examples">
-                                <h4 class="examples-title">📊 Exemplos comuns:</h4>
-                                <div class="tech-tags">
-                                    <span class="tech-tag">MongoDB</span>
-                                    <span class="tech-tag">Redis</span>
-                                    <span class="tech-tag">Cassandra</span>
-                                </div>
+                        <div
+                            class="backend-architecture__layer backend-architecture__layer--business"
+                        >
+                            <div class="backend-architecture__layer-icon">
+                                <i class="fas fa-cogs"></i>
                             </div>
+                            <div class="backend-architecture__layer-content">
+                                <h4>Camada de Negócio</h4>
+                                <p>Services, Regras de negócio, Use cases</p>
+                            </div>
+                        </div>
 
-                            <div class="use-cases">
-                                <h4 class="use-cases-title">🎯 Ideal para:</h4>
-                                <ul class="use-cases-list">
-                                    <li>Dados semi-estruturados ou não estruturados</li>
-                                    <li>Cache e sessões</li>
-                                    <li>Alta escala e disponibilidade</li>
-                                    <li>Aplicações em tempo real</li>
-                                </ul>
+                        <div class="backend-architecture__connector">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+
+                        <div class="backend-architecture__layer backend-architecture__layer--data">
+                            <div class="backend-architecture__layer-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="backend-architecture__layer-content">
+                                <h4>Camada de Dados</h4>
+                                <p>Repositories, Models, Conexões de banco</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- APIs e Arquitetura -->
-            <section class="content-section fade-in">
-                <div class="api-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🔌 APIs e Arquitetura</h2>
-                        <p class="section-description">
-                            Conheça as principais formas de fazer sistemas conversarem entre si, suas vantagens e limitações práticas.
+            <!-- Segurança Section -->
+            <section class="backend-security">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">Segurança</h2>
+                        <p class="section__subtitle">
+                            Proteja sua aplicação contra as principais ameaças.
                         </p>
-                    </div>
+                    </header>
 
-                    <div class="api-grid">
-                        <div class="api-card">
-                            <div class="api-header">
-                                <div class="api-icon rest-icon">
-                                    <i class="fas fa-exchange-alt"></i>
-                                </div>
-                                <h3 class="api-title">REST API</h3>
-                            </div>
-                            <p class="api-description">
-                                O padrão mais difundido, simples de implementar e suficiente para a maioria dos casos.
-                            </p>
-                            <ul class="api-features">
-                                <li>Fácil entendimento</li>
-                                <li>Cache suportado</li>
-                                <li>Sem estado (stateless)</li>
-                                <li>Ampla adoção</li>
-                                <li>Boa documentação</li>
-                            </ul>
-                        </div>
-
-                        <div class="api-card">
-                            <div class="api-header">
-                                <div class="api-icon graphql-icon">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <h3 class="api-title">GraphQL</h3>
-                            </div>
-                            <p class="api-description">
-                                Permite ao cliente definir exatamente o que quer, mas tem curva maior e casos específicos.
-                            </p>
-                            <ul class="api-features">
-                                <li>Único endpoint</li>
-                                <li>Consulta flexível</li>
-                                <li>Tipagem forte</li>
-                                <li>Autodescoberta</li>
-                                <li>Subscripitions para real-time</li>
-                            </ul>
-                        </div>
-
-                        <div class="api-card">
-                            <div class="api-header">
-                                <div class="api-icon grpc-icon">
-                                    <i class="fas fa-bolt"></i>
-                                </div>
-                                <h3 class="api-title">gRPC</h3>
-                            </div>
-                            <p class="api-description">
-                                Framework focado em alta performance, comum em comunicação entre microserviços.
-                            </p>
-                            <ul class="api-features">
-                                <li>Protocol Buffers</li>
-                                <li>HTTP/2 nativo</li>
-                                <li>Streaming bidirecional</li>
-                                <li>Alta velocidade</li>
-                                <li>Segurança e tipagem</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Segurança -->
-            <section class="content-section fade-in">
-                <div class="security-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🛡️ Segurança Back-End</h2>
-                        <p class="section-description">
-                            Você será o responsável por proteger os dados da aplicação. Atenção a detalhes faz a diferença entre um sistema vulnerável e um confiável.
-                        </p>
-                    </div>
-
-                    <div class="security-grid">
-                        <div class="security-card">
-                            <div class="security-icon">
+                    <div class="backend-security__grid">
+                        <article class="backend-security-card">
+                            <div class="backend-security-card__icon">
                                 <i class="fas fa-key"></i>
                             </div>
-                            <h3 class="security-title">Autenticação & Autorização</h3>
-                            <p class="security-description">
-                                Identificar usuários e controlar o que podem fazer é o básico para qualquer sistema que lida com dados sensíveis.
+                            <h3 class="backend-security-card__title">Autenticação</h3>
+                            <p class="backend-security-card__description">
+                                JWT, OAuth 2.0, Sessions. Verifique a identidade dos usuários.
                             </p>
-                        </div>
+                        </article>
 
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-shield-virus"></i>
+                        <article class="backend-security-card">
+                            <div class="backend-security-card__icon">
+                                <i class="fas fa-user-shield"></i>
                             </div>
-                            <h3 class="security-title">Proteção contra Ataques</h3>
-                            <p class="security-description">
-                                SQL Injection, XSS, CSRF e DDoS ainda são problemas comuns. É preciso aplicar técnicas testadas para minimizar riscos.
+                            <h3 class="backend-security-card__title">Autorização</h3>
+                            <p class="backend-security-card__description">
+                                RBAC, ACL. Controle o que cada usuário pode acessar.
                             </p>
-                        </div>
+                        </article>
 
-                        <div class="security-card">
-                            <div class="security-icon">
+                        <article class="backend-security-card">
+                            <div class="backend-security-card__icon">
                                 <i class="fas fa-lock"></i>
                             </div>
-                            <h3 class="security-title">Criptografia</h3>
-                            <p class="security-description">
-                                Use HTTPS, criptografe dados sensíveis no banco e nunca armazene senhas em texto puro.
+                            <h3 class="backend-security-card__title">Criptografia</h3>
+                            <p class="backend-security-card__description">
+                                HTTPS, bcrypt, AES. Proteja dados em trânsito e em repouso.
                             </p>
-                        </div>
+                        </article>
 
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-eye"></i>
+                        <article class="backend-security-card">
+                            <div class="backend-security-card__icon">
+                                <i class="fas fa-bug"></i>
                             </div>
-                            <h3 class="security-title">Monitoramento & Logs</h3>
-                            <p class="security-description">
-                                Tenha logs úteis e monitore erros para agir rápido diante de falhas ou ataques.
+                            <h3 class="backend-security-card__title">Prevenção</h3>
+                            <p class="backend-security-card__description">
+                                SQL Injection, XSS, CSRF. Proteja contra ataques comuns.
                             </p>
-                        </div>
-
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-user-secret"></i>
-                            </div>
-                            <h3 class="security-title">Validação & Sanitização</h3>
-                            <p class="security-description">
-                                Nunca confie em dados vindos do cliente — valide e limpe sempre.
-                            </p>
-                        </div>
-
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-                            <h3 class="security-title">Segurança de Rede</h3>
-                            <p class="security-description">
-                                Configure firewalls, CORS e headers de segurança para proteger o tráfego e os dados.
-                            </p>
-                        </div>
+                        </article>
                     </div>
                 </div>
             </section>
 
-            <!-- DevOps Integration -->
-            <section class="content-section fade-in">
-                <div class="devops-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🚀 DevOps para Back-End</h2>
-                        <p class="section-description">
-                            Entenda o fluxo do desenvolvimento até o deploy para entregar código funcional e seguro em produção.
+            <!-- DevOps Section -->
+            <section class="backend-devops">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">DevOps & Deploy</h2>
+                        <p class="section__subtitle">
+                            Automatize o ciclo de vida da sua aplicação.
                         </p>
-                    </div>
+                    </header>
 
-                    <div class="devops-pipeline">
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="pipeline-title">Desenvolvimento</div>
+                    <div class="backend-devops__flow">
+                        <div class="backend-devops__step">
+                            <span class="backend-devops__step-icon"
+                                ><i class="fas fa-code"></i
+                            ></span>
+                            <span class="backend-devops__step-name">Code</span>
                         </div>
+                        <span class="backend-devops__arrow"
+                            ><i class="fas fa-arrow-right"></i
+                        ></span>
 
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon">
-                                <i class="fas fa-vial"></i>
-                            </div>
-                            <div class="pipeline-title">Testes</div>
+                        <div class="backend-devops__step">
+                            <span class="backend-devops__step-icon"
+                                ><i class="fas fa-vial"></i
+                            ></span>
+                            <span class="backend-devops__step-name">Test</span>
                         </div>
+                        <span class="backend-devops__arrow"
+                            ><i class="fas fa-arrow-right"></i
+                        ></span>
 
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <div class="pipeline-title">Build</div>
+                        <div class="backend-devops__step">
+                            <span class="backend-devops__step-icon"
+                                ><i class="fas fa-box"></i
+                            ></span>
+                            <span class="backend-devops__step-name">Build</span>
                         </div>
+                        <span class="backend-devops__arrow"
+                            ><i class="fas fa-arrow-right"></i
+                        ></span>
 
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon">
-                                <i class="fas fa-cloud"></i>
-                            </div>
-                            <div class="pipeline-title">Deploy</div>
+                        <div class="backend-devops__step">
+                            <span class="backend-devops__step-icon"
+                                ><i class="fas fa-rocket"></i
+                            ></span>
+                            <span class="backend-devops__step-name">Deploy</span>
                         </div>
+                        <span class="backend-devops__arrow"
+                            ><i class="fas fa-arrow-right"></i
+                        ></span>
 
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="pipeline-title">Monitoramento</div>
-                        </div>
-                    </div>
-
-                    <div class="fundamentals-grid">
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
-                                <i class="fab fa-docker"></i>
-                                Containerização
-                            </h3>
-                            <p class="fundamental-description">
-                                Docker ajuda a manter seu ambiente consistente, evitando o clássico "na minha máquina funciona".
-                            </p>
-                            <ul class="fundamental-list">
-                                <li>Dockerfile para builds</li>
-                                <li>Docker Compose para desenvolvimento</li>
-                                <li>Orquestração simples</li>
-                            </ul>
-                        </div>
-
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
-                                <i class="fas fa-infinity"></i>
-                                CI/CD Básico
-                            </h3>
-                            <p class="fundamental-description">
-                                Automatize build, testes e deploy para evitar erros manuais e acelerar entregas.
-                            </p>
-                            <ul class="fundamental-list">
-                                <li>GitHub Actions ou similares</li>
-                                <li>Testes automatizados</li>
-                                <li>Deploy automatizado</li>
-                            </ul>
-                        </div>
-
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                Plataformas Cloud
-                            </h3>
-                            <p class="fundamental-description">
-                                Use serviços cloud para hospedar suas aplicações com escalabilidade e baixo custo inicial.
-                            </p>
-                            <ul class="fundamental-list">
-                                <li>AWS, GCP ou Azure</li>
-                                <li>Heroku para testes</li>
-                                <li>DigitalOcean para projetos simples</li>
-                            </ul>
-                        </div>
-
-                        <div class="fundamental-card">
-                            <h3 class="fundamental-title">
-                                <i class="fas fa-chart-bar"></i>
-                                Monitoramento
-                            </h3>
-                            <p class="fundamental-description">
-                                Tenha métricas básicas para entender o uso e identificar problemas cedo.
-                            </p>
-                            <ul class="fundamental-list">
-                                <li>Logs organizados</li>
-                                <li>Métricas simples</li>
-                                <li>Alertas básicos</li>
-                            </ul>
+                        <div class="backend-devops__step">
+                            <span class="backend-devops__step-icon"
+                                ><i class="fas fa-chart-line"></i
+                            ></span>
+                            <span class="backend-devops__step-name">Monitor</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Roadmap Timeline -->
-            <section class="content-section fade-in">
-                <div class="roadmap-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🗺️ Roadmap Back-End 2025</h2>
-                        <p class="section-description">
-                            Um caminho realista para aprender, com foco em prática e aplicação, levando em conta que leva meses para se firmar na carreira.
+            <!-- Salários Section -->
+            <section class="backend-salary">
+                <div class="container">
+                    <header class="section__header">
+                        <h2 class="section__title">Perspectiva Salarial</h2>
+                        <p class="section__subtitle">
+                            Média salarial para desenvolvedores Back-End no Brasil.
                         </p>
-                    </div>
+                    </header>
 
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-number">1</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Fundamentos de Programação</h3>
-                                <span class="phase-duration">⏱️ 10-12 semanas</span>
-                                <p class="phase-description">
-                                    Aprenda a lógica, estruturas básicas e comece com Node.js ou Python. Prepare-se para errar e refazer.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">JavaScript/Node.js</span>
-                                    <span class="skill-pill">Variáveis e Tipos</span>
-                                    <span class="skill-pill">Estruturas de Controle</span>
-                                    <span class="skill-pill">Funções</span>
-                                    <span class="skill-pill">OOP Básico</span>
-                                    <span class="skill-pill">Git/GitHub</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://nodejs.org/" class="resource-link">
-                                        <i class="fab fa-node-js"></i> Node.js
-                                    </a>
-                                    <a href="https://www.freecodecamp.org/" class="resource-link">
-                                        <i class="fas fa-graduation-cap"></i> FreeCodeCamp
-                                    </a>
-                                    <a href="https://javascript.info/" class="resource-link">
-                                        <i class="fas fa-book"></i> JavaScript.info
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="backend-salary__cards">
+                        <article class="backend-salary-card">
+                            <h3 class="backend-salary-card__level">Júnior</h3>
+                            <p class="backend-salary-card__experience">0-2 anos</p>
+                            <p class="backend-salary-card__value">R$ 3.000 - 5.000</p>
+                            <p class="backend-salary-card__period">mensal</p>
+                        </article>
 
-                        <div class="timeline-item">
-                            <div class="timeline-number">2</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Servidores e APIs</h3>
-                                <span class="phase-duration">⏱️ 8-10 semanas</span>
-                                <p class="phase-description">
-                                    Crie seu primeiro servidor, entenda requisições HTTP e construa APIs REST básicas.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">Express.js</span>
-                                    <span class="skill-pill">HTTP Methods</span>
-                                    <span class="skill-pill">REST APIs</span>
-                                    <span class="skill-pill">JSON</span>
-                                    <span class="skill-pill">Middleware</span>
-                                    <span class="skill-pill">Postman/Insomnia</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://expressjs.com/" class="resource-link">
-                                        <i class="fas fa-server"></i> Express.js
-                                    </a>
-                                    <a href="https://www.postman.com/" class="resource-link">
-                                        <i class="fas fa-paper-plane"></i> Postman
-                                    </a>
-                                    <a href="https://restfulapi.net/" class="resource-link">
-                                        <i class="fas fa-exchange-alt"></i> REST Guide
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <article class="backend-salary-card">
+                            <h3 class="backend-salary-card__level">Pleno</h3>
+                            <p class="backend-salary-card__experience">2-5 anos</p>
+                            <p class="backend-salary-card__value">R$ 6.000 - 10.000</p>
+                            <p class="backend-salary-card__period">mensal</p>
+                        </article>
 
-                        <div class="timeline-item">
-                            <div class="timeline-number">3</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Bancos de Dados</h3>
-                                <span class="phase-duration">⏱️ 10-14 semanas</span>
-                                <p class="phase-description">
-                                    Comece com PostgreSQL e MongoDB, aprenda modelagem e consultas. Prepare-se para muita prática e estudo.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">PostgreSQL</span>
-                                    <span class="skill-pill">SQL Queries</span>
-                                    <span class="skill-pill">Database Design</span>
-                                    <span class="skill-pill">MongoDB</span>
-                                    <span class="skill-pill">ORMs (Prisma)</span>
-                                    <span class="skill-pill">Migrations</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://www.postgresql.org/" class="resource-link">
-                                        <i class="fas fa-database"></i> PostgreSQL
-                                    </a>
-                                    <a href="https://www.prisma.io/" class="resource-link">
-                                        <i class="fas fa-magic"></i> Prisma ORM
-                                    </a>
-                                    <a href="https://sqlbolt.com/" class="resource-link">
-                                        <i class="fas fa-graduation-cap"></i> SQLBolt
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-number">4</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Autenticação e Segurança</h3>
-                                <span class="phase-duration">⏱️ 6-8 semanas</span>
-                                <p class="phase-description">
-                                    Implemente login, entenda vulnerabilidades comuns e comece a proteger seus sistemas.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">JWT Authentication</span>
-                                    <span class="skill-pill">Bcrypt</span>
-                                    <span class="skill-pill">Input Validation</span>
-                                    <span class="skill-pill">CORS</span>
-                                    <span class="skill-pill">Rate Limiting</span>
-                                    <span class="skill-pill">HTTPS/SSL</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://jwt.io/" class="resource-link">
-                                        <i class="fas fa-key"></i> JWT
-                                    </a>
-                                    <a href="https://owasp.org/" class="resource-link">
-                                        <i class="fas fa-shield-alt"></i> OWASP
-                                    </a>
-                                    <a href="https://auth0.com/blog/" class="resource-link">
-                                        <i class="fas fa-lock"></i> Auth0 Blog
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-number">5</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Testes e Qualidade</h3>
-                                <span class="phase-duration">⏱️ 6-8 semanas</span>
-                                <p class="phase-description">
-                                    Aprenda a escrever testes básicos e a configurar ferramentas que ajudam a manter o código saudável.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">Jest/Mocha</span>
-                                    <span class="skill-pill">Unit Tests</span>
-                                    <span class="skill-pill">Integration Tests</span>
-                                    <span class="skill-pill">Linting</span>
-                                    <span class="skill-pill">GitHub Actions</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://jestjs.io/" class="resource-link">
-                                        <i class="fas fa-vial"></i> Jest
-                                    </a>
-                                    <a href="https://docs.github.com/en/actions" class="resource-link">
-                                        <i class="fab fa-github"></i> GitHub Actions
-                                    </a>
-                                    <a href="https://testingjavascript.com/" class="resource-link">
-                                        <i class="fas fa-rocket"></i> Testing JS
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-number">6</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Deploy e DevOps</h3>
-                                <span class="phase-duration">⏱️ 8-10 semanas</span>
-                                <p class="phase-description">
-                                    Aprenda Docker, pipelines simples e deploy em nuvem para entregar seu código de forma segura.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">Docker</span>
-                                    <span class="skill-pill">AWS/Heroku</span>
-                                    <span class="skill-pill">Variáveis de ambiente</span>
-                                    <span class="skill-pill">Logging básico</span>
-                                    <span class="skill-pill">Monitoramento</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://www.docker.com/" class="resource-link">
-                                        <i class="fab fa-docker"></i> Docker
-                                    </a>
-                                    <a href="https://aws.amazon.com/" class="resource-link">
-                                        <i class="fab fa-aws"></i> AWS
-                                    </a>
-                                    <a href="https://heroku.com/" class="resource-link">
-                                        <i class="fas fa-cloud"></i> Heroku
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-number">7</div>
-                            <div class="timeline-content">
-                                <h3 class="phase-title">Arquitetura e Escala</h3>
-                                <span class="phase-duration">⏱️ 12-16 semanas</span>
-                                <p class="phase-description">
-                                    Aprenda conceitos de sistemas distribuídos, microserviços e projetos que aguentam crescimento real.
-                                </p>
-                                <div class="phase-skills">
-                                    <span class="skill-pill">Microservices</span>
-                                    <span class="skill-pill">GraphQL</span>
-                                    <span class="skill-pill">Cache (Redis)</span>
-                                    <span class="skill-pill">Message Queues</span>
-                                    <span class="skill-pill">Load Balancing</span>
-                                    <span class="skill-pill">System Design</span>
-                                </div>
-                                <div class="phase-resources">
-                                    <a href="https://graphql.org/" class="resource-link">
-                                        <i class="fas fa-project-diagram"></i> GraphQL
-                                    </a>
-                                    <a href="https://redis.io/" class="resource-link">
-                                        <i class="fas fa-server"></i> Redis
-                                    </a>
-                                    <a href="https://github.com/donnemartin/system-design-primer" class="resource-link">
-                                        <i class="fas fa-book"></i> System Design
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <article class="backend-salary-card">
+                            <h3 class="backend-salary-card__level">Sênior</h3>
+                            <p class="backend-salary-card__experience">5+ anos</p>
+                            <p class="backend-salary-card__value">R$ 12.000 - 20.000+</p>
+                            <p class="backend-salary-card__period">mensal</p>
+                        </article>
                     </div>
                 </div>
             </section>
 
-            <!-- Projetos para Portfólio -->
-            <section class="content-section fade-in">
-                <div class="projects-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🛠️ Projetos Back-End para Portfólio</h2>
-                        <p class="section-description">
-                            Projetos que mostram sua capacidade prática e te ajudam a conquistar vagas, mesmo que simples no começo.
-                        </p>
-                    </div>
-
-                    <div class="projects-grid">
-                        <!-- Projetos semelhantes ao original, sem mudar lógica -->
-                        <!-- ... -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Market & Salary -->
-            <section class="content-section fade-in">
-                <div class="market-section">
-                    <div class="section-header">
-                        <h2 class="section-title">💰 Mercado & Salários 2025</h2>
-                        <p class="section-description">
-                            Veja dados reais do mercado nacional e uma visão geral dos salários e demandas.
-                        </p>
-                    </div>
-
-                    <div class="market-grid">
-                        <div class="market-card">
-                            <div class="market-icon">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div class="market-value">R$ 7.500</div>
-                            <div class="market-label">Salário Médio Junior</div>
-                        </div>
-
-                        <div class="market-card">
-                            <div class="market-icon">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="market-value">20k+</div>
-                            <div class="market-label">Vagas Abertas Brasil</div>
-                        </div>
-
-                        <div class="market-card">
-                            <div class="market-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="market-value">~10%</div>
-                            <div class="market-label">Crescimento Anual</div>
-                        </div>
-
-                        <div class="market-card">
-                            <div class="market-icon">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <div class="market-value">50%</div>
-                            <div class="market-label">Vagas Remotas</div>
-                        </div>
-
-                        <div class="market-card">
-                            <div class="market-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="market-value">R$ 2.000</div>
-                            <div class="market-label">Salário Inicial</div>
-                        </div>
-
-                        <div class="market-card">
-                            <div class="market-icon">
-                                <i class="fas fa-crown"></i>
-                            </div>
-                            <div class="market-value">R$ 25k+</div>
-                            <div class="market-label">Tech Lead/Arquiteto</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Dicas de Ouro -->
-            <section class="content-section fade-in">
-                <div class="tips-section">
-                    <div class="section-header">
-                        <h2 class="section-title">💡 Dicas Reais de Back-End</h2>
-                        <p class="section-description">
-                            Conselhos de quem vive o dia a dia para você não cair em armadilhas e evoluir de verdade.
-                        </p>
-                    </div>
-
-                    <div class="tips-grid">
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <h3 class="tip-title">Priorize Bancos de Dados</h3>
-                            <p class="tip-description">
-                                Problemas de performance e bugs quase sempre vêm do banco. Entenda bem índices e consultas antes de otimizar código.
-                            </p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <h3 class="tip-title">Segurança é Essencial</h3>
-                            <p class="tip-description">
-                                Não espere ser hackeado para começar a se preocupar. Valide tudo, sanitize entradas e mantenha o ambiente seguro.
-                            </p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="tip-title">Código que Outros Entendam</h3>
-                            <p class="tip-description">
-                                Escreva com clareza, use nomes descritivos e testes. Isso evita retrabalho e ajuda na manutenção futura.
-                            </p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3 class="tip-title">Monitore o Básico</h3>
-                            <p class="tip-description">
-                                Tenha pelo menos logs e alertas simples para saber quando algo quebra, antes que os usuários reclamem.
-                            </p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3 class="tip-title">Comece Pequeno, Evolua Sempre</h3>
-                            <p class="tip-description">
-                                Otimize aos poucos. Não tente escalar ou otimizar tudo logo de cara — faça funcionar, depois melhore.
-                            </p>
-                        </div>
-
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <h3 class="tip-title">Automatize o Que Der</h3>
-                            <p class="tip-description">
-                                Use CI/CD, testes automáticos e deploys para evitar erros manuais e ganhar tempo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Por que escolher Back-End -->
-            <section class="content-section fade-in">
-                <div class="section-header">
-                    <h2 class="section-title">🎯 Por que ser Back-End Developer?</h2>
-                    <p class="section-description">
-                        Uma carreira com demanda consistente, desafios reais e remuneração crescente, mas exige dedicação e estudo constante.
+            <!-- CTA Section -->
+            <section class="section cta-section">
+                <div class="container text-center">
+                    <h2 class="section__title">Pronto para começar?</h2>
+                    <p class="section__subtitle">
+                        Explore outras áreas do desenvolvimento e escolha seu caminho.
                     </p>
-                </div>
-
-                <div class="fundamentals-grid">
-                    <div class="fundamental-card">
-                        <h3 class="fundamental-title">
-                            <i class="fas fa-brain"></i>
-                            Desafios Intelectuais
-                        </h3>
-                        <p class="fundamental-description">
-                            Se resolver problemas complexos e lógica faz seus olhos brilharem, back-end vai te dar bastante trabalho — e aprendizado.
-                        </p>
-                        <ul class="fundamental-list">
-                            <li>Algoritmos e estruturas de dados</li>
-                            <li>Arquitetura de sistemas</li>
-                            <li>Otimização prática</li>
-                            <li>Resolução de bugs complexos</li>
-                            <li>Design patterns reais</li>
-                        </ul>
-                    </div>
-
-                    <div class="fundamental-card">
-                        <h3 class="fundamental-title">
-                            <i class="fas fa-coins"></i>
-                            Remuneração Justa
-                        </h3>
-                        <p class="fundamental-description">
-                            Salários são competitivos, mas levam tempo para subir. É uma carreira para quem quer crescer com conhecimento e experiência.
-                        </p>
-                        <ul class="fundamental-list">
-                            <li>Salários iniciais modestos</li>
-                            <li>Promoções atreladas a resultados</li>
-                            <li>Freelance possível, mas exige reputação</li>
-                            <li>Consultoria para especialistas</li>
-                            <li>Longo prazo para cargos sênior</li>
-                        </ul>
-                    </div>
-
-                    <div class="fundamental-card">
-                        <h3 class="fundamental-title">
-                            <i class="fas fa-globe"></i>
-                            Mercado Amplo
-                        </h3>
-                        <p class="fundamental-description">
-                            Back-end é necessário em praticamente todo projeto digital, com oportunidades em empresas grandes e startups, locais e remotas.
-                        </p>
-                        <ul class="fundamental-list">
-                            <li>Demanda nacional crescente</li>
-                            <li>Mercado remoto em expansão</li>
-                            <li>Clientes variados</li>
-                            <li>Flexibilidade de horários</li>
-                            <li>Possibilidade de trabalho internacional</li>
-                        </ul>
-                    </div>
-
-                    <div class="fundamental-card">
-                        <h3 class="fundamental-title">
-                            <i class="fas fa-shield-alt"></i>
-                            Estabilidade Relativa
-                        </h3>
-                        <p class="fundamental-description">
-                            Embora o mercado de TI possa oscilar, especialistas em back-end qualificados geralmente têm estabilidade e opções.
-                        </p>
-                        <ul class="fundamental-list">
-                            <li>Demanda constante</li>
-                            <li>Poucos especialistas qualificados</li>
-                            <li>Área menos saturada que front-end</li>
-                            <li>Evolução técnica contínua</li>
-                            <li>Oportunidades em diversos setores</li>
-                        </ul>
+                    <div class="cta-buttons">
+                        <a href="../Front-End/Front-End.html" class="btn btn--primary">
+                            <i class="fas fa-palette"></i> Front-End
+                        </a>
+                        <a href="../Full-Stack/Full-Stack.html" class="btn btn--secondary">
+                            <i class="fas fa-layer-group"></i> Full-Stack
+                        </a>
+                        <a href="../Start/Start.html" class="btn btn--outline">
+                            <i class="fas fa-compass"></i> Por Onde Começar
+                        </a>
                     </div>
                 </div>
             </section>
+        </main>
 
-            <!-- Próximos Passos Práticos -->
-            <section class="content-section fade-in">
-                <div class="section-header">
-                    <h2 class="section-title">✅ Seus Próximos Passos</h2>
-                    <p class="section-description">
-                        Um checklist direto para começar de verdade, sabendo que vai levar tempo, mas com foco no que importa.
-                    </p>
-                </div>
-
-                <div class="next-steps-grid">
-                    <div class="step-card">
-                        <h4 class="step-title" style="color: var(--primary-color);">
-                            <i class="fas fa-laptop-code"></i> 1. Setup Básico
-                        </h4>
-                        <ul class="step-list">
-                            <li><span style="color: var(--primary-color);">☐</span> Instalar Node.js + npm/yarn</li>
-                            <li><span style="color: var(--primary-color);">☐</span> Configurar editor (VS Code)</li>
-                            <li><span style="color: var(--primary-color);">☐</span> Aprender Git básico</li>
-                            <li><span style="color: var(--primary-color);">☐</span> Familiarizar-se com terminal</li>
-                            <li><span style="color: var(--primary-color);">☐</span> Usar Postman/Insomnia</li>
-                        </ul>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__content">
+                    <div class="footer__brand">
+                        <h3 class="footer__logo"><i class="fas fa-brain"></i> Brain Developer</h3>
+                        <p class="footer__tagline">Desenvolvendo mentes, construindo o futuro.</p>
                     </div>
-
-                    <div class="step-card">
-                        <h4 class="step-title" style="color: var(--success-color);">
-                            <i class="fas fa-calendar-alt"></i> 2. Plano de Estudos Realista
-                        </h4>
-                        <ul class="step-list">
-                            <li><span style="color: var(--success-color);">☐</span> Estudar 1-2 horas diárias</li>
-                            <li><span style="color: var(--success-color);">☐</span> Escolher uma linguagem para focar</li>
-                            <li><span style="color: var(--success-color);">☐</span> Criar cronograma flexível</li>
-                            <li><span style="color: var(--success-color);">☐</span> Reservar tempo para projetos</li>
-                            <li><span style="color: var(--success-color);">☐</span> Participar de comunidades</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-card">
-                        <h4 class="step-title" style="color: var(--warning-color);">
-                            <i class="fas fa-rocket"></i> 3. Primeiro Projeto Simples
-                        </h4>
-                        <ul class="step-list">
-                            <li><span style="color: var(--warning-color);">☐</span> Criar API básica (To-Do List, por exemplo)</li>
-                            <li><span style="color: var(--warning-color);">☐</span> Implementar CRUD completo</li>
-                            <li><span style="color: var(--warning-color);">☐</span> Usar banco de dados simples (SQLite ou PostgreSQL)</li>
-                            <li><span style="color: var(--warning-color);">☐</span> Fazer deploy gratuito (Heroku ou similar)</li>
-                            <li><span style="color: var(--warning-color);">☐</span> Documentar funcionalidades</li>
-                        </ul>
-                    </div>
+                    <nav class="footer__nav">
+                        <a href="../../index.html" class="footer__link">Início</a>
+                        <a href="../Start/Start.html" class="footer__link">Por Onde Começar</a>
+                        <a href="../Front-End/Front-End.html" class="footer__link">Front-End</a>
+                        <a href="Back-End.html" class="footer__link footer__link--active"
+                            >Back-End</a
+                        >
+                        <a href="../Full-Stack/Full-Stack.html" class="footer__link">Full-Stack</a>
+                    </nav>
                 </div>
-
-                <div style="background: var(--gradient-backend); border-radius: 2rem; padding: 3rem; margin-top: 3rem; text-align: center; color: var(--light-color);">
-                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">
-                        <i class="fas fa-lightbulb"></i> Dica Importante
-                    </h3>
-                    <p style="font-size: 1.1rem; line-height: 1.7; max-width: 800px; margin: 0 auto; opacity: 0.95;">
-                        <strong>Comece agora, mesmo que devagar.</strong><br>
-                        A jornada é longa e cheia de desafios. Mas cada linha de código conta. Não espere perfeição, aprenda com os erros e vá em frente.
-                    </p>
+                <div class="footer__bottom">
+                    <p>&copy; 2024 Brain Developer. Todos os direitos reservados.</p>
                 </div>
-            </section>
-
-            <!-- CTA Final -->
-            <section class="content-section fade-in">
-                <div class="section-header">
-                    <h2 class="section-title">🚀 Sua Jornada Back-End Começa Agora!</h2>
-                    <p class="section-description">
-                        O caminho está traçado, as ferramentas estão na sua mão. O que falta é a sua persistência e dedicação.
-                    </p>
-                </div>
-
-                <div class="cta-section">
-                    <a href="#" class="cta-button">
-                        <i class="fas fa-play"></i> Começar Roadmap Back-End
-                    </a>
-                </div>
-
-                <div style="background: var(--gradient-backend); border-radius: 2rem; padding: 3rem; margin-top: 3rem; text-align: center; color: var(--light-color);">
-                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">
-                        <i class="fas fa-heart"></i> Mensagem Final
-                    </h3>
-                    <p style="font-size: 1.1rem; line-height: 1.7; max-width: 800px; margin: 0 auto; opacity: 0.95;">
-                        <strong>Back-End é sobre construir a espinha dorsal do software.</strong><br>
-                        Nem sempre é glamouroso, mas é essencial. Se você gosta de resolver problemas reais e gosta de desafios técnicos, essa é uma carreira sólida, com demanda e possibilidade de crescimento, desde que você se dedique de verdade.
-                    </p>
-                </div>
-            </section>
-        </div>
-    </div>
-</body>
-
-    <footer>
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h3>Criado com 💚 por José Enoque</h3>
-            <p>Especialmente dedicado aos futuros Back-End Developers do Brasil 🇧🇷</p>
-            
-            <div class="social-links">
-                <a href="https://github.com/ESousa97" target="_blank" class="social-icon">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/" target="_blank" class="social-icon">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
             </div>
-            
-            <p style="margin-top: 2rem; opacity: 0.7;">
-                © 2025 Brain Developer. O futuro Back-End do Brasil começa aqui! 🚀
-            </p>
-            
-            <div style="margin-top: 2rem;">
-                <a href="/index.html" style="color: var(--secondary-color); text-decoration: none; font-weight: 600; margin-right: 2rem;">
-                    <i class="fas fa-arrow-left"></i> Página Inicial
-                </a>
-                <a href="/pages/Start/Start.html" style="color: var(--secondary-color); text-decoration: none; font-weight: 600; margin-right: 2rem;">
-                    <i class="fas fa-rocket"></i> Guia Iniciantes
-                </a>
-                <a href="/pages/Full-Stack/Full-Stack.html" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">
-                    <i class="fas fa-layer-group"></i> Guia Full-Stack
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Animação de scroll suave
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                            entry.target.style.transition = 'all 0.8s ease-out';
-                        }, index * 100);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            fadeElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                observer.observe(el);
-            });
-        });
-
-        // Animação nos números das estatísticas
-        function animateNumbers() {
-            const stats = document.querySelectorAll('.stat-number, .market-value');
-            stats.forEach(stat => {
-                const originalText = stat.textContent;
-                const target = parseInt(originalText.replace(/\D/g, ''));
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                        stat.textContent = originalText; // restaura o formato original
-                    } else {
-                        if (originalText.includes('k')) {
-                            stat.textContent = Math.floor(current) + 'k+';
-                        } else if (originalText.includes('%')) {
-                            stat.textContent = '+' + Math.floor(current) + '%';
-                        } else if (originalText.includes('R$')) {      // aqui estava faltando o fechamento da string
-                            stat.textContent = 'R$ ' + Math.floor(current).toLocaleString();
-                        } else if (originalText.includes('#')) {
-                            stat.textContent = '#' + Math.floor(current);
-                        } else {
-                            stat.textContent = Math.floor(current).toLocaleString();
-                        }
-                    }
-                }, 30);
-            });
-        }
-
-        // Executar animação quando a seção aparecer
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            const heroObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            animateNumbers();
-                        }, 1500);
-                        heroObserver.unobserve(entry.target);
-                    }
-                });
-            });
-            heroObserver.observe(heroSection);
-        }
-
-        // Animação das tech tags
-        document.addEventListener('DOMContentLoaded', function() {
-            const techTags = document.querySelectorAll('.tech-tag');
-            techTags.forEach((tag, index) => {
-                setTimeout(() => {
-                    tag.style.opacity = '1';
-                    tag.style.transform = 'scale(1)';
-                }, index * 50);
-                
-                tag.style.opacity = '0';
-                tag.style.transform = 'scale(0.8)';
-                tag.style.transition = 'all 0.3s ease';
-            });
-        });
-
-        // Hover effect nos cards de linguagem
-        document.querySelectorAll('.language-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-8px) scale(1)';
-            });
-        });
-    </script>
-</body>
+        </footer>
+    </body>
 </html>

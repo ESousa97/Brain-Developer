@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Full-Stack Developer - Brain Developer</title>
+
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- CSS Modular -->
+        <link rel="stylesheet" href="../../styles/tokens.css" />
+        <link rel="stylesheet" href="../../styles/base.css" />
+        <link rel="stylesheet" href="../../styles/layout.css" />
+        <link rel="stylesheet" href="../../styles/components.css" />
+        <link rel="stylesheet" href="../../styles/utilities.css" />
+        <link rel="stylesheet" href="../../styles/pages/fullstack.css" />
+    </head>
+    <body class="bg-gradient-fullstack">
+        <section class="hero-section fullstack-hero" aria-label="Seção de Apresentação">
+            <div class="hero-content">
+                <h1 class="fullstack-hero__title">🚀 Full-Stack <span>Developer</span></h1>
+                <p class="fullstack-hero__subtitle">
+                    O profissional completo que domina Front-End e Back-End, capaz de construir
+                    aplicações do início ao fim.
+                </p>
+
+                <div class="hero-badges" role="list">
+                    <span class="badge" role="listitem">💰 R$ 5k - R$ 30k+</span>
+                    <span class="badge" role="listitem">🏠 Alta Flexibilidade Remota</span>
+                    <span class="badge" role="listitem">🚀 Altíssima Demanda</span>
+                    <span class="badge" role="listitem">🎯 Visão 360° do Projeto</span>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">R$ 12k+</span>
+                        <span class="stat-label">Salário Médio Pleno</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">35k+</span>
+                        <span class="stat-label">Vagas Abertas Brasil</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Crescimento Anual</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">#1</span>
+                        <span class="stat-label">Perfil Mais Procurado</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="main-container" role="main">
+            <div class="container">
+                <!-- O que é Full-Stack -->
+                <section
+                    class="content-section content-section--fade fullstack-overview"
+                    id="o-que-e"
+                    tabindex="-1"
+                    aria-labelledby="o-que-e-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="o-que-e-title">🌐 O que é ser Full-Stack?</h2>
+                        <p class="section-description">
+                            Full-Stack Developer é o profissional versátil que domina tanto o
+                            Front-End quanto o Back-End, tendo visão completa do desenvolvimento de
+                            software e capacidade de entregar projetos de ponta a ponta.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-overview__diagram" aria-label="Visão Full-Stack">
+                        <div class="fullstack-overview__block fullstack-overview__block--frontend">
+                            <div class="fullstack-overview__block-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="fullstack-overview__block-title">Front-End</h3>
+                            <p class="fullstack-overview__block-text">
+                                Interfaces e experiência do usuário
+                            </p>
+                        </div>
+                        <div class="fullstack-overview__connector">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="fullstack-overview__block fullstack-overview__block--backend">
+                            <div class="fullstack-overview__block-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="fullstack-overview__block-title">Back-End</h3>
+                            <p class="fullstack-overview__block-text">
+                                APIs, regras de negócio e segurança
+                            </p>
+                        </div>
+                        <div class="fullstack-overview__connector">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="fullstack-overview__block fullstack-overview__block--database">
+                            <div class="fullstack-overview__block-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="fullstack-overview__block-title">Dados</h3>
+                            <p class="fullstack-overview__block-text">
+                                Persistência, modelagem e performance
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid--auto-fit mt-12">
+                        <article class="info-card" tabindex="0" aria-label="Visão Completa">
+                            <div class="card-icon" aria-hidden="true">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3>Visão Completa</h3>
+                            <p>
+                                Você entende como todas as peças se conectam: da interface do
+                                usuário até o banco de dados, passando por APIs, servidores e
+                                deploy.
+                            </p>
+                        </article>
+
+                        <article class="info-card" tabindex="0" aria-label="Autonomia Total">
+                            <div class="card-icon" aria-hidden="true">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Autonomia Total</h3>
+                            <p>
+                                Capaz de construir MVPs e projetos completos sozinho, ideal para
+                                startups, freelancing e empreendedorismo digital.
+                            </p>
+                        </article>
+
+                        <article class="info-card" tabindex="0" aria-label="Ponte Entre Equipes">
+                            <div class="card-icon" aria-hidden="true">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3>Ponte Entre Equipes</h3>
+                            <p>
+                                Em times maiores, você facilita a comunicação entre front e back,
+                                entendendo as necessidades e limitações de ambos os lados.
+                            </p>
+                        </article>
+
+                        <article class="info-card" tabindex="0" aria-label="Maior Valorização">
+                            <div class="card-icon" aria-hidden="true">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Maior Valorização</h3>
+                            <p>
+                                Profissionais Full-Stack são altamente valorizados pelo mercado, com
+                                salários competitivos e muitas oportunidades remotas.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Comparação de Skills -->
+                <section
+                    class="content-section content-section--fade fullstack-skills"
+                    id="skills"
+                    tabindex="-1"
+                    aria-labelledby="skills-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="skills-title">
+                            🛠️ Stack Completo de um Full-Stack
+                        </h2>
+                        <p class="section-description">
+                            Veja todas as habilidades que um Full-Stack Developer precisa dominar,
+                            combinando o melhor do Front-End e Back-End.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-skills__comparison">
+                        <div class="fullstack-skills__column fullstack-skills__column--frontend">
+                            <div class="fullstack-skills__column-header">
+                                <span class="fullstack-skills__column-icon"
+                                    ><i class="fas fa-laptop-code"></i
+                                ></span>
+                                <h4 class="fullstack-skills__column-title">Front-End</h4>
+                            </div>
+                            <ul class="fullstack-skills__list">
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">HTML5 & CSS3</span>
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >JavaScript (ES6+)</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">TypeScript</span>
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >React.js ou Vue.js</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Responsive Design</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">CSS Frameworks</span>
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >State Management</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Testes de Front-End</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Bônus</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="fullstack-skills__column fullstack-skills__column--backend">
+                            <div class="fullstack-skills__column-header">
+                                <span class="fullstack-skills__column-icon"
+                                    ><i class="fas fa-server"></i
+                                ></span>
+                                <h4 class="fullstack-skills__column-title">Back-End</h4>
+                            </div>
+                            <ul class="fullstack-skills__list">
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Node.js / Python / Java</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Express / Django / Spring</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >APIs REST & GraphQL</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Bancos SQL (PostgreSQL)</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Bancos NoSQL (MongoDB)</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Autenticação (JWT, OAuth)</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">Cache (Redis)</span>
+                                    <span class="fullstack-skills__item-level">Bônus</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Testes de Back-End</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Bônus</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="fullstack-skills__column">
+                            <div class="fullstack-skills__column-header">
+                                <span class="fullstack-skills__column-icon"
+                                    ><i class="fas fa-cloud"></i
+                                ></span>
+                                <h4 class="fullstack-skills__column-title">DevOps & Extras</h4>
+                            </div>
+                            <ul class="fullstack-skills__list">
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">Git & GitHub</span>
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Docker & Containers</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">CI/CD Pipelines</span>
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name"
+                                        >Cloud (AWS, Azure, GCP)</span
+                                    >
+                                    <span class="fullstack-skills__item-level">Importante</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">Linux Básico</span>
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">Nginx / Apache</span>
+                                    <span class="fullstack-skills__item-level">Bônus</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">Monitoramento</span>
+                                    <span class="fullstack-skills__item-level">Bônus</span>
+                                </li>
+                                <li class="fullstack-skills__item">
+                                    <span class="fullstack-skills__item-name">Segurança Web</span>
+                                    <span class="fullstack-skills__item-level">Essencial</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tech Stack Recomendada -->
+                <section
+                    class="content-section content-section--fade fullstack-stacks"
+                    id="tech-stack"
+                    tabindex="-1"
+                    aria-labelledby="tech-stack-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="tech-stack-title">
+                            ⚡ Tech Stacks Recomendadas 2026
+                        </h2>
+                        <p class="section-description">
+                            As combinações mais usadas no mercado para criar aplicações Full-Stack
+                            modernas e escaláveis.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-stacks__grid">
+                        <article class="fullstack-stack-card fullstack-stack-card--mern">
+                            <div class="fullstack-stack-card__header">
+                                <h3 class="fullstack-stack-card__title">MERN Stack</h3>
+                                <span class="fullstack-stack-card__popularity">Alta demanda</span>
+                            </div>
+                            <div class="fullstack-stack-card__tech-list">
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Front:</strong> <span>React</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Back:</strong> <span>Node.js/Express</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>DB:</strong> <span>MongoDB</span>
+                                </div>
+                            </div>
+                            <p class="fullstack-stack-card__description">
+                                Ideal para startups e produtos com time-to-market rápido.
+                            </p>
+                            <ul class="fullstack-stack-card__use-cases">
+                                <li>SaaS</li>
+                                <li>Dashboards</li>
+                                <li>Apps em tempo real</li>
+                            </ul>
+                        </article>
+
+                        <article class="fullstack-stack-card fullstack-stack-card--mean">
+                            <div class="fullstack-stack-card__header">
+                                <h3 class="fullstack-stack-card__title">MEAN Stack</h3>
+                                <span class="fullstack-stack-card__popularity">Enterprise</span>
+                            </div>
+                            <div class="fullstack-stack-card__tech-list">
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Front:</strong> <span>Angular</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Back:</strong> <span>Node.js/Express</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>DB:</strong> <span>MongoDB</span>
+                                </div>
+                            </div>
+                            <p class="fullstack-stack-card__description">
+                                Boa para aplicações corporativas com processos definidos.
+                            </p>
+                            <ul class="fullstack-stack-card__use-cases">
+                                <li>ERPs</li>
+                                <li>Intranets</li>
+                                <li>Portais B2B</li>
+                            </ul>
+                        </article>
+
+                        <article class="fullstack-stack-card fullstack-stack-card--lamp">
+                            <div class="fullstack-stack-card__header">
+                                <h3 class="fullstack-stack-card__title">LAMP Stack</h3>
+                                <span class="fullstack-stack-card__popularity">Clássica</span>
+                            </div>
+                            <div class="fullstack-stack-card__tech-list">
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Back:</strong> <span>PHP/Laravel</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>DB:</strong> <span>MySQL</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Infra:</strong> <span>Apache</span>
+                                </div>
+                            </div>
+                            <p class="fullstack-stack-card__description">
+                                Confiável para sites, e-commerces e sistemas internos.
+                            </p>
+                            <ul class="fullstack-stack-card__use-cases">
+                                <li>E-commerce</li>
+                                <li>CMS</li>
+                                <li>Sistemas internos</li>
+                            </ul>
+                        </article>
+
+                        <article class="fullstack-stack-card fullstack-stack-card--jam">
+                            <div class="fullstack-stack-card__header">
+                                <h3 class="fullstack-stack-card__title">JAMstack</h3>
+                                <span class="fullstack-stack-card__popularity">Performance</span>
+                            </div>
+                            <div class="fullstack-stack-card__tech-list">
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Front:</strong> <span>Next.js</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>API:</strong> <span>Serverless</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>CDN:</strong> <span>Vercel/Netlify</span>
+                                </div>
+                            </div>
+                            <p class="fullstack-stack-card__description">
+                                Excelente para sites rápidos e escaláveis.
+                            </p>
+                            <ul class="fullstack-stack-card__use-cases">
+                                <li>Landing pages</li>
+                                <li>Blogs</li>
+                                <li>Marketing sites</li>
+                            </ul>
+                        </article>
+
+                        <article class="fullstack-stack-card fullstack-stack-card--django">
+                            <div class="fullstack-stack-card__header">
+                                <h3 class="fullstack-stack-card__title">Django Stack</h3>
+                                <span class="fullstack-stack-card__popularity">Produtividade</span>
+                            </div>
+                            <div class="fullstack-stack-card__tech-list">
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Back:</strong> <span>Django/FastAPI</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>DB:</strong> <span>PostgreSQL</span>
+                                </div>
+                                <div class="fullstack-stack-card__tech">
+                                    <strong>Front:</strong> <span>React/HTMX</span>
+                                </div>
+                            </div>
+                            <p class="fullstack-stack-card__description">
+                                Ideal para MVPs e aplicações robustas em pouco tempo.
+                            </p>
+                            <ul class="fullstack-stack-card__use-cases">
+                                <li>Plataformas educacionais</li>
+                                <li>Marketplaces</li>
+                                <li>CRMs</li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Roadmap -->
+                <section
+                    class="content-section content-section--fade fullstack-path"
+                    id="roadmap"
+                    tabindex="-1"
+                    aria-labelledby="roadmap-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="roadmap-title">🗺️ Roadmap Full-Stack 2026</h2>
+                        <p class="section-description">
+                            Um caminho estruturado e realista para você se tornar um Full-Stack
+                            Developer completo, do zero ao profissional.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-path__phases">
+                        <article class="fullstack-path__phase">
+                            <div class="fullstack-path__phase-marker">
+                                <span class="fullstack-path__phase-number">1</span>
+                            </div>
+                            <div class="fullstack-path__phase-content">
+                                <h3 class="fullstack-path__phase-title">Fundamentos Web</h3>
+                                <span class="fullstack-path__phase-duration">⏱️ 8-10 semanas</span>
+                                <p class="fullstack-path__phase-description">
+                                    Domine HTML, CSS e JavaScript. Entenda como a web funciona, crie
+                                    páginas responsivas e interativas.
+                                </p>
+                                <div class="fullstack-path__phase-topics">
+                                    <span class="fullstack-path__phase-topic">HTML5</span>
+                                    <span class="fullstack-path__phase-topic">CSS3</span>
+                                    <span class="fullstack-path__phase-topic">JavaScript</span>
+                                    <span class="fullstack-path__phase-topic">Git/GitHub</span>
+                                    <span class="fullstack-path__phase-topic">Responsive</span>
+                                </div>
+                                <div class="step-resources mt-4">
+                                    <a
+                                        href="https://developer.mozilla.org/pt-BR/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-book"></i> MDN Docs
+                                    </a>
+                                    <a
+                                        href="https://www.freecodecamp.org/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-graduation-cap"></i> FreeCodeCamp
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-path__phase">
+                            <div class="fullstack-path__phase-marker">
+                                <span class="fullstack-path__phase-number">2</span>
+                            </div>
+                            <div class="fullstack-path__phase-content">
+                                <h3 class="fullstack-path__phase-title">Front-End Avançado</h3>
+                                <span class="fullstack-path__phase-duration">⏱️ 10-12 semanas</span>
+                                <p class="fullstack-path__phase-description">
+                                    Aprenda React.js, TypeScript e ferramentas modernas de
+                                    desenvolvimento Front-End.
+                                </p>
+                                <div class="fullstack-path__phase-topics">
+                                    <span class="fullstack-path__phase-topic">React.js</span>
+                                    <span class="fullstack-path__phase-topic">TypeScript</span>
+                                    <span class="fullstack-path__phase-topic">Tailwind CSS</span>
+                                    <span class="fullstack-path__phase-topic">Hooks</span>
+                                    <span class="fullstack-path__phase-topic">Context API</span>
+                                </div>
+                                <div class="step-resources mt-4">
+                                    <a
+                                        href="https://react.dev/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fab fa-react"></i> React Docs
+                                    </a>
+                                    <a
+                                        href="https://www.typescriptlang.org/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-code"></i> TypeScript
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-path__phase">
+                            <div class="fullstack-path__phase-marker">
+                                <span class="fullstack-path__phase-number">3</span>
+                            </div>
+                            <div class="fullstack-path__phase-content">
+                                <h3 class="fullstack-path__phase-title">Back-End Fundamentals</h3>
+                                <span class="fullstack-path__phase-duration">⏱️ 10-12 semanas</span>
+                                <p class="fullstack-path__phase-description">
+                                    Aprenda Node.js, crie APIs REST, entenda bancos de dados e
+                                    autenticação.
+                                </p>
+                                <div class="fullstack-path__phase-topics">
+                                    <span class="fullstack-path__phase-topic">Node.js</span>
+                                    <span class="fullstack-path__phase-topic">Express.js</span>
+                                    <span class="fullstack-path__phase-topic">REST APIs</span>
+                                    <span class="fullstack-path__phase-topic">PostgreSQL</span>
+                                    <span class="fullstack-path__phase-topic">MongoDB</span>
+                                </div>
+                                <div class="step-resources mt-4">
+                                    <a
+                                        href="https://nodejs.org/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fab fa-node-js"></i> Node.js
+                                    </a>
+                                    <a
+                                        href="https://www.prisma.io/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-database"></i> Prisma
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-path__phase">
+                            <div class="fullstack-path__phase-marker">
+                                <span class="fullstack-path__phase-number">4</span>
+                            </div>
+                            <div class="fullstack-path__phase-content">
+                                <h3 class="fullstack-path__phase-title">
+                                    Autenticação & Segurança
+                                </h3>
+                                <span class="fullstack-path__phase-duration">⏱️ 6-8 semanas</span>
+                                <p class="fullstack-path__phase-description">
+                                    Implemente sistemas de login seguros, entenda JWT, OAuth e boas
+                                    práticas de segurança.
+                                </p>
+                                <div class="fullstack-path__phase-topics">
+                                    <span class="fullstack-path__phase-topic">JWT</span>
+                                    <span class="fullstack-path__phase-topic">OAuth 2.0</span>
+                                    <span class="fullstack-path__phase-topic">Bcrypt</span>
+                                    <span class="fullstack-path__phase-topic">HTTPS</span>
+                                    <span class="fullstack-path__phase-topic">CORS</span>
+                                </div>
+                                <div class="step-resources mt-4">
+                                    <a
+                                        href="https://jwt.io/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-key"></i> JWT.io
+                                    </a>
+                                    <a
+                                        href="https://owasp.org/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-shield-alt"></i> OWASP
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-path__phase">
+                            <div class="fullstack-path__phase-marker">
+                                <span class="fullstack-path__phase-number">5</span>
+                            </div>
+                            <div class="fullstack-path__phase-content">
+                                <h3 class="fullstack-path__phase-title">DevOps & Deploy</h3>
+                                <span class="fullstack-path__phase-duration">⏱️ 8-10 semanas</span>
+                                <p class="fullstack-path__phase-description">
+                                    Aprenda Docker, CI/CD, deploy em cloud e monitoramento de
+                                    aplicações em produção.
+                                </p>
+                                <div class="fullstack-path__phase-topics">
+                                    <span class="fullstack-path__phase-topic">Docker</span>
+                                    <span class="fullstack-path__phase-topic">GitHub Actions</span>
+                                    <span class="fullstack-path__phase-topic">AWS/Vercel</span>
+                                    <span class="fullstack-path__phase-topic">Nginx</span>
+                                    <span class="fullstack-path__phase-topic">Linux</span>
+                                </div>
+                                <div class="step-resources mt-4">
+                                    <a
+                                        href="https://www.docker.com/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fab fa-docker"></i> Docker
+                                    </a>
+                                    <a
+                                        href="https://vercel.com/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-cloud"></i> Vercel
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-path__phase">
+                            <div class="fullstack-path__phase-marker">
+                                <span class="fullstack-path__phase-number">6</span>
+                            </div>
+                            <div class="fullstack-path__phase-content">
+                                <h3 class="fullstack-path__phase-title">Projetos Full-Stack</h3>
+                                <span class="fullstack-path__phase-duration">⏱️ 12-16 semanas</span>
+                                <p class="fullstack-path__phase-description">
+                                    Construa projetos completos de ponta a ponta para seu portfólio
+                                    e demonstre suas habilidades.
+                                </p>
+                                <div class="fullstack-path__phase-topics">
+                                    <span class="fullstack-path__phase-topic">E-commerce</span>
+                                    <span class="fullstack-path__phase-topic">SaaS</span>
+                                    <span class="fullstack-path__phase-topic">Social App</span>
+                                    <span class="fullstack-path__phase-topic">Dashboard</span>
+                                    <span class="fullstack-path__phase-topic">Portfolio</span>
+                                </div>
+                                <div class="step-resources mt-4">
+                                    <a
+                                        href="https://github.com/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fab fa-github"></i> GitHub
+                                    </a>
+                                    <a
+                                        href="https://www.frontendmentor.io/"
+                                        class="resource-link"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i class="fas fa-rocket"></i> Challenges
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Vantagens -->
+                <section
+                    class="content-section content-section--fade fullstack-advantages"
+                    id="vantagens"
+                    tabindex="-1"
+                    aria-labelledby="vantagens-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="vantagens-title">
+                            ✨ Vantagens de ser Full-Stack
+                        </h2>
+                        <p class="section-description">
+                            Por que escolher o caminho Full-Stack pode ser a melhor decisão para sua
+                            carreira em tecnologia.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-advantages__grid">
+                        <article class="fullstack-advantage-card">
+                            <div class="fullstack-advantage-card__icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3 class="fullstack-advantage-card__title">Maior Remuneração</h3>
+                            <p class="fullstack-advantage-card__text">
+                                Full-Stack Developers geralmente recebem salários 20-30% maiores que
+                                especialistas.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-advantage-card">
+                            <div class="fullstack-advantage-card__icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3 class="fullstack-advantage-card__title">Mais Oportunidades</h3>
+                            <p class="fullstack-advantage-card__text">
+                                Empresas de todos os tamanhos procuram Full-Stack, especialmente
+                                startups.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-advantage-card">
+                            <div class="fullstack-advantage-card__icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3 class="fullstack-advantage-card__title">Trabalho Remoto</h3>
+                            <p class="fullstack-advantage-card__text">
+                                A versatilidade do Full-Stack abre portas para trabalho remoto
+                                nacional e internacional.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-advantage-card">
+                            <div class="fullstack-advantage-card__icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="fullstack-advantage-card__title">Empreendedorismo</h3>
+                            <p class="fullstack-advantage-card__text">
+                                Pode construir produtos completos sozinho, ideal para criar startups
+                                e projetos próprios.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-advantage-card">
+                            <div class="fullstack-advantage-card__icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="fullstack-advantage-card__title">Liderança Técnica</h3>
+                            <p class="fullstack-advantage-card__text">
+                                A visão completa facilita a transição para cargos de Tech Lead e
+                                arquiteto de software.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-advantage-card">
+                            <div class="fullstack-advantage-card__icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="fullstack-advantage-card__title">Aprendizado Contínuo</h3>
+                            <p class="fullstack-advantage-card__text">
+                                Sempre há algo novo para aprender, mantendo a carreira interessante
+                                e desafiadora.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Mercado -->
+                <section
+                    class="content-section content-section--fade"
+                    id="mercado"
+                    tabindex="-1"
+                    aria-labelledby="mercado-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="mercado-title">📊 Mercado Full-Stack 2026</h2>
+                        <p class="section-description">
+                            Números reais sobre o mercado de trabalho para Full-Stack Developers no
+                            Brasil.
+                        </p>
+                    </div>
+
+                    <div class="grid grid--auto-fit" role="list">
+                        <div class="stat-card" role="listitem">
+                            <span class="stat-number">35k+</span>
+                            <span class="stat-label">Vagas Abertas</span>
+                        </div>
+                        <div class="stat-card" role="listitem">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Crescimento Anual</span>
+                        </div>
+                        <div class="stat-card" role="listitem">
+                            <span class="stat-number">60%</span>
+                            <span class="stat-label">Vagas Remotas</span>
+                        </div>
+                        <div class="stat-card" role="listitem">
+                            <span class="stat-number">80%</span>
+                            <span class="stat-label">Empresas Buscando</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Salários -->
+                <section
+                    class="content-section content-section--fade fullstack-salary"
+                    id="salarios"
+                    tabindex="-1"
+                    aria-labelledby="salarios-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="salarios-title">
+                            💰 Faixas Salariais Full-Stack
+                        </h2>
+                        <p class="section-description">
+                            Expectativas salariais reais para Full-Stack Developers no mercado
+                            brasileiro em 2026.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-salary__highlight">
+                        <div class="fullstack-salary__highlight-label">Média de Mercado</div>
+                        <div class="fullstack-salary__highlight-value">R$ 12k</div>
+                        <div class="fullstack-salary__highlight-note">para níveis pleno/sênior</div>
+                    </div>
+
+                    <div class="fullstack-salary__cards">
+                        <article class="fullstack-salary-card">
+                            <div class="fullstack-salary-card__level">Junior (0-2 anos)</div>
+                            <div class="fullstack-salary-card__value">R$ 3.000 - R$ 6.000</div>
+                            <p>
+                                Conhecimento básico em ambos os lados, construindo primeiros
+                                projetos profissionais.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-salary-card">
+                            <div class="fullstack-salary-card__level">Pleno (2-4 anos)</div>
+                            <div class="fullstack-salary-card__value">R$ 6.000 - R$ 12.000</div>
+                            <p>
+                                Capacidade de desenvolver features completas com autonomia e
+                                qualidade.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-salary-card">
+                            <div class="fullstack-salary-card__level">Senior (4+ anos)</div>
+                            <div class="fullstack-salary-card__value">R$ 12.000 - R$ 25.000</div>
+                            <p>
+                                Liderança técnica, arquitetura de sistemas e mentoria de
+                                desenvolvedores.
+                            </p>
+                        </article>
+
+                        <article class="fullstack-salary-card">
+                            <div class="fullstack-salary-card__level">Tech Lead</div>
+                            <div class="fullstack-salary-card__value">R$ 18.000 - R$ 35.000+</div>
+                            <p>
+                                Gestão de equipes, decisões arquiteturais e estratégia tecnológica.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Projetos -->
+                <section
+                    class="content-section content-section--fade fullstack-projects"
+                    id="projetos"
+                    tabindex="-1"
+                    aria-labelledby="projetos-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="projetos-title">
+                            🛠️ Projetos Full-Stack para Portfólio
+                        </h2>
+                        <p class="section-description">
+                            Ideias de projetos completos para demonstrar suas habilidades tanto no
+                            Front-End quanto no Back-End.
+                        </p>
+                    </div>
+
+                    <div class="fullstack-projects__grid">
+                        <article class="fullstack-project-card">
+                            <div class="fullstack-project-card__header">
+                                <span
+                                    class="fullstack-project-card__complexity fullstack-project-card__complexity--beginner"
+                                    >Iniciante</span
+                                >
+                                <span class="fullstack-project-card__icon"
+                                    ><i class="fas fa-pen"></i
+                                ></span>
+                            </div>
+                            <h3 class="fullstack-project-card__title">Blog Pessoal</h3>
+                            <p class="fullstack-project-card__description">
+                                Blog completo com sistema de posts, comentários, autenticação e
+                                painel administrativo.
+                            </p>
+                            <div class="fullstack-project-card__features">
+                                <div class="fullstack-project-card__features-title">Features:</div>
+                                <div class="fullstack-project-card__features-list">
+                                    <span class="fullstack-project-card__feature"
+                                        >CRUD de posts</span
+                                    >
+                                    <span class="fullstack-project-card__feature">Comentários</span>
+                                    <span class="fullstack-project-card__feature">Auth</span>
+                                    <span class="fullstack-project-card__feature">Admin</span>
+                                </div>
+                            </div>
+                            <div class="fullstack-project-card__stack">
+                                <span class="fullstack-project-card__stack-item">React</span>
+                                <span class="fullstack-project-card__stack-item">Node.js</span>
+                                <span class="fullstack-project-card__stack-item">MongoDB</span>
+                                <span class="fullstack-project-card__stack-item">JWT</span>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-project-card">
+                            <div class="fullstack-project-card__header">
+                                <span
+                                    class="fullstack-project-card__complexity fullstack-project-card__complexity--intermediate"
+                                    >Intermediário</span
+                                >
+                                <span class="fullstack-project-card__icon"
+                                    ><i class="fas fa-shopping-cart"></i
+                                ></span>
+                            </div>
+                            <h3 class="fullstack-project-card__title">E-commerce Completo</h3>
+                            <p class="fullstack-project-card__description">
+                                Loja virtual com carrinho, checkout, pagamentos, gestão de produtos
+                                e dashboard de vendas.
+                            </p>
+                            <div class="fullstack-project-card__features">
+                                <div class="fullstack-project-card__features-title">Features:</div>
+                                <div class="fullstack-project-card__features-list">
+                                    <span class="fullstack-project-card__feature">Catálogo</span>
+                                    <span class="fullstack-project-card__feature">Checkout</span>
+                                    <span class="fullstack-project-card__feature">Pagamentos</span>
+                                    <span class="fullstack-project-card__feature">Dashboard</span>
+                                </div>
+                            </div>
+                            <div class="fullstack-project-card__stack">
+                                <span class="fullstack-project-card__stack-item">Next.js</span>
+                                <span class="fullstack-project-card__stack-item">NestJS</span>
+                                <span class="fullstack-project-card__stack-item">PostgreSQL</span>
+                                <span class="fullstack-project-card__stack-item">Stripe</span>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-project-card">
+                            <div class="fullstack-project-card__header">
+                                <span
+                                    class="fullstack-project-card__complexity fullstack-project-card__complexity--intermediate"
+                                    >Intermediário</span
+                                >
+                                <span class="fullstack-project-card__icon"
+                                    ><i class="fas fa-tasks"></i
+                                ></span>
+                            </div>
+                            <h3 class="fullstack-project-card__title">Task Manager (SaaS)</h3>
+                            <p class="fullstack-project-card__description">
+                                App de gestão de tarefas em equipe com workspaces, colaboração em
+                                tempo real e notificações.
+                            </p>
+                            <div class="fullstack-project-card__features">
+                                <div class="fullstack-project-card__features-title">Features:</div>
+                                <div class="fullstack-project-card__features-list">
+                                    <span class="fullstack-project-card__feature">Workspaces</span>
+                                    <span class="fullstack-project-card__feature">Real-time</span>
+                                    <span class="fullstack-project-card__feature">Drag & Drop</span>
+                                    <span class="fullstack-project-card__feature"
+                                        >Notificações</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="fullstack-project-card__stack">
+                                <span class="fullstack-project-card__stack-item">React</span>
+                                <span class="fullstack-project-card__stack-item">Express</span>
+                                <span class="fullstack-project-card__stack-item">Socket.io</span>
+                                <span class="fullstack-project-card__stack-item">Redis</span>
+                            </div>
+                        </article>
+
+                        <article class="fullstack-project-card">
+                            <div class="fullstack-project-card__header">
+                                <span
+                                    class="fullstack-project-card__complexity fullstack-project-card__complexity--advanced"
+                                    >Avançado</span
+                                >
+                                <span class="fullstack-project-card__icon"
+                                    ><i class="fas fa-users"></i
+                                ></span>
+                            </div>
+                            <h3 class="fullstack-project-card__title">Rede Social</h3>
+                            <p class="fullstack-project-card__description">
+                                Plataforma social com posts, likes, comentários, mensagens privadas
+                                e feed personalizado.
+                            </p>
+                            <div class="fullstack-project-card__features">
+                                <div class="fullstack-project-card__features-title">Features:</div>
+                                <div class="fullstack-project-card__features-list">
+                                    <span class="fullstack-project-card__feature">Feed</span>
+                                    <span class="fullstack-project-card__feature">Followers</span>
+                                    <span class="fullstack-project-card__feature">Chat</span>
+                                    <span class="fullstack-project-card__feature">Uploads</span>
+                                </div>
+                            </div>
+                            <div class="fullstack-project-card__stack">
+                                <span class="fullstack-project-card__stack-item">Next.js</span>
+                                <span class="fullstack-project-card__stack-item">GraphQL</span>
+                                <span class="fullstack-project-card__stack-item">PostgreSQL</span>
+                                <span class="fullstack-project-card__stack-item">WebSocket</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Dicas -->
+                <section
+                    class="content-section content-section--fade"
+                    id="dicas"
+                    tabindex="-1"
+                    aria-labelledby="dicas-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="dicas-title">
+                            💡 Dicas de Ouro para Full-Stack
+                        </h2>
+                        <p class="section-description">
+                            Conselhos práticos para acelerar sua jornada e evitar armadilhas comuns.
+                        </p>
+                    </div>
+
+                    <div class="grid grid--auto-fit">
+                        <article class="tip-card">
+                            <div class="tip-icon"><i class="fas fa-balance-scale"></i></div>
+                            <h3 class="tip-title">Equilibre Front e Back</h3>
+                            <p>
+                                Alterne entre Front e Back, aprofundando gradualmente em cada área.
+                            </p>
+                        </article>
+                        <article class="tip-card">
+                            <div class="tip-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h3 class="tip-title">Foque em Projetos Completos</h3>
+                            <p>
+                                A melhor forma de aprender Full-Stack é construindo aplicações
+                                completas.
+                            </p>
+                        </article>
+                        <article class="tip-card">
+                            <div class="tip-icon"><i class="fas fa-layer-group"></i></div>
+                            <h3 class="tip-title">Domine Uma Stack Primeiro</h3>
+                            <p>
+                                Escolha uma stack (ex: React + Node) e domine antes de explorar
+                                outras.
+                            </p>
+                        </article>
+                        <article class="tip-card">
+                            <div class="tip-icon"><i class="fas fa-code-branch"></i></div>
+                            <h3 class="tip-title">Git é Fundamental</h3>
+                            <p>
+                                Versione tudo desde o início. Git é essencial para trabalho em
+                                equipe.
+                            </p>
+                        </article>
+                        <article class="tip-card">
+                            <div class="tip-icon"><i class="fas fa-cloud"></i></div>
+                            <h3 class="tip-title">Aprenda Deploy Cedo</h3>
+                            <p>Coloque seus projetos no ar o mais cedo possível.</p>
+                        </article>
+                        <article class="tip-card">
+                            <div class="tip-icon"><i class="fas fa-users"></i></div>
+                            <h3 class="tip-title">Participe de Comunidades</h3>
+                            <p>Networking acelera aprendizado e abre portas.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- CTA Final -->
+                <section
+                    class="content-section content-section--fade"
+                    id="comece"
+                    tabindex="-1"
+                    aria-labelledby="comece-title"
+                >
+                    <div class="section-header">
+                        <h2 class="section-title" id="comece-title">
+                            🚀 Comece Sua Jornada Full-Stack!
+                        </h2>
+                        <p class="section-description">
+                            O caminho é longo, mas recompensador. Com dedicação e persistência, você
+                            pode se tornar um Full-Stack Developer completo e valorizado.
+                        </p>
+                    </div>
+
+                    <div class="flex flex--center flex--wrap flex--gap-md">
+                        <a href="../Start/Start.html" class="cta-button">
+                            <i class="fas fa-play"></i> Começar do Zero
+                        </a>
+                        <a
+                            href="../Front-End/Front-End.html"
+                            class="cta-button cta-button--secondary"
+                        >
+                            <i class="fas fa-laptop-code"></i> Estudar Front-End
+                        </a>
+                        <a
+                            href="../Back-End/Back-End.html"
+                            class="cta-button cta-button--secondary"
+                        >
+                            <i class="fas fa-server"></i> Estudar Back-End
+                        </a>
+                    </div>
+
+                    <div class="section-box section-box--purple text-center mt-12">
+                        <h3 class="text-2xl"><i class="fas fa-heart"></i> Mensagem Final</h3>
+                        <p class="text-lg mt-4">
+                            <strong>Full-Stack é sobre ser completo, não perfeito.</strong><br />
+                            Você não precisa saber tudo - precisa saber o suficiente para resolver
+                            problemas reais. Comece hoje, construa projetos, erre, aprenda e evolua.
+                            O mercado está esperando por você! 💜
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container footer-content">
+                <h3 class="footer-title">Criado com 💜 por José Enoque</h3>
+                <p class="footer-subtitle">
+                    Especialmente dedicado aos futuros Full-Stack Developers do Brasil 🇧🇷
+                </p>
+
+                <div class="social-links" role="list">
+                    <a
+                        href="https://github.com/ESousa97"
+                        target="_blank"
+                        class="social-icon"
+                        aria-label="GitHub"
+                        role="listitem"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/enoque-sousa-bb89aa168/"
+                        target="_blank"
+                        class="social-icon"
+                        aria-label="LinkedIn"
+                        role="listitem"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    © 2026 Brain Developer. O futuro Full-Stack do Brasil começa aqui! 🚀
+                </p>
+
+                <nav class="footer-nav">
+                    <a href="../../index.html"><i class="fas fa-arrow-left"></i> Página Inicial</a>
+                    <a href="../Start/Start.html"><i class="fas fa-rocket"></i> Guia Iniciantes</a>
+                    <a href="../Front-End/Front-End.html"
+                        ><i class="fas fa-laptop-code"></i> Guia Front-End</a
+                    >
+                    <a href="../Back-End/Back-End.html"
+                        ><i class="fas fa-server"></i> Guia Back-End</a
+                    >
+                </nav>
+            </div>
+        </footer>
+
+        <script>
+            // Scroll suave para seções com links internos
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        target.focus({ preventScroll: true });
+                    }
+                });
+            });
+
+            // Animação de fade-in para seções conforme scroll (IntersectionObserver)
+            const fadeSections = document.querySelectorAll('.content-section--fade');
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+            fadeSections.forEach((section) => observer.observe(section));
+
+            // Efeito parallax no hero
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.fullstack-hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+            });
+        </script>
+    </body>
+</html>

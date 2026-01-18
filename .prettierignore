@@ -1,0 +1,9 @@
+node_modules/
+
+# Generated or vendor
+**/dist/
+**/build/
+
+# A+ process artifacts
+BASELINE.md
+Relatório FINAL.md
