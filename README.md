@@ -29,9 +29,9 @@
 - [Arquitetura](#arquitetura)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Começando](#começando)
-  - [Pré-requisitos](#pré-requisitos)
-  - [Instalação](#instalação)
-  - [Uso Local](#uso-local)
+    - [Pré-requisitos](#pré-requisitos)
+    - [Instalação](#instalação)
+    - [Uso Local](#uso-local)
 - [Scripts Disponíveis](#scripts-disponíveis)
 - [Qualidade e Governança](#qualidade-e-governança)
 - [Deploy](#deploy)
@@ -198,12 +198,12 @@ Acesse: `http://localhost:8000/`
 
 **Acesso direto às trilhas:**
 
-| Trilha      | URL                                                                    |
-| ----------- | ---------------------------------------------------------------------- |
-| Início      | [/pages/Start/Start.html](https://braindeveloper.vercel.app/pages/Start/Start.html) |
-| Front-End   | [/pages/Front-End/Front-End.html](https://braindeveloper.vercel.app/pages/Front-End/Front-End.html) |
-| Back-End    | [/pages/Back-End/Back-End.html](https://braindeveloper.vercel.app/pages/Back-End/Back-End.html) |
-| Full-Stack  | [/pages/Full-Stack/Full-Stack.html](https://braindeveloper.vercel.app/pages/Full-Stack/Full-Stack.html) |
+| Trilha     | URL                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------- |
+| Início     | [/pages/Start/Start.html](https://braindeveloper.vercel.app/pages/Start/Start.html)                     |
+| Front-End  | [/pages/Front-End/Front-End.html](https://braindeveloper.vercel.app/pages/Front-End/Front-End.html)     |
+| Back-End   | [/pages/Back-End/Back-End.html](https://braindeveloper.vercel.app/pages/Back-End/Back-End.html)         |
+| Full-Stack | [/pages/Full-Stack/Full-Stack.html](https://braindeveloper.vercel.app/pages/Full-Stack/Full-Stack.html) |
 
 ---
 
@@ -251,24 +251,28 @@ O projeto também é compatível com Netlify, GitHub Pages ou qualquer plataform
 <summary><strong>O Brain Developer é um curso?</strong></summary>
 
 Não. É um guia de referência e roadmap que estrutura o que aprender em cada área e a ordem recomendada. Não oferece aulas ou exercícios interativos.
+
 </details>
 
 <details>
 <summary><strong>Preciso pagar para usar?</strong></summary>
 
 Não. O projeto é open source sob licença MIT, totalmente gratuito para acesso online ou uso local.
+
 </details>
 
 <details>
 <summary><strong>Existe um backend ou armazenamento de dados?</strong></summary>
 
 Não. É uma aplicação puramente estática — sem backend, sem banco de dados, sem cookies ou rastreadores.
+
 </details>
 
 <details>
 <summary><strong>Por que não usar React ou Vue?</strong></summary>
 
 Para conteúdo educacional estático, frameworks adicionariam complexidade desnecessária. HTML/CSS puros garantem máxima performance, compatibilidade e acessibilidade do código para contribuidores.
+
 </details>
 
 ---
